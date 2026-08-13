@@ -24,7 +24,7 @@ export default function ExoSurfacesAttributionFooter({
       : NASA_EXOPLANET_ARCHIVE_ACK;
 
   return (
-    <footer className="pointer-events-auto absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[760px] px-4 text-center animate-hud-in lg:block">
+    <footer className="pointer-events-none absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[760px] px-4 text-center animate-hud-in lg:block">
       <p className="font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         The sky and every physical number are computed from measured NASA Exoplanet
         Archive parameters via reused lib/exoplanets and lib/exo-surfaces; no API
@@ -38,7 +38,7 @@ export default function ExoSurfacesAttributionFooter({
             href={`${DOCS_BASE}/EXO_SURFACES_DATA_SOURCES.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             data sources
           </a>{" "}
@@ -47,7 +47,7 @@ export default function ExoSurfacesAttributionFooter({
             href={`${DOCS_BASE}/EXOPLANETS_DATA_SOURCES.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             exoplanet catalogue
           </a>

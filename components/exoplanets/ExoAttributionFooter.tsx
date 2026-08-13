@@ -24,7 +24,7 @@ export default function ExoAttributionFooter({
     : NASA_EXOPLANET_ARCHIVE_ACK;
 
   return (
-    <footer className="pointer-events-auto absolute bottom-5 right-5 hidden max-w-[320px] animate-hud-in md:block">
+    <footer className="pointer-events-none absolute bottom-5 corner-safe-right hidden max-w-[320px] animate-hud-in md:block">
       <p className="text-right font-mono text-[9px] leading-relaxed tracking-wide text-faint">
         <span className="block">{ack}</span>
         <span className="mt-1 block text-faint/80">{EXO_PRIMARY_CITATION}</span>
@@ -35,7 +35,7 @@ export default function ExoAttributionFooter({
           href="https://exoplanetarchive.ipac.caltech.edu/"
           target="_blank"
           rel="noreferrer"
-          className="mt-0.5 inline-block transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto mt-0.5 inline-block transition-colors duration-200 hover:text-dim"
         >
           NASA Exoplanet Archive ↗
         </a>

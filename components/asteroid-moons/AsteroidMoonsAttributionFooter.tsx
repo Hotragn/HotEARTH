@@ -11,7 +11,7 @@ const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function AsteroidMoonsAttributionFooter() {
   return (
-    <footer className="pointer-events-auto absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[720px] px-4 text-center animate-hud-in lg:block">
+    <footer className="pointer-events-none absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[720px] px-4 text-center animate-hud-in lg:block">
       <p className="font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         Computed: schematic mutual-orbit geometry from cited primary papers. Didymos
         + Dimorphos and the DART period step change{" "}
@@ -45,7 +45,7 @@ export default function AsteroidMoonsAttributionFooter() {
             href={`${DOCS_BASE}/ASTEROID_MOONS_DATA_SOURCES.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             data sources
           </a>{" "}
@@ -54,7 +54,7 @@ export default function AsteroidMoonsAttributionFooter() {
             href={`${DOCS_BASE}/ASTEROID_MOONS_PHYSICS.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             physics
           </a>

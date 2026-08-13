@@ -8,14 +8,14 @@
  */
 export default function IssAttributionFooter() {
   return (
-    <footer className="pointer-events-auto absolute inset-x-0 bottom-4 mx-auto hidden w-fit max-w-[520px] px-4 text-center animate-hud-in md:block">
+    <footer className="pointer-events-none absolute inset-x-0 bottom-4 mx-auto hidden w-fit max-w-[520px] px-4 text-center animate-hud-in md:block">
       <p className="font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         Measured:{" "}
         <a
           href="https://celestrak.org/"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           orbital elements — US Space Force (18 SDS) via CelesTrak
         </a>
@@ -25,7 +25,7 @@ export default function IssAttributionFooter() {
           href="https://github.com/shashwatak/satellite-js"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           SGP4 (satellite.js, MIT)
         </a>

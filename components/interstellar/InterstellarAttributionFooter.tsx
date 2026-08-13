@@ -10,7 +10,7 @@ import { AUDIO_CREDIT, DOCS_BASE } from "./interstellarUi";
  */
 export default function InterstellarAttributionFooter() {
   return (
-    <footer className="pointer-events-auto absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[760px] px-4 text-center animate-hud-in lg:block">
+    <footer className="pointer-events-none absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[760px] px-4 text-center animate-hud-in lg:block">
       <p className="font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         Computed: the three interstellar objects&apos; real hyperbolic
         trajectories from cited JPL SBDB / MPC elements (lib/interstellar reusing
@@ -40,7 +40,7 @@ export default function InterstellarAttributionFooter() {
             href={`${DOCS_BASE}/INTERSTELLAR_DATA_SOURCES.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             data sources
           </a>{" "}
@@ -49,7 +49,7 @@ export default function InterstellarAttributionFooter() {
             href={`${DOCS_BASE}/INTERSTELLAR_PHYSICS.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             physics
           </a>

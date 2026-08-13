@@ -11,7 +11,7 @@ import { DOCS_BASE } from "./blackHolesUi";
  */
 export default function BlackHolesAttributionFooter() {
   return (
-    <footer className="pointer-events-auto absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[820px] px-4 text-center animate-hud-in lg:block">
+    <footer className="pointer-events-none absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[820px] px-4 text-center animate-hud-in lg:block">
       <p className="font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         Catalog masses, distances and shadow sizes are cited measurements
         (GRAVITY 2023, EHT 2019 and 2022, Miller-Jones et al. 2021, El-Badry et
@@ -28,7 +28,7 @@ export default function BlackHolesAttributionFooter() {
             href={`${DOCS_BASE}/BLACK_HOLES_DATA_SOURCES.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             data sources
           </a>{" "}
@@ -37,7 +37,7 @@ export default function BlackHolesAttributionFooter() {
             href={`${DOCS_BASE}/BLACK_HOLES_PHYSICS.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             physics
           </a>

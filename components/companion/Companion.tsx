@@ -150,6 +150,10 @@ export default function Companion() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close companion" : `Open ${COMPANION_NAME}, the guide`}
         aria-expanded={open}
+        // This button owns the bottom-right corner on every tab. Anything
+        // else placed there is unclickable underneath it: see
+        // `.corner-safe-right` in app/globals.css, which exists because eleven
+        // attribution footers were hidden behind this exact button.
         className="hud-panel pointer-events-auto fixed bottom-4 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-full text-solar shadow-lg transition-transform duration-200 hover:scale-105 sm:bottom-5 sm:right-5"
       >
         {open ? <X size={22} weight="light" /> : <RobotFace size={34} mood="idle" />}

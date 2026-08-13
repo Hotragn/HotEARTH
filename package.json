@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "test": "vitest run"
+    "test": "vitest run",
+    "check:feeds": "node scripts/check_feeds.mjs",
+    "check:routes": "node scripts/sweep_routes.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

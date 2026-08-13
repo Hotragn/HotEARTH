@@ -114,16 +114,6 @@ export default function Arrival({
         </p>
       </div>
 
-      {/* skip, always available */}
-      <button
-        type="button"
-        onClick={onSkip}
-        className="hud-panel absolute right-4 top-4 z-10 flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 font-mono text-[11px] tracking-wide text-dim transition-colors duration-200 hover:text-ice sm:right-6 sm:top-6"
-      >
-        <SkipForward size={13} weight="fill" aria-hidden />
-        Skip intro
-      </button>
-
       <div className="relative z-10 flex max-w-2xl flex-col items-center gap-6">
         <p
           className="font-mono text-[11px] uppercase tracking-[0.42em] animate-hud-in"
@@ -171,21 +161,44 @@ export default function Arrival({
           ))}
         </div>
 
-        <button
-          type="button"
-          onClick={onEnter}
-          className={`group mt-2 inline-flex cursor-pointer items-center gap-2 rounded-full border border-line bg-white/5 px-6 py-3 text-sm font-medium text-ice transition-all duration-500 hover:bg-white/10 ${
-            stage >= LINES.length ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        >
-          Enter
-          <ArrowRight
-            size={16}
-            weight="bold"
-            aria-hidden
-            className="transition-transform duration-200 group-hover:translate-x-0.5"
-          />
-        </button>
+        {/*
+          Enter and Skip live together in the CENTRE column, not in a corner.
+
+          Skip used to sit at `absolute right-4 top-4`, which is precisely where
+          NavShell puts Search, Worlds and About. The nav chrome renders above
+          this intro (z-40 against z-30), so the button was not merely ugly with
+          "Skip intro" bleeding out from behind "Worlds": it was completely
+          unclickable at every width tested, all five hit-test points across it
+          covered by the nav. The top-right corner belongs to the nav on every
+          tab, and nothing else may park there.
+        */}
+        <div className="mt-2 flex flex-col items-center gap-3">
+          <button
+            type="button"
+            onClick={onEnter}
+            className={`group inline-flex cursor-pointer items-center gap-2 rounded-full border border-line bg-white/5 px-6 py-3 text-sm font-medium text-ice transition-all duration-500 hover:bg-white/10 ${
+              stage >= LINES.length ? "opacity-100" : "pointer-events-none opacity-0"
+            }`}
+          >
+            Enter
+            <ArrowRight
+              size={16}
+              weight="bold"
+              aria-hidden
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            />
+          </button>
+
+          {/* always available: skipping early is the entire point of a skip */}
+          <button
+            type="button"
+            onClick={onSkip}
+            className="flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[11px] tracking-wide text-faint transition-colors duration-200 hover:text-ice focus-visible:outline focus-visible:outline-2 focus-visible:outline-solar/70"
+          >
+            <SkipForward size={13} weight="fill" aria-hidden />
+            Skip intro
+          </button>
+        </div>
 
         <p className="max-w-md font-mono text-[10px] leading-relaxed text-faint/80">
           {HOMAGE_NOTE}

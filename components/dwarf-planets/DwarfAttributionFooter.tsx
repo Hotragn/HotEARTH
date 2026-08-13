@@ -26,13 +26,13 @@ export default function DwarfAttributionFooter({
   const isPlutoSystem = focus === "Pluto" || focus === "Charon";
 
   return (
-    <footer className="pointer-events-auto absolute bottom-5 right-5 hidden max-w-[340px] animate-hud-in md:block">
+    <footer className="pointer-events-none absolute bottom-5 corner-safe-right hidden max-w-[340px] animate-hud-in md:block">
       <p className="text-right font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         <a
           href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Orbits &amp; constants: JPL SBDB
         </a>

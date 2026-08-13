@@ -14,13 +14,13 @@ export default function MoonAttributionFooter({
   usingFallbackTexture?: boolean;
 }) {
   return (
-    <footer className="pointer-events-auto absolute bottom-5 right-5 hidden animate-hud-in md:block">
+    <footer className="pointer-events-none absolute bottom-5 corner-safe-right hidden animate-hud-in md:block">
       <p className="text-right font-mono text-[10px] tracking-wide text-faint">
         <a
           href="https://pds-geosciences.wustl.edu/missions/lro/diviner.htm"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Temp: LRO Diviner / NASA PDS
         </a>
@@ -33,7 +33,7 @@ export default function MoonAttributionFooter({
           href="https://svs.gsfc.nasa.gov/4720"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Basemap: NASA SVS / LROC
         </a>

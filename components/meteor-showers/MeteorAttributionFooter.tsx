@@ -12,7 +12,7 @@ import { METEOR_ATTRIBUTIONS } from "@/lib/meteor-facts";
  */
 export default function MeteorAttributionFooter() {
   return (
-    <footer className="pointer-events-auto absolute bottom-5 right-5 hidden max-w-[340px] animate-hud-in md:block">
+    <footer className="pointer-events-none absolute bottom-5 corner-safe-right hidden max-w-[340px] animate-hud-in md:block">
       <ul className="space-y-0.5 text-right font-mono text-[9px] leading-relaxed tracking-wide text-faint">
         {METEOR_ATTRIBUTIONS.map((a) => (
           <li key={a.href}>
@@ -20,7 +20,7 @@ export default function MeteorAttributionFooter() {
               href={a.href}
               target="_blank"
               rel="noreferrer"
-              className="transition-colors duration-200 hover:text-dim"
+              className="pointer-events-auto transition-colors duration-200 hover:text-dim"
             >
               {a.text}
             </a>

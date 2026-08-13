@@ -162,6 +162,24 @@ body {
 }
 
 /* --- slim scrollbars in HUD panels ------------------------------------ */
+/*
+ * The guide companion is a fixed 56px round button in the bottom-right corner
+ * of every tab (z-60). Anything else that wants to live in that corner has to
+ * clear it, or it is not merely crowded, it is UNCLICKABLE.
+ *
+ * That is not hypothetical. Eleven attribution footers sat at `right-5`, the
+ * same corner, and on every one of them the last credit link was completely
+ * covered by the companion: on the Earth tab the "Natural Earth" link could not
+ * be opened at all. For a project whose whole claim is that every source is
+ * credited, an attribution link you cannot click is a broken promise, and it
+ * was invisible to every test in the suite.
+ *
+ * 6rem clears the button (20px inset + 56px wide) with room to breathe.
+ */
+.corner-safe-right {
+  right: 6rem;
+}
+
 .hud-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgb(255 255 255 / 0.16) transparent;

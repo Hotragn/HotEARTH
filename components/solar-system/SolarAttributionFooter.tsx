@@ -34,13 +34,13 @@ export default function SolarAttributionFooter({
   const windLine = focus ? WIND_SOURCE[focus] : undefined;
 
   return (
-    <footer className="pointer-events-auto absolute bottom-5 right-5 hidden max-w-[320px] animate-hud-in md:block">
+    <footer className="pointer-events-none absolute bottom-5 corner-safe-right hidden max-w-[320px] animate-hud-in md:block">
       <p className="text-right font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         <a
           href="https://ssd.jpl.nasa.gov/planets/approx_pos.html"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Orbits: JPL/NASA
         </a>
@@ -61,7 +61,7 @@ export default function SolarAttributionFooter({
           href="https://www.solarsystemscope.com/textures/"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Textures by Solar System Scope (solarsystemscope.com), CC BY 4.0
         </a>

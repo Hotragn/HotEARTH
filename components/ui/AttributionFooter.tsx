@@ -12,13 +12,13 @@ export default function AttributionFooter({
   windActive?: boolean;
 }) {
   return (
-    <footer className="pointer-events-auto absolute bottom-5 right-5 hidden animate-hud-in md:block">
+    <footer className="pointer-events-none absolute bottom-5 corner-safe-right hidden animate-hud-in md:block">
       <p className="font-mono text-[10px] tracking-wide text-faint">
         <a
           href="https://worldview.earthdata.nasa.gov/"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           NASA GIBS/Worldview
         </a>
@@ -27,7 +27,7 @@ export default function AttributionFooter({
           href="https://open-meteo.com/"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Open-Meteo
         </a>
@@ -36,7 +36,7 @@ export default function AttributionFooter({
           href="https://www.naturalearthdata.com/"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Natural Earth
         </a>
@@ -47,7 +47,7 @@ export default function AttributionFooter({
               href="https://www.nco.ncep.noaa.gov/pmb/products/gfs/"
               target="_blank"
               rel="noreferrer"
-              className="transition-colors duration-200 hover:text-dim"
+              className="pointer-events-auto transition-colors duration-200 hover:text-dim"
             >
               Wind: NOAA GFS
             </a>

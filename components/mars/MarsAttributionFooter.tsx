@@ -14,13 +14,13 @@ export default function MarsAttributionFooter({
   usingFallbackTexture?: boolean;
 }) {
   return (
-    <footer className="pointer-events-auto absolute bottom-5 right-5 hidden animate-hud-in md:block">
+    <footer className="pointer-events-none absolute bottom-5 corner-safe-right hidden animate-hud-in md:block">
       <p className="text-right font-mono text-[10px] tracking-wide text-faint">
         <a
           href="https://astrogeology.usgs.gov/search/results?pmi-target=mars"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Terrain: NASA/USGS
         </a>
@@ -29,7 +29,7 @@ export default function MarsAttributionFooter({
           href="https://www.giss.nasa.gov/tools/mars24/"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Mars24: NASA GISS
         </a>
@@ -38,7 +38,7 @@ export default function MarsAttributionFooter({
           href="https://pds.nasa.gov/"
           target="_blank"
           rel="noreferrer"
-          className="transition-colors duration-200 hover:text-dim"
+          className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
           Climatology: NASA PDS
         </a>

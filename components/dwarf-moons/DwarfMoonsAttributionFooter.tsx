@@ -12,7 +12,7 @@ const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function DwarfMoonsAttributionFooter() {
   return (
-    <footer className="pointer-events-auto absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[680px] px-4 text-center animate-hud-in lg:block">
+    <footer className="pointer-events-none absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[680px] px-4 text-center animate-hud-in lg:block">
       <p className="font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         Computed: moon configurations by Kepler propagation of published mean
         elements. Pluto system{" "}
@@ -42,7 +42,7 @@ export default function DwarfMoonsAttributionFooter() {
             href="https://ssd.jpl.nasa.gov/horizons/"
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             JPL Horizons
           </a>{" "}
@@ -51,7 +51,7 @@ export default function DwarfMoonsAttributionFooter() {
             href={`${DOCS_BASE}/DWARF_MOONS_DATA_SOURCES.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             data sources
           </a>{" "}
@@ -60,7 +60,7 @@ export default function DwarfMoonsAttributionFooter() {
             href={`${DOCS_BASE}/DWARF_MOONS_PHYSICS.md`}
             target="_blank"
             rel="noreferrer"
-            className="transition-colors duration-200 hover:text-dim"
+            className="pointer-events-auto transition-colors duration-200 hover:text-dim"
           >
             physics
           </a>

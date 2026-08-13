@@ -19,6 +19,7 @@ export type WorldTab =
   | "earth"
   | "tonight"
   | "quakes"
+  | "tides"
   | "aurora"
   | "living"
   | "iss"
@@ -217,6 +218,37 @@ export const WORLDS: readonly World[] = [
       "g scale",
       "substorm",
       "bz",
+    ],
+  },
+  {
+    id: "tides",
+    label: "Tides",
+    href: "/tides",
+    group: "earth",
+    blurb:
+      "Newton's equilibrium tide computed from the real Moon and Sun, plotted against a live tide gauge to show how wrong a correct theory can be.",
+    accent: "#4fc3f7",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "tide",
+      "tides",
+      "tidal",
+      "high tide",
+      "low tide",
+      "spring tide",
+      "neap tide",
+      "tide gauge",
+      "sea level",
+      "ocean",
+      "equilibrium tide",
+      "tidal range",
+      "bay of fundy",
+      "amphidromic",
+      "m2",
+      "lunar day",
+      "noaa",
+      "water level",
     ],
   },
   {

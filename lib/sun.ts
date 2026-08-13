@@ -52,6 +52,8 @@ export function julianDate(date: Date): number {
 }
 
 /** Finite-number guard used everywhere for null-safety (bad input ⇒ null). */
+import { ovalBoundaryLatitude } from "./aurora";
+
 function finite(x: number): boolean {
   return typeof x === "number" && Number.isFinite(x);
 }
@@ -224,35 +226,42 @@ export function solarCycleInfo(date: Date): SolarCycleInfo | null {
 
 // ─────────────────────────────── 3. Aurora oval ─────────────────────────────
 //
-// During geomagnetic activity the auroral oval expands equatorward. A widely
-// used rough rule ties the equatorward edge (in GEOMAGNETIC latitude) linearly
-// to the planetary K index: ~67° at Kp0 falling ~3° per Kp step, so aurora can
-// reach ~40° geomagnetic latitude during a Kp9 superstorm. See NOAA SWPC aurora
-// tips / "Aurora – 30 Minute Forecast" guidance.
-
-/** Auroral boundary at Kp0 [° geomagnetic latitude]. */
-export const AURORA_BOUNDARY_KP0_DEG = 67;
-/** Equatorward shift of the boundary per unit Kp [°]. */
-export const AURORA_BOUNDARY_PER_KP_DEG = 3;
+// The equatorward edge of the auroral oval lives in lib/aurora now, and this
+// module DELEGATES to it rather than carrying a second model.
+//
+// It used to carry its own rule of thumb, boundary = 67 - 3*Kp. That is also
+// attributed to NOAA guidance, but it disagrees with the table NOAA publishes
+// alongside its aurora products by up to 8 degrees at high Kp (40 against 48.1
+// at Kp9), and two tabs of the same app quietly disagreeing about where the
+// aurora reaches is exactly the sort of thing this project exists not to do.
+//
+// The table won for a reason beyond being the more standard citation: the old
+// rule folded two separate effects into one number. An observer south of the
+// oval can still see aurora, because the emission is 110 to 300 km up and
+// clears their horizon from hundreds of kilometres away. lib/aurora computes
+// that horizon range explicitly, so the boundary can mean just the boundary.
 
 /**
- * APPROXIMATE equatorward boundary of visible aurora [° geomagnetic latitude]
- * as a function of Kp: boundary ≈ 67 − 3·Kp (≈67° at Kp0 … ≈40° at Kp9).
- * Monotonically decreasing in Kp: a bigger storm pushes the oval to lower
- * latitudes. Rough rule of thumb (NOAA SWPC), not a precise model. Kp is clamped
- * to its defined 0–9 range; returns null for non-finite input.
+ * APPROXIMATE equatorward boundary of the auroral oval [° geomagnetic latitude]
+ * for a given Kp, from NOAA's published table (66.5° at Kp0 down to 48.1° at
+ * Kp9). Delegates to lib/aurora's {@link ovalBoundaryLatitude} so there is one
+ * model in the codebase. Kp is clamped to 0-9; returns null for non-finite
+ * input.
+ *
+ * NOTE this is the boundary alone. Whether a given observer can SEE the aurora
+ * also depends on how far it stays above their horizon, which lib/aurora
+ * computes separately.
  */
 export function auroraEquatorwardBoundaryDeg(kp: number): number | null {
-  if (!finite(kp)) return null;
-  const k = Math.min(9, Math.max(0, kp));
-  return AURORA_BOUNDARY_KP0_DEG - AURORA_BOUNDARY_PER_KP_DEG * k;
+  return ovalBoundaryLatitude(kp);
 }
 
 /**
- * Whether aurora is (roughly) overhead-to-visible from geomagnetic latitude
- * `latDeg` at the given Kp: true iff |latDeg| ≥ the equatorward boundary. Works
- * for both hemispheres (uses |lat|). Approximate — see
- * {@link auroraEquatorwardBoundaryDeg}. Returns null on bad input.
+ * Whether aurora is (roughly) overhead from geomagnetic latitude `latDeg` at
+ * the given Kp: true iff |latDeg| >= the equatorward boundary. Works for both
+ * hemispheres (uses |lat|). This answers "is it above me", NOT "can I see it":
+ * for the second question, which includes the horizon geometry, use
+ * lib/aurora's `auroraVerdict`. Returns null on bad input.
  */
 export function auroraVisibleFromGeomagLatitude(
   kp: number,

@@ -21,8 +21,8 @@ import {
  * depend on, plus the fuzzy-search ranking.
  */
 describe("worlds registry", () => {
-  it("has the thirty-two world views, all unique", () => {
-    expect(WORLDS).toHaveLength(32);
+  it("has the thirty-three world views, all unique", () => {
+    expect(WORLDS).toHaveLength(33);
     const ids = WORLDS.map((w) => w.id);
     expect(new Set(ids).size).toBe(ids.length);
     const hrefs = WORLDS.map((w) => w.href);
@@ -35,6 +35,7 @@ describe("worlds registry", () => {
       earth: "/",
       tonight: "/tonight",
       quakes: "/earthquakes",
+      aurora: "/aurora",
       living: "/living-earth",
       iss: "/iss",
       mars: "/mars",
@@ -74,11 +75,12 @@ describe("worlds registry", () => {
     }
   });
 
-  it("splits 8 Earth, 14 Solar System and 10 Beyond worlds", () => {
+  it("splits 9 Earth, 14 Solar System and 10 Beyond worlds", () => {
     expect(getWorldsInGroup("earth").map((w) => w.id)).toEqual([
       "earth",
       "tonight",
       "quakes",
+      "aurora",
       "living",
       "virtual",
       "iss",
@@ -140,7 +142,7 @@ describe("worlds registry", () => {
       "solar-system",
       "beyond",
     ]);
-    expect(grouped[0].worlds).toHaveLength(8);
+    expect(grouped[0].worlds).toHaveLength(9);
     expect(grouped[1].worlds).toHaveLength(14);
     expect(grouped[2].worlds).toHaveLength(10);
   });
@@ -192,7 +194,7 @@ describe("fuzzyScore", () => {
 describe("searchWorlds", () => {
   it("returns every world in canonical order for an empty query", () => {
     expect(searchWorlds("").map((w) => w.id)).toEqual(WORLDS.map((w) => w.id));
-    expect(searchWorlds("   ")).toHaveLength(32);
+    expect(searchWorlds("   ")).toHaveLength(33);
   });
 
   it("finds a world by exact label", () => {
@@ -210,6 +212,9 @@ describe("searchWorlds", () => {
     expect(searchWorlds("time machine")[0].id).toBe("virtual");
     expect(searchWorlds("city lights")[0].id).toBe("living");
     expect(searchWorlds("orrery")[0].id).toBe("solar");
+    expect(searchWorlds("aurora")[0].id).toBe("aurora");
+    expect(searchWorlds("northern lights")[0].id).toBe("aurora");
+    expect(searchWorlds("kp index")[0].id).toBe("aurora");
     expect(searchWorlds("earthquake")[0].id).toBe("quakes");
     expect(searchWorlds("seismic")[0].id).toBe("quakes");
     expect(searchWorlds("ring of fire")[0].id).toBe("quakes");
@@ -238,7 +243,7 @@ describe("searchWorlds", () => {
     expect(searchWorlds("meteor")[0].id).toBe("meteor-showers");
     expect(searchWorlds("radiant")[0].id).toBe("meteor-showers");
     expect(searchWorlds("zhr")[0].id).toBe("meteor-showers");
-    expect(searchWorlds("aurora")[0].id).toBe("sun");
+    expect(searchWorlds("aurora")[0].id).toBe("aurora");
     expect(searchWorlds("space weather")[0].id).toBe("sun");
     expect(searchWorlds("sunspot")[0].id).toBe("sun");
     expect(searchWorlds("solar wind")[0].id).toBe("sun");

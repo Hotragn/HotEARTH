@@ -1322,6 +1322,68 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Aurora &mdash; where the sky is lit, and whether you are under it
+          </h3>
+          <p className="mt-2">
+            The Sun tab had the source and the Earth tabs had the sky, with
+            nothing joining them. The aurora is that join. Four NOAA SWPC feeds,
+            live and keyless: the planetary Kp index, the 3-day outlook, the
+            solar wind from DSCOVR at L1, and OVATION Prime, NOAA&apos;s own
+            aurora model, drawn on the globe at the real 110 km emission
+            altitude.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              The load-bearing idea is that your geographic latitude is the wrong
+              number.
+            </span>{" "}
+            Aurora rings the GEOMAGNETIC pole, which currently sits in the
+            Canadian Arctic, not the top of the globe. Edinburgh and Moscow share
+            a geographic latitude to within a fifth of a degree and are more than
+            six degrees apart geomagnetically, which is the entire reason
+            Scotland has aurora luck Moscow does not. lib/aurora computes
+            centred-dipole geomagnetic coordinates from the IGRF-13 pole, and the
+            tab shows both numbers side by side.
+          </p>
+          <p className="mt-2">
+            It also answers a question most space-weather sites skip: an observer
+            south of the oval can still see it, because the emission is
+            kilometres up and clears their horizon from far away. That is real
+            geometry, d = R&nbsp;acos(R/(R+h)), and it separates cleanly: green at
+            110 km reaches about 1,175 km, the red emission at 300 km reaches
+            about 1,960 km, roughly seven degrees of latitude further. That
+            difference is why a severe storm produces red glows reported from
+            places the oval never came near. And because a bright oval over a sky
+            that never darkens is not an aurora anyone sees, the tab borrows the
+            Tonight calculation to check whether it is even dark where you are.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              Building it turned up a disagreement inside this app, which is now
+              fixed.
+            </span>{" "}
+            The Sun tab already carried its own oval rule, boundary = 67 &minus;
+            3&nbsp;Kp, which differs from the table NOAA publishes with its
+            aurora products by up to eight degrees at high Kp. Two tabs quietly
+            disagreeing about where the aurora reaches is exactly what this
+            project exists not to do, so lib/sun now delegates to lib/aurora and
+            there is one model. The table also decomposes better: the boundary
+            can mean just the boundary, because the horizon reach is computed
+            separately instead of being folded into it.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Limits, stated on the tab.</span> OVATION
+            looks about an hour ahead and cannot look further, because that is
+            the solar wind&apos;s travel time from the spacecraft that measures
+            it. Kp is a 3-hour PLANETARY index, not a local or instantaneous one.
+            The centred dipole differs from operational corrected-geomagnetic
+            coordinates by up to about 3 degrees. Beyond an hour, aurora
+            forecasting is genuinely poor. And as on Tonight: no cloud cover, no
+            light pollution. Acknowledgment: NOAA Space Weather Prediction
+            Center, US Government work in the public domain.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Seismic Earth &mdash; the solid planet, live
           </h3>
           <p className="mt-2">

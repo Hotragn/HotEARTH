@@ -19,6 +19,7 @@ export type WorldTab =
   | "earth"
   | "tonight"
   | "quakes"
+  | "aurora"
   | "living"
   | "iss"
   | "mars"
@@ -189,6 +190,33 @@ export const WORLDS: readonly World[] = [
       "tsunami",
       "moment magnitude",
       "seismic moment",
+    ],
+  },
+  {
+    id: "aurora",
+    label: "Aurora",
+    href: "/aurora",
+    group: "earth",
+    blurb:
+      "NOAA's live auroral oval on the globe, and whether it reaches your geomagnetic latitude tonight.",
+    accent: "#5ce6a5",
+    thumb: "/textures/earth-night-black-marble.jpg",
+    thumbBody: "Earth at night",
+    keywords: [
+      "aurora",
+      "aurora borealis",
+      "aurora australis",
+      "northern lights",
+      "southern lights",
+      "geomagnetic",
+      "geomagnetic storm",
+      "kp",
+      "kp index",
+      "magnetosphere",
+      "ovation",
+      "g scale",
+      "substorm",
+      "bz",
     ],
   },
   {
@@ -594,7 +622,6 @@ export const WORLDS: readonly World[] = [
       "sun",
       "solar",
       "space weather",
-      "aurora",
       "solar wind",
       "sunspot",
       "flare",

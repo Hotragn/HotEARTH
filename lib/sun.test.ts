@@ -149,8 +149,10 @@ describe("solar cycle (approximate, from cycle-25 timing)", () => {
 // ─────────────────────────────── 3. Aurora oval ─────────────────────────────
 describe("aurora oval boundary", () => {
   it("is ≈67° geomagnetic at Kp0 and ≈40° at Kp9", () => {
-    expect(auroraEquatorwardBoundaryDeg(0)).toBeCloseTo(67, 6);
-    expect(auroraEquatorwardBoundaryDeg(9)).toBeCloseTo(40, 6);
+    // NOAA's published table, now shared with lib/aurora so the Sun tab and
+    // the Aurora tab cannot disagree about where the oval reaches.
+    expect(auroraEquatorwardBoundaryDeg(0)).toBeCloseTo(66.5, 6);
+    expect(auroraEquatorwardBoundaryDeg(9)).toBeCloseTo(48.1, 6);
   });
 
   it("decreases monotonically with Kp (bigger storm → lower latitudes)", () => {
@@ -165,11 +167,13 @@ describe("aurora oval boundary", () => {
   it("visibility: aurora reaches lower latitudes only in bigger storms", () => {
     // A 50° geomagnetic site sees nothing at Kp0 but does during a Kp9 storm.
     expect(auroraVisibleFromGeomagLatitude(0, 50)).toBe(false);
-    expect(auroraVisibleFromGeomagLatitude(9, 50)).toBe(true);
+    expect(auroraVisibleFromGeomagLatitude(9, 50)).toBe(true); // 50 > 48.1
     // Polar sites (70°) see aurora even when quiet.
     expect(auroraVisibleFromGeomagLatitude(0, 70)).toBe(true);
     // Works for the southern hemisphere too (uses |lat|).
-    expect(auroraVisibleFromGeomagLatitude(9, -45)).toBe(true);
+    // 45 is now inside the oval only in the southern sense of |lat| >= 48.1,
+    // which it is not: the published table stops at 48.1, so this is false.
+    expect(auroraVisibleFromGeomagLatitude(9, -45)).toBe(false);
   });
 });
 

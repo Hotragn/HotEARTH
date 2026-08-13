@@ -37,6 +37,8 @@
  * array, and nothing throws.
  */
 
+import { parseUtcTimestamp } from "./utils";
+
 function finite(v: unknown): v is number {
   return typeof v === "number" && Number.isFinite(v);
 }
@@ -259,10 +261,12 @@ export function parseKpMinute(raw: unknown): KpSample[] {
       : finite(r.kp_index)
         ? r.kp_index
         : null;
-    if (kp === null || typeof r.time_tag !== "string") continue;
-    // SWPC time tags are UTC without a zone marker.
-    const t = new Date(`${r.time_tag.replace(" ", "T")}Z`);
-    if (!Number.isFinite(t.getTime())) continue;
+    if (kp === null) continue;
+    // SWPC time tags are UTC without a zone marker. Parsed strictly: appending
+    // "Z" and trusting `new Date` turns a malformed tag into 2000-01-01 rather
+    // than an Invalid Date.
+    const t = parseUtcTimestamp(r.time_tag);
+    if (t === null) continue;
     out.push({ time: t, kp, observed: true });
   }
   out.sort((a, b) => a.time.getTime() - b.time.getTime());
@@ -279,9 +283,9 @@ export function parseKpForecast(raw: unknown): KpSample[] {
   for (const row of raw) {
     if (!row || typeof row !== "object") continue;
     const r = row as Record<string, unknown>;
-    if (!finite(r.kp) || typeof r.time_tag !== "string") continue;
-    const t = new Date(`${r.time_tag.replace(" ", "T")}Z`);
-    if (!Number.isFinite(t.getTime())) continue;
+    if (!finite(r.kp)) continue;
+    const t = parseUtcTimestamp(r.time_tag);
+    if (t === null) continue;
     out.push({
       time: t,
       kp: r.kp,

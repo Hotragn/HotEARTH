@@ -1463,6 +1463,55 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Tides &mdash; a correct theory that gets the answer wrong
+          </h3>
+          <p className="mt-2">
+            Newton&apos;s equilibrium tide is real physics, derived correctly,
+            and it is wrong about the sea level at every coast on Earth. This tab
+            computes it from the real Moon and Sun and plots it against a live
+            NOAA tide gauge, so the gap is visible rather than described. The
+            gauge is the only thing fetched; the curve, the spring-neap state and
+            the amplification factor are computed by lib/tides from positions the
+            app already had.
+          </p>
+          <p className="mt-2">
+            The tide-raising force is a DIFFERENCE in gravity across the Earth
+            rather than gravity itself, so it falls off as the CUBE of distance.
+            That is why the Moon beats the Sun about two to one despite the Sun
+            pulling roughly 178 times harder: it is 390 times further away. The
+            (3cos&sup2;&minus;1)/2 term is positive both where the Moon is
+            overhead AND where it is underfoot, which is why there are two high
+            tides a day rather than one. 29 tests pin the textbook coefficients
+            (0.36 m lunar, 0.16 m solar), the 1.4&times; perigee-to-apogee swing,
+            springs at both new and full Moon, and&mdash;the strongest one&mdash;
+            the PERIOD of the computed curve against the published M2 constituent
+            of 12 h 25 m, which exercises the whole chain at once.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              What it gets wrong is the size, and the numbers are the point.
+            </span>{" "}
+            The theory predicts about half a metre of range everywhere. Eastport,
+            at the mouth of the Bay of Fundy, measures seven metres: ten times
+            too big. Honolulu measures 0.87 m against a predicted 0.85 m, which
+            is almost exactly right. That is not the theory failing at random.
+            Mid-ocean, far from any resonant shelf, the sea most nearly resembles
+            the global ocean the theory assumes. Everywhere else a tide is a
+            RESONANT RESPONSE of a particular basin, which is what harmonic
+            analysis exists to capture and what no amount of care with the
+            potential will produce.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Do not navigate by it.</span> NOAA
+            publishes real predictions for these stations from a harmonic fit to
+            each station&apos;s own record. The two traces on the chart are drawn
+            on DIFFERENT vertical scales, marked on each side and stated in the
+            caption, because the gauge is measured against a local datum and the
+            theory is a displacement about zero: only the range and the timing
+            were ever comparable.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Tonight &mdash; the one page organised around you, not an object
           </h3>
           <p className="mt-2">

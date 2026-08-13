@@ -237,32 +237,12 @@ export function meanSarosIntervalDays<T extends { saros: number | null; td: stri
 }
 
 /**
- * Great-circle distance in km between two lat/lon points (haversine, spherical
- * Earth).
- *
- * NOTE FOR CALLERS: using this against a greatest-eclipse point tells you how
- * far away that single point is. It is **not** a visibility calculation and must
- * not be presented as one: whether an eclipse is visible from a location depends
- * on the shadow path and local circumstances, which this module does not model.
+ * Great-circle distance [km]. Re-exported from lib/geo, which owns every
+ * lat/lon convention in this app; see the note there about the two copies this
+ * replaced.
  */
-export function greatCircleKm(
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number,
-): number | null {
-  if (![lat1, lon1, lat2, lon2].every((v) => typeof v === "number" && isFinite(v))) {
-    return null;
-  }
-  const R = 6371.0088; // mean Earth radius, km
-  const rad = Math.PI / 180;
-  const dLat = (lat2 - lat1) * rad;
-  const dLon = (lon2 - lon1) * rad;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLon / 2) ** 2;
-  return 2 * R * Math.asin(Math.min(1, Math.sqrt(a)));
-}
+export { greatCircleKm } from "./geo";
+
 
 /**
  * The honest sentence to show next to any distance-to-greatest-eclipse figure,

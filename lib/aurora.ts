@@ -141,8 +141,13 @@ export function ovalBoundaryLatitude(kp: number): number | null {
   return OVAL_BOUNDARY_BY_KP[lo] * (1 - t) + OVAL_BOUNDARY_BY_KP[hi] * t;
 }
 
-/** Mean Earth radius [km], matching the value used elsewhere in this app. */
-export const EARTH_RADIUS_KM = 6371.0088;
+/**
+ * Mean Earth radius [km]. Re-exported from lib/geo so there is one value in
+ * the codebase; the horizon geometry below is a surface calculation, so the
+ * mean radius is the right one.
+ */
+export { EARTH_MEAN_RADIUS_KM as EARTH_RADIUS_KM } from "./geo";
+import { EARTH_MEAN_RADIUS_KM as EARTH_RADIUS_KM_LOCAL } from "./geo";
 
 /**
  * Published emission altitudes. Green comes from atomic oxygen at around 100 to
@@ -169,7 +174,7 @@ export const EMISSION_ALTITUDE_KM = {
  */
 export function horizonRangeKm(heightKm: number): number | null {
   if (!finite(heightKm) || heightKm <= 0) return null;
-  const r = EARTH_RADIUS_KM;
+  const r = EARTH_RADIUS_KM_LOCAL;
   return r * Math.acos(clamp(r / (r + heightKm), -1, 1));
 }
 
@@ -177,7 +182,7 @@ export function horizonRangeKm(heightKm: number): number | null {
 export function horizonRangeDeg(heightKm: number): number | null {
   const km = horizonRangeKm(heightKm);
   if (km === null) return null;
-  return (km / (EARTH_RADIUS_KM * Math.PI)) * 180;
+  return (km / (EARTH_RADIUS_KM_LOCAL * Math.PI)) * 180;
 }
 
 // ──────────────────────────── the NOAA G scale ──────────────────────────────

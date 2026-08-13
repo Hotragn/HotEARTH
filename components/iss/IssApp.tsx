@@ -167,10 +167,16 @@ export default function IssApp() {
     if (!activeTle || !whereFix) return null;
     const ours = propagate(activeTle.line1, activeTle.line2, new Date(whereFix.timestampMs));
     if (!ours) return null;
-    return {
-      divergenceKm: greatCircleKm(ours.latitude, ours.longitude, whereFix.latitude, whereFix.longitude),
-      theirs: whereFix,
-    };
+    // greatCircleKm is null-safe, and this whole cross-check is a diagnostic:
+    // if the distance cannot be computed there is nothing honest to show.
+    const divergenceKm = greatCircleKm(
+      ours.latitude,
+      ours.longitude,
+      whereFix.latitude,
+      whereFix.longitude
+    );
+    if (divergenceKm === null) return null;
+    return { divergenceKm, theirs: whereFix };
   }, [activeTle, whereFix]);
 
   // --- passes over the observer's location --------------------------------

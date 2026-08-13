@@ -86,3 +86,47 @@ export function formatLatLon({ lat, lon }: LatLon): string {
   const ew = lon >= 0 ? "E" : "W";
   return `${Math.abs(lat).toFixed(2)}° ${ns} · ${Math.abs(lon).toFixed(2)}° ${ew}`;
 }
+
+// ─────────────────────── distance along the surface ─────────────────────────
+
+/**
+ * Mean Earth radius [km], IUGG R1 = (2a + b) / 3.
+ *
+ * This is the MEAN radius, and it is the right one for great-circle distance
+ * along the surface. It is deliberately not the WGS84 equatorial radius
+ * (6378.137 km), which lib/satellites uses because orbital work is referenced
+ * to the equatorial figure. Two different numbers for two different jobs; the
+ * mistake would be using either for both.
+ */
+export const EARTH_MEAN_RADIUS_KM = 6371.0088;
+
+/**
+ * Great-circle distance between two lat/lon points [km], by the haversine
+ * formula.
+ *
+ * This lives here, with the rest of the lat/lon conventions, because it used to
+ * live in two places at once: lib/eclipses and lib/iss-facts each had a copy,
+ * with different Earth radii (6371.0088 against 6371) and different null
+ * behaviour (one returned null on bad input, the other returned NaN). The
+ * numbers only differed by about seven metres over five thousand kilometres, so
+ * nothing was visibly wrong, which is exactly what makes that kind of drift
+ * worth removing rather than tolerating. Both modules now re-export this.
+ *
+ * Returns null for any non-finite input, per the project-wide contract.
+ */
+export function greatCircleKm(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+): number | null {
+  if (![lat1, lon1, lat2, lon2].every((v) => typeof v === "number" && Number.isFinite(v))) {
+    return null;
+  }
+  const dLat = (lat2 - lat1) * DEG2RAD;
+  const dLon = (lon2 - lon1) * DEG2RAD;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * DEG2RAD) * Math.cos(lat2 * DEG2RAD) * Math.sin(dLon / 2) ** 2;
+  return 2 * EARTH_MEAN_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(a)));
+}

@@ -32,7 +32,7 @@
  * array, and nothing throws.
  */
 
-import { greatCircleKm } from "./eclipses";
+import { greatCircleKm } from "./geo";
 
 function finite(v: unknown): v is number {
   return typeof v === "number" && Number.isFinite(v);
@@ -619,9 +619,9 @@ export const GLOBAL_B_VALUE_NOTE =
 /**
  * Great-circle distance from an observer to an epicentre [km].
  *
- * Delegates to lib/eclipses' `greatCircleKm` rather than carrying a second
- * haversine: one implementation, already validated against published city-pair
- * distances, so the two tabs cannot disagree about how far apart two points on
+ * Delegates to lib/geo's `greatCircleKm` rather than carrying a second
+ * haversine: one implementation, validated against published city-pair
+ * distances, so no two tabs can disagree about how far apart two points on
  * Earth are.
  */
 export function distanceToQuakeKm(

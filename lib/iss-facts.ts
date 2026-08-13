@@ -27,7 +27,12 @@ export const ISS_CATALOG_NUMBER = 25544;
  * height in lib/iss is reduced onto (6378.135 km equatorial). Close enough for
  * placing a marker; the honest altitude number itself always comes from lib/iss.
  */
-export const EARTH_MEAN_RADIUS_KM = 6371;
+/**
+ * Mean Earth radius [km], owned by lib/geo. Re-exported here because this
+ * module's public API has always carried it.
+ */
+export { EARTH_MEAN_RADIUS_KM } from "./geo";
+import { EARTH_MEAN_RADIUS_KM } from "./geo";
 
 /**
  * CelesTrak GP endpoint for the ISS in raw TLE format. CORS `*` (verified in the
@@ -215,29 +220,23 @@ export function compass16(azimuthDeg: number): string {
 }
 
 /**
- * Great-circle distance in km between two lat/lon points (haversine on the mean
- * Earth radius). Used to size the divergence between our SGP4 sub-point and the
- * live wheretheiss.at fix, which is a visible proxy for TLE age.
+ * Great-circle distance [km]. Re-exported from lib/geo, which owns it. This
+ * module used to carry its own copy with a slightly different Earth radius and
+ * no null-safety; see the note in lib/geo.
  */
-export function greatCircleKm(
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number
-): number {
-  const dLat = (lat2 - lat1) * DEG2RAD;
-  const dLon = (lon2 - lon1) * DEG2RAD;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(lat1 * DEG2RAD) * Math.cos(lat2 * DEG2RAD) * Math.sin(dLon / 2) ** 2;
-  return 2 * EARTH_MEAN_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(a)));
-}
+export { greatCircleKm } from "./geo";
+
 
 /**
  * Angular radius (degrees, from Earth's centre) of the ISS "footprint" — the
  * circle on the ground from which the station is on or above the horizon, for a
  * given altitude: acos(R / (R + h)). At ~420 km this is ~20°, a ground radius of
  * ~2,260 km. A real, honest geometric fact — not a coverage guarantee.
+ *
+ * This is the SAME geometry lib/aurora uses for how far away an aurora stays
+ * above the horizon: "what can see this thing at height h" and "what can this
+ * thing at height h see" are one question. The two are asserted to agree in
+ * lib/consistency.test.ts.
  */
 export function footprintAngularRadiusDeg(altitudeKm: number): number {
   if (!Number.isFinite(altitudeKm) || altitudeKm <= 0) return 0;

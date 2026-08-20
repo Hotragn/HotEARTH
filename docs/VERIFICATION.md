@@ -5,10 +5,20 @@ others are blind to.
 
 ## 1. `npm test` — the physics
 
-1,300+ unit tests, pure and offline. Every physics module is checked against
+1,400+ unit tests, pure and offline. Every physics module is checked against
 **published values**, never against its own previous output: Meeus worked
 examples, NOAA tables, Hanks & Kanamori moments, published day lengths,
-elongation caps, the Gutenberg-Richter b-value, harmonic tidal constants.
+elongation caps, the Gutenberg-Richter b-value, harmonic tidal constants,
+Keeling's first monthly mean, NOAA's published geomagnetic pole positions.
+
+One module is checked a second way as well. A spherical harmonic synthesis
+(`lib/geomagnetism.ts`) returns plausible five-figure numbers even when the
+Legendre recursion, the geodetic conversion or the frame rotation is wrong, so
+plausibility proves nothing there. Its expected values are the frozen output of
+the **official pyIGRF14 reference implementation** distributed with the IGRF
+coefficients, run once locally at twelve places and dates, and agreement is
+required to 0.05 nT out of 50,000. Where a reference implementation exists,
+checking against it beats checking against a range.
 
 `lib/consistency.test.ts` is the odd one out and the most important: it checks
 the modules **against each other**. The two worst bugs this codebase has

@@ -10,6 +10,8 @@ import {
 import { distanceToQuakeKm } from "./quakes";
 import {
   EARTH_RADIUS_KM as EARTH_RADIUS_FROM_AURORA,
+  GEOMAGNETIC_POLE_LAT_DEG,
+  GEOMAGNETIC_POLE_LON_DEG,
   horizonRangeKm,
   ovalBoundaryLatitude,
 } from "./aurora";
@@ -21,6 +23,9 @@ import { sunEclipticLongitude } from "./lunar";
 import { julianDate } from "./celestial";
 import { OBLIQUITY_J2000_DEG } from "./precession";
 import { meanObliquityDeg } from "./tonight";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { geomagneticPole, parseIgrf } from "./geomagnetism";
 
 /**
  * CROSS-MODULE CONSISTENCY.
@@ -215,5 +220,44 @@ describe("one obliquity", () => {
     const y2000 = meanObliquityDeg(new Date(Date.UTC(2000, 0, 1, 12)))!;
     const y2100 = meanObliquityDeg(new Date(Date.UTC(2100, 0, 1, 12)))!;
     expect(y2000 - y2100).toBeCloseTo(47 / 3600, 3);
+  });
+});
+
+describe("one geomagnetic pole, hardcoded in one module and computed in another", () => {
+  // lib/aurora carries the WMM2020 pole as two constants, because the auroral
+  // oval is defined in geomagnetic coordinates and the aurora tab was built
+  // before there was a field model in the codebase. lib/geomagnetism now
+  // computes the pole from IGRF-14 for any epoch, so the two can disagree, and
+  // this is where that would show up.
+  const model = parseIgrf(
+    JSON.parse(readFileSync(join(process.cwd(), "public/data/magnetic/igrf14.json"), "utf8"))
+  )!;
+
+  it("puts the aurora constant within 10 km of the computed 2020 pole", () => {
+    const p = geomagneticPole(model, 2020)!;
+    expect(Math.abs(p.latDeg - GEOMAGNETIC_POLE_LAT_DEG)).toBeLessThan(0.1);
+    expect(Math.abs(p.lonDeg - GEOMAGNETIC_POLE_LON_DEG)).toBeLessThan(0.1);
+  });
+
+  it("is still within a tenth of a degree at the present epoch", () => {
+    // The dipole axis moves slowly, unlike the dip pole. If a future IGRF ever
+    // moves it far enough that the aurora tab's fixed constant starts to matter
+    // against a hundreds-of-km-wide oval, this fails and the constant should
+    // become a call into lib/geomagnetism.
+    const p = geomagneticPole(model, 2026)!;
+    expect(Math.abs(p.latDeg - GEOMAGNETIC_POLE_LAT_DEG)).toBeLessThan(0.35);
+    expect(Math.abs(p.lonDeg - GEOMAGNETIC_POLE_LON_DEG)).toBeLessThan(0.35);
+  });
+
+  it("keeps the oval inside the band NOAA describes around that pole", () => {
+    // NOAA: the bands of greatest auroral activity sit 15 to 25 degrees from the
+    // GEOMAGNETIC pole. The aurora tab's published Kp table should therefore put
+    // its quiet-time boundary in that range, measured from the pole the field
+    // model computes rather than from the geographic one.
+    const p = geomagneticPole(model, 2026)!;
+    const quiet = ovalBoundaryLatitude(0)!;
+    const colatFromPole = p.latDeg - quiet;
+    expect(colatFromPole).toBeGreaterThan(12);
+    expect(colatFromPole).toBeLessThan(25);
   });
 });

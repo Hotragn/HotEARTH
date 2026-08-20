@@ -19,6 +19,7 @@ export type WorldTab =
   | "earth"
   | "climate"
   | "carbon"
+  | "magnetic"
   | "air"
   | "tonight"
   | "quakes"
@@ -257,6 +258,39 @@ export const WORLDS: readonly World[] = [
       "keeling",
       "noaa gml",
       "scripps",
+    ],
+  },
+  {
+    id: "magnetic",
+    label: "Magnetic",
+    href: "/magnetic",
+    group: "earth",
+    blurb:
+      "Your compass does not point north. The whole field, the three poles and a century of drift, computed from 195 numbers.",
+    accent: "#ff7a7a",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "magnetic",
+      "magnetic field",
+      "geomagnetic",
+      "compass",
+      "declination",
+      "magnetic north",
+      "true north",
+      "inclination",
+      "dip",
+      "igrf",
+      "magnetic pole",
+      "north magnetic pole",
+      "dip pole",
+      "pole reversal",
+      "south atlantic anomaly",
+      "dipole",
+      "nanotesla",
+      "navigation",
+      "agonic line",
+      "core",
     ],
   },
   {

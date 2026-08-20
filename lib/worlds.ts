@@ -17,6 +17,7 @@
  */
 export type WorldTab =
   | "earth"
+  | "air"
   | "tonight"
   | "quakes"
   | "tides"
@@ -156,6 +157,40 @@ export const WORLDS: readonly World[] = [
       "observing planner",
       "midnight sun",
       "polar night",
+    ],
+  },
+  {
+    id: "air",
+    label: "Air",
+    href: "/air",
+    group: "earth",
+    blurb:
+      "What you are breathing, scored by two countries that disagree, with the pollutant responsible named.",
+    accent: "#8fd0e8",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "air",
+      "air quality",
+      "aqi",
+      "pollution",
+      "pm2.5",
+      "pm25",
+      "pm10",
+      "particulate",
+      "smoke",
+      "wildfire smoke",
+      "ozone",
+      "smog",
+      "nitrogen dioxide",
+      "no2",
+      "sulphur dioxide",
+      "breathing",
+      "asthma",
+      "who guideline",
+      "epa",
+      "cams",
+      "copernicus",
     ],
   },
   {

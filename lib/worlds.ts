@@ -18,6 +18,7 @@
 export type WorldTab =
   | "earth"
   | "climate"
+  | "carbon"
   | "air"
   | "tonight"
   | "quakes"
@@ -223,6 +224,39 @@ export const WORLDS: readonly World[] = [
       "instrumental record",
       "nasa giss",
       "met office",
+    ],
+  },
+  {
+    id: "carbon",
+    label: "Carbon",
+    href: "/carbon",
+    group: "earth",
+    blurb:
+      "The Keeling curve since March 1958, and the annual wobble on it that is northern vegetation growing and rotting.",
+    accent: "#ffc46b",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "carbon",
+      "carbon dioxide",
+      "co2",
+      "keeling curve",
+      "mauna loa",
+      "ppm",
+      "methane",
+      "ch4",
+      "greenhouse gas",
+      "greenhouse gases",
+      "seasonal cycle",
+      "biosphere",
+      "photosynthesis",
+      "growth rate",
+      "global warming potential",
+      "gwp",
+      "pre-industrial",
+      "keeling",
+      "noaa gml",
+      "scripps",
     ],
   },
   {

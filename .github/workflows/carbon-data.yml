@@ -1,0 +1,76 @@
+name: carbon-data
+
+# NOAA GML publishes a new monthly mean roughly five weeks after the month
+# ends, and quietly revises recent months as flask samples are reconciled with
+# the in-situ analyser. Monthly is therefore the natural cadence: anything more
+# frequent would commit the same numbers over and over, and anything less would
+# leave the curve visibly short at the right-hand edge, which is exactly where a
+# reader looks first.
+#
+# 06:40 on the 9th: after the usual publication window for the previous month,
+# with a :40 offset to stay clear of the top-of-hour GitHub Actions congestion
+# where scheduled jobs get delayed. A missed run costs nothing, because a
+# monthly mean is a state rather than a list of events and stays correct while
+# it ages. The earthquake tab refuses a mirror for exactly the opposite reason.
+on:
+  schedule:
+    - cron: "40 6 9 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: carbon-data
+  cancel-in-progress: false
+
+jobs:
+  update-carbon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history so the push step below can rebase onto main if the
+          # branch advanced during the run.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No third-party dependencies: the script uses only the standard library.
+      #
+      # It validates all three series before writing anything: the exact first
+      # month of each record (Keeling's March 1958 is a fixed historical fact,
+      # so a shifted start means the CSV format changed), no more than twelve
+      # months behind today, values inside sane physical ranges, strictly
+      # increasing months with no duplicates, and NOAA's -9.99 sentinels
+      # dropped rather than averaged. A bad download fails the job loudly
+      # instead of committing nonsense.
+      - name: Fetch NOAA GML greenhouse gas records
+        run: python scripts/carbon/fetch_carbon.py --out public/data/carbon/greenhouse-gases.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/carbon/greenhouse-gases.json
+          if git diff --cached --quiet; then
+            echo "No change (same values as last run)."
+            exit 0
+          fi
+          git commit -m "chore(data): update greenhouse gas record"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          echo "::error::Failed to push carbon data after 5 attempts."
+          exit 1

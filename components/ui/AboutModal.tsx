@@ -1512,6 +1512,67 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Air &mdash; the same air, scored by two countries that disagree
+          </h3>
+          <p className="mt-2">
+            The Earth worlds cover the sky over the planet, the solid planet, the
+            oceans and deep time. This one is the thin layer people actually live
+            in. It reads live Copernicus CAMS concentrations through Open-Meteo,
+            keyless, and computes everything else itself.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              The load-bearing point is that an air quality index is not a
+              measurement.
+            </span>{" "}
+            It is a national policy judgement wrapped around one: a lookup table
+            with straight lines drawn between the rows, and the rows are chosen
+            by regulators. The US index crosses out of &quot;Good&quot; at 9.0
+            micrograms of PM2.5, the European index not until 10, so the same air
+            can be &quot;Moderate, sensitive groups take care&quot; in one place
+            and comfortably &quot;Fair&quot; in the other. Neither is lying. The
+            tab says so when the two disagree.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Both indices are a MAXIMUM, not an average,</span>{" "}
+            so the number is silent about what it is describing. The pollutant
+            responsible is therefore named beside it, which produced the most
+            interesting thing on the tab: a real Delhi reading came out 188
+            &quot;Unhealthy&quot; on the US scale driven by OZONE, and
+            &quot;Poor&quot; on the European scale driven by PM2.5. The two
+            countries disagreed about the culprit, not just the score, from
+            identical concentrations.
+          </p>
+          <p className="mt-2">
+            36 unit tests check the published tables against themselves: every
+            band edge must map exactly onto its index edge, for the 2024 PM2.5
+            revision, PM10, 8-hour ozone and 1-hour NO2. The gas conversions are
+            checked against the standard factors at 25 C (ozone 1.96, NO2 1.88,
+            SO2 2.62 micrograms per ppb), and one test measures the cost of
+            skipping them: 197 micrograms of ozone is 100 ppb, and treating the
+            197 as though it were already ppb lands TWO bands too high, with a
+            number that looks perfectly plausible. Particulates are refused a ppb
+            figure entirely, because PM2.5 is a size class rather than a
+            substance and has no molar mass.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not shown, deliberately:</span> a
+            conversion into cigarettes. That rule of thumb was built for one
+            comparison in one paper, not as a dose model. Also stated rather than
+            buried: these are modelled kilometre-scale concentrations and not a
+            sensor at your address, and the US PM2.5 table is defined on a
+            24-hour average while what is shown is hourly.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> Copernicus
+            Atmosphere Monitoring Service (CAMS) forecasts, served by Open-Meteo.
+            CAMS data are free to use with attribution and neither requires an API
+            key. Breakpoints from the US EPA, band edges from the European
+            Environment Agency, guidelines from the WHO 2021 global update; see
+            docs/AIR_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Tonight &mdash; the one page organised around you, not an object
           </h3>
           <p className="mt-2">

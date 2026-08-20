@@ -180,6 +180,25 @@ body {
   right: 6rem;
 }
 
+/*
+ * Tabs with a time control (Play / Now / scrubber) put it in a bar across the
+ * bottom centre, roughly 115 to 145px up. The attribution footers on those tabs
+ * sat at `bottom-24` and their text ran straight through that bar.
+ *
+ * Making the footer pointer-events-none was not enough: its LINKS still have to
+ * be clickable, so a credit link landing on the scrubber took the click. On
+ * Saturn Moons the scrubber was dead across the middle of its track, and on
+ * Other Moons the "data sources" link was reachable at one point out of fifteen
+ * because the scrubber sat on top of it. Two controls fighting over the same
+ * pixels, and whichever painted last won.
+ *
+ * 10rem puts the footer's bottom edge above the control bar entirely, so
+ * neither has to win.
+ */
+.clears-time-control {
+  bottom: 10rem;
+}
+
 .hud-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgb(255 255 255 / 0.16) transparent;

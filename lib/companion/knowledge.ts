@@ -5,7 +5,8 @@ import type { WorldTab } from "../worlds";
  * One grounding fact the companion is allowed to speak from. Retrieval selects
  * a handful of these per question and they are the ONLY substrate the local
  * model (or the scripted fallback) may answer from, so the robot stays honest
- * about the 25 worlds instead of inventing physics.
+ * about the worlds that actually ship instead of inventing physics. (The count
+ * is read from the registry rather than written here, so it cannot go stale.)
  */
 export interface KnowledgeCard {
   /** Stable id, for de-duping and tests. */

@@ -1579,6 +1579,90 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Carbon &mdash; you can hear the planet breathing
+          </h3>
+          <p className="mt-2">
+            The Climate tab measures an effect. This one measures the driver, with
+            a completely different kind of instrument: not thousands of stations
+            homogenised into a global field, but one analyser 3,400 m up a
+            Hawaiian volcano that has read the same air every month since March
+            1958. Three NOAA GML records are committed and analysed in the
+            browser: CO2 at Mauna Loa, CO2 averaged over marine surface sites
+            worldwide from 1979, and methane globally averaged from 1983.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              The wobble on the curve is northern vegetation, and averaging the
+              whole planet does not cancel it.
+            </span>{" "}
+            That last part surprised us. Mauna Loa swings 6.5 ppm a year, down
+            through the northern summer as leaves grow and up again through winter
+            as they rot. The obvious guess is that a global average would mostly
+            cancel that, since the southern hemisphere breathes in antiphase, and
+            we wrote the test expecting a ratio above 1.5 and possibly far more.
+            Measured, the global marine average still swings 4.40 ppm, a ratio of
+            1.47, and it peaks in April rather than May. The hemispheres are not
+            symmetric: most of the world&apos;s land, and so most of its
+            vegetation, is north of the equator, so the southern cycle trims the
+            northern signal instead of opposing it evenly. The northern spring is
+            visible in the average CO2 of the entire planet.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">The rise, and its acceleration.</span> Mean
+            growth per decade at Mauna Loa: 0.86 ppm a year in the 1960s, 1.64 in
+            the 1980s, 2.40 in the 2010s, 2.62 so far in the 2020s. Not a
+            projection, just the mean year-over-year difference of the annual
+            means, and a decade needs at least five complete years to appear at
+            all. Methane is the more interesting record: it grew 6.8 ppb a year in
+            the 1990s, then almost stopped at 2.1 in the 2000s, and is running
+            11.6 in the 2020s. That stall is real, visible in the curve, and still
+            not fully explained.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              &quot;Methane is 80 times worse than CO2&quot; is a choice of
+              horizon, not a fact.
+            </span>{" "}
+            Methane is a strong absorber that mostly breaks down within about
+            twelve years, so any single multiplier has already assumed a time
+            window. IPCC AR6 gives fossil methane 79.7 over 20 years, 27.9 over
+            100 and 7.95 over 500, and the tab shows all three rather than
+            picking. Ask for an unpublished horizon and the function returns null
+            instead of interpolating a number that no assessment report contains.
+          </p>
+          <p className="mt-2">
+            The seasonally adjusted line is our own 12-month centred average, and
+            it stops six months short of each end rather than being padded out,
+            because half a window is not a year and padding puts a spurious wiggle
+            exactly where a reader looks first: the present day. NOAA&apos;s own
+            deseasonalised series is committed alongside, so the two can be
+            compared. Current values as multiples of pre-industrial come out at
+            1.53x for CO2 against 280 ppm and 2.68x for methane against 722 ppb,
+            and those pre-industrial figures are ice cores rather than
+            thermometers: a different instrument, on a different continent,
+            measuring air that stopped mixing with the atmosphere centuries ago.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> any forecast (there is
+            no line drawn past the last measured month, because where the curve
+            goes is a question about economies rather than about spectroscopy),
+            any attribution of the rise to a source (that needs isotopes and
+            inventories, not a concentration series), and any temperature
+            consequence, which lives one tab over and is measured, not derived
+            here.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> NOAA Global
+            Monitoring Laboratory, Earth System Research Laboratories, Boulder
+            Colorado, a US Government work in the public domain. Mauna Loa CO2 is
+            a joint record with the Scripps Institution of Oceanography, begun by
+            Charles David Keeling. Committed and refreshed monthly, because a
+            monthly mean is a state that gets revised rather than a list of
+            events, and NOAA does not send CORS headers; see
+            docs/CARBON_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Air &mdash; the same air, scored by two countries that disagree
           </h3>
           <p className="mt-2">

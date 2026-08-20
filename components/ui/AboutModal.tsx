@@ -1512,6 +1512,73 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Climate &mdash; the number is a choice, the trend is not
+          </h3>
+          <p className="mt-2">
+            Two independent analyses of the instrumental record: NASA GISTEMP
+            back to 1880 and Met Office HadCRUT5 back to 1850, the latter with
+            its published uncertainty. The whole tab is built around one
+            interaction, and one provable claim.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              Change the reference period and every headline number moves while
+              every trend stays exactly where it was.
+            </span>{" "}
+            Switching from the IPCC 1850 to 1900 baseline to the current WMO
+            1991 to 2020 normal takes the 2026 anomaly from +1.38 C to +0.49 C,
+            and leaves all four trend figures byte-identical. That is not a
+            coincidence: rebasing subtracts one constant from every year, and a
+            constant cannot tilt a line. Asserted to twelve decimal places in the
+            tests rather than claimed in prose.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Two teams, one planet.</span> For 2024
+            NASA published 1.28 C and the Met Office 1.51 C, which looks like a
+            0.23 C disagreement between two major climate groups. Put both on a
+            common 1961 to 1990 baseline and they read 1.18 and 1.16, and their
+            trends since 1975 agree to a thousandth of a degree per decade. About
+            nine tenths of the apparent disagreement was a choice of reference
+            period; what remains is real and explainable, because GISTEMP
+            interpolates into the Arctic and HadCRUT5 historically left more of
+            it out, and the Arctic warms fastest.
+          </p>
+          <p className="mt-2">
+            Trends are never quoted without a standard error, because the classic
+            abuse is to pick a short window and read a slope off it: the
+            fifteen-year error bar here is twenty times wider than the
+            full-record one, and fits below ten years are refused outright. The
+            IPCC AR6 figure of about 1.09 C for 2011 to 2020 against 1850 to 1900
+            is reproduced from HadCRUT5 as 1.11 C.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">A mistake worth recording.</span> The first
+            version of the fetch script asserted HadCRUT5 was on the 1961 to 1990
+            normal. It is published against 1850 to 1900, and the check that
+            caught it is now permanent: an anomaly relative to X must average to
+            ZERO over X, which is what the phrase means. Mislabelling a baseline
+            silently shifts every number on the page, so making that error while
+            building the tab about exactly that error is recorded rather than
+            quietly fixed.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> absolute temperatures
+            (nobody can measure the Earth&apos;s mean to a tenth of a degree, which
+            is why the science works in anomalies), attribution to greenhouse
+            gases (that needs physics and model experiments far beyond a
+            temperature series), and a &quot;1.5 breached&quot; headline, since
+            that target is defined on a multi-decade mean rather than one year.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> NASA GISS Surface
+            Temperature Analysis (GISTEMP v4), a US Government work in the public
+            domain. Met Office Hadley Centre and UEA CRU HadCRUT5, Open Government
+            Licence v3. Committed and refreshed monthly, because an annual global
+            mean is a state rather than a list of events and neither source sends
+            CORS headers; see docs/CLIMATE_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Air &mdash; the same air, scored by two countries that disagree
           </h3>
           <p className="mt-2">

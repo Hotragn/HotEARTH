@@ -13,7 +13,7 @@ const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function OtherMoonsAttributionFooter() {
   return (
-    <footer className="pointer-events-none absolute inset-x-0 bottom-24 mx-auto hidden w-fit max-w-[660px] px-4 text-center animate-hud-in lg:block">
+    <footer className="pointer-events-none absolute inset-x-0 clears-time-control mx-auto hidden w-fit max-w-[660px] px-4 text-center animate-hud-in lg:block">
       <p className="font-mono text-[10px] leading-relaxed tracking-wide text-faint">
         Computed: moon positions from{" "}
         <span className="text-faint/90">JPL SSD mean orbital elements</span> (Mars

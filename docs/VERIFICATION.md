@@ -70,3 +70,25 @@ The general lesson, which has now cost real time twice: **when a harness reports
 that everything is broken, suspect the harness first.** An earlier multi-tab nav
 test reported all 15 tabs broken because it hit-tested a `md:hidden` button that
 is zero-width at desktop width.
+
+### The false-positive traps, in full
+
+Six of these have now cost real time. Every one is guarded in `sweep_routes.mjs`
+with the reason written next to the guard, because each produced a confident bug
+report that was wrong.
+
+| Trap | What it looked like | What it was |
+| --- | --- | --- |
+| Stale build | every page hung on its boot screen, 500s on hashed CSS/JS | I rebuilt `.next` under a running `next start` |
+| Below the fold | occluded buttons on six routes | `elementFromPoint` returns null outside the viewport |
+| Clipped by a scroll ancestor | five dead rows in the Seismic Earth list | rows scrolled past the bottom of their own panel |
+| First-run overlay | three dead rows on Eclipses | the dismissible "First time here?" tour hint, by design |
+| Wrapped inline link | a credit link buried under the globe canvas | union rect of a two-line link, centre in the gap between lines |
+| Aborted media request | a failed video request on Interstellar | the video reached `readyState 4` and was playing |
+
+Two of the six were mine to fix in the app; four were the harness lying. The
+habit that catches them: **before believing a failure, prove the thing is
+actually broken by doing what a user would do.** For a control, dispatch a real
+mouse click at the point and check the state changed. That is how the Play
+button was confirmed genuinely dead (`aria-label` stayed `Play`) and how the
+"data sources" link was cleared (both of its line boxes hit-tested fine).

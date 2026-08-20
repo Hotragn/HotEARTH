@@ -45,6 +45,28 @@
  *   now refuses to run until it has verified that the assets the server
  *   references actually load.
  *
+   ABORTED MEDIA RANGE REQUESTS. A <video> routinely abandons a range request
+ *   once it has buffered enough, or when a resize re-lays out the page, and
+ *   Chrome reports that as net::ERR_ABORTED. On Interstellar the backdrop video
+ *   reached readyState 4, decoded at 1280x720 and was playing at t=12.5s while
+ *   still logging one abort. Aborted media requests are therefore ignored;
+ *   every other failed request is still reported.
+ *
+ *   WRAPPED INLINE LINKS. An inline <a> that wraps across two lines has a
+ *   getBoundingClientRect spanning BOTH lines, and the centre of that union box
+ *   sits in the whitespace between them, where whatever is behind shows
+ *   through. That reported the "data sources" credit on Other Moons as buried
+ *   under the globe canvas when both of its line boxes were perfectly
+ *   clickable. Occlusion is tested per LINE BOX (getClientRects), and a control
+ *   counts as reachable if any of its line boxes is.
+ *
+ *   FIRST-RUN OVERLAYS. Every sweep page is a fresh browser profile, so the
+ *   "First time here?" tour hint (fixed bottom-5 left-4, z-55) is always up and
+ *   always covering whatever lives in the bottom-left. That reported three dead
+ *   list rows on /eclipses which were simply underneath a dismissible
+ *   onboarding card, exactly as designed. The sweep now marks the tour as seen
+ *   before it probes, so it looks at the app a returning visitor sees.
+ *
  *   BELOW THE FOLD. document.elementFromPoint returns null for any point
  *   outside the viewport, which looks identical to "something is covering this
  *   control". An earlier version reported occluded buttons on six routes; all
@@ -167,16 +189,38 @@ const PROBE = () => {
     // there. That produced five "occluded" rows on the Seismic Earth list which
     // were simply scrolled past the bottom of their own panel.
     if (clippedByScrollAncestor(el, r)) continue;
-    const top = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
-    if (top && (el.contains(top) || top.contains(el))) continue;
+
+    // Per LINE BOX, not the union rect: a wrapped inline link's union box has
+    // its centre in the gap between the lines. Reachable anywhere is reachable.
+    const boxes = [...el.getClientRects()].filter((q) => q.width >= 2 && q.height >= 1);
+    const candidates = boxes.length > 0 ? boxes : [r];
+    let reachedAt = null;
+    let blocker = null;
+    for (const q of candidates) {
+      if (!inViewport(q)) continue;
+      const cx = q.x + q.width / 2;
+      const cy = q.y + q.height / 2;
+      const top = document.elementFromPoint(cx, cy);
+      if (top && (el.contains(top) || top.contains(el))) {
+        reachedAt = [Math.round(cx), Math.round(cy)];
+        break;
+      }
+      if (!blocker) {
+        blocker = {
+          at: [Math.round(cx), Math.round(cy)],
+          el: top
+            ? `${top.tagName.toLowerCase()}.${(typeof top.className === "string" ? top.className : "").split(" ").slice(0, 2).join(".")}`
+            : "nothing",
+        };
+      }
+    }
+    if (reachedAt || !blocker) continue;
     occluded.push({
       label: (el.getAttribute("aria-label") || el.textContent || el.tagName)
         .trim()
         .slice(0, 40),
-      at: [Math.round(r.x + r.width / 2), Math.round(r.y + r.height / 2)],
-      coveredBy: top
-        ? `${top.tagName.toLowerCase()}.${(typeof top.className === "string" ? top.className : "").split(" ").slice(0, 2).join(".")}`
-        : "nothing",
+      at: blocker.at,
+      coveredBy: blocker.el,
     });
   }
 
@@ -240,15 +284,30 @@ async function sweepRoute(browser, route) {
   const netFails = [];
   page.on("console", (m) => m.type() === "error" && errors.push(m.text().slice(0, 160)));
   page.on("pageerror", (e) => errors.push("pageerror: " + String(e).slice(0, 160)));
-  page.on("requestfailed", (r) =>
-    netFails.push(`${r.failure()?.errorText} ${r.url().slice(0, 80)}`)
-  );
+  page.on("requestfailed", (r) => {
+    // See the header: media elements abandon range requests as a matter of
+    // course, and it means nothing about whether the media played.
+    const isMedia = /\.(mp4|webm|ogg|m4a|mp3)(\?|$)/i.test(r.url());
+    const aborted = r.failure()?.errorText === "net::ERR_ABORTED";
+    if (isMedia && aborted) return;
+    netFails.push(`${r.failure()?.errorText} ${r.url().slice(0, 80)}`);
+  });
   page.on("response", (r) => {
     if (r.status() >= 400) netFails.push(`HTTP ${r.status()} ${r.url().slice(0, 80)}`);
   });
 
   try {
     await page.setViewport({ width: 1600, height: 1000 });
+    // Probe the app a RETURNING visitor sees. The first-run tour hint is a
+    // z-55 card pinned bottom-left; on a fresh profile it is always up and
+    // covers whatever is under it, which is not a bug in the tab beneath.
+    await page.evaluateOnNewDocument(() => {
+      try {
+        window.localStorage.setItem("hot-earth:welcome-seen", "1");
+      } catch {
+        /* private mode: the hint shows and its occlusions are expected */
+      }
+    });
     await page.goto(BASE + route.href, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await new Promise((r) => setTimeout(r, WAIT_MS));
 

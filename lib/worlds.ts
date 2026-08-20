@@ -17,6 +17,7 @@
  */
 export type WorldTab =
   | "earth"
+  | "climate"
   | "air"
   | "tonight"
   | "quakes"
@@ -191,6 +192,37 @@ export const WORLDS: readonly World[] = [
       "epa",
       "cams",
       "copernicus",
+    ],
+  },
+  {
+    id: "climate",
+    label: "Climate",
+    href: "/climate",
+    group: "earth",
+    blurb:
+      "The instrumental record from two independent analyses, and the difference between a headline number and a trend.",
+    accent: "#ff9b7a",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "climate",
+      "climate change",
+      "global warming",
+      "temperature record",
+      "anomaly",
+      "warming stripes",
+      "baseline",
+      "gistemp",
+      "hadcrut",
+      "hadcrut5",
+      "ipcc",
+      "pre-industrial",
+      "1.5 degrees",
+      "trend",
+      "warmest year",
+      "instrumental record",
+      "nasa giss",
+      "met office",
     ],
   },
   {

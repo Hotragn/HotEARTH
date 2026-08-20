@@ -21,8 +21,8 @@ import {
  * depend on, plus the fuzzy-search ranking.
  */
 describe("worlds registry", () => {
-  it("has the thirty-five world views, all unique", () => {
-    expect(WORLDS).toHaveLength(35);
+  it("has the thirty-six world views, all unique", () => {
+    expect(WORLDS).toHaveLength(36);
     const ids = WORLDS.map((w) => w.id);
     expect(new Set(ids).size).toBe(ids.length);
     const hrefs = WORLDS.map((w) => w.href);
@@ -34,6 +34,7 @@ describe("worlds registry", () => {
     expect(map).toEqual({
       earth: "/",
       air: "/air",
+      climate: "/climate",
       tonight: "/tonight",
       quakes: "/earthquakes",
       tides: "/tides",
@@ -77,11 +78,12 @@ describe("worlds registry", () => {
     }
   });
 
-  it("splits 11 Earth, 14 Solar System and 10 Beyond worlds", () => {
+  it("splits 12 Earth, 14 Solar System and 10 Beyond worlds", () => {
     expect(getWorldsInGroup("earth").map((w) => w.id)).toEqual([
       "earth",
       "tonight",
       "air",
+      "climate",
       "quakes",
       "aurora",
       "tides",
@@ -146,7 +148,7 @@ describe("worlds registry", () => {
       "solar-system",
       "beyond",
     ]);
-    expect(grouped[0].worlds).toHaveLength(11);
+    expect(grouped[0].worlds).toHaveLength(12);
     expect(grouped[1].worlds).toHaveLength(14);
     expect(grouped[2].worlds).toHaveLength(10);
   });
@@ -198,7 +200,7 @@ describe("fuzzyScore", () => {
 describe("searchWorlds", () => {
   it("returns every world in canonical order for an empty query", () => {
     expect(searchWorlds("").map((w) => w.id)).toEqual(WORLDS.map((w) => w.id));
-    expect(searchWorlds("   ")).toHaveLength(35);
+    expect(searchWorlds("   ")).toHaveLength(36);
   });
 
   it("finds a world by exact label", () => {
@@ -223,6 +225,9 @@ describe("searchWorlds", () => {
     expect(searchWorlds("spring tide")[0].id).toBe("tides");
     expect(searchWorlds("sea level")[0].id).toBe("tides");
     expect(searchWorlds("air quality")[0].id).toBe("air");
+    expect(searchWorlds("warming stripes")[0].id).toBe("climate");
+    expect(searchWorlds("global warming")[0].id).toBe("climate");
+    expect(searchWorlds("hadcrut")[0].id).toBe("climate");
     expect(searchWorlds("pm2.5")[0].id).toBe("air");
     expect(searchWorlds("smog")[0].id).toBe("air");
     expect(searchWorlds("aqi")[0].id).toBe("air");

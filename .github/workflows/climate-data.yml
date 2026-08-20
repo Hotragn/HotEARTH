@@ -1,0 +1,70 @@
+name: climate-data
+
+# Both analyses publish a new month around the middle of the following month,
+# and revise earlier months slightly as late station reports arrive. Monthly is
+# therefore the natural cadence: anything more frequent would commit noise, and
+# anything less would leave the tab a year behind.
+#
+# 06:20 on the 18th: comfortably after both groups have published, and the :20
+# offset avoids the top-of-hour GitHub Actions congestion where scheduled jobs
+# get delayed. A missed run costs nothing, because the committed mirror is a
+# state rather than a list of events and stays correct while it ages.
+on:
+  schedule:
+    - cron: "20 6 18 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: climate-data
+  cancel-in-progress: false
+
+jobs:
+  update-climate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history so the push step below can rebase onto main if the
+          # branch advanced during the run.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No third-party dependencies: the script uses only the standard library.
+      #
+      # It validates both series before writing anything (span, coverage, sane
+      # anomaly range, and that each series averages to ZERO over the baseline
+      # it claims), so a bad download or a silent upstream baseline change fails
+      # the job loudly instead of committing mislabelled numbers.
+      - name: Fetch GISTEMP and HadCRUT5
+        run: python scripts/climate/fetch_climate.py --out public/data/climate/global-temperature.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/climate/global-temperature.json
+          if git diff --cached --quiet; then
+            echo "No change (same values as last run)."
+            exit 0
+          fi
+          git commit -m "chore(data): update global temperature record"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          echo "::error::Failed to push climate data after 5 attempts."
+          exit 1

@@ -4,8 +4,8 @@
     "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
     "catalog_number": 25544,
     "name": "ISS (ZARYA)",
-    "fetched_at": "2026-08-20T05:58:53Z",
-    "epoch": "2026-08-19T19:00:16Z",
+    "fetched_at": "2026-08-20T17:58:35Z",
+    "epoch": "2026-08-20T04:17:29Z",
     "tle_line0": "ISS (ZARYA)",
     "underlying_data": "US Space Force / 18th Space Defense Squadron (18 SDS), obtained via Space-Track and redistributed by CelesTrak",
     "license": "Underlying orbital data is US Government work, public domain (17 U.S.C. 105). CelesTrak imposes no license fee or attribution requirement; the binding condition is its Usage Policy (rate limits + caching).",
@@ -18,8 +18,8 @@
   },
   "tle": {
     "name": "ISS (ZARYA)",
-    "line1": "1 25544U 98067A   26231.79184849  .00010403  00000+0  19311-3 0  9999",
-    "line2": "2 25544  51.6331 345.2935 0007660  63.7133 296.4642 15.49516880581615"
+    "line1": "1 25544U 98067A   26232.17880947  .00009753  00000+0  18154-3 0  9994",
+    "line2": "2 25544  51.6332 343.3775 0007674  65.0551 295.1235 15.49524101581676"
   },
   "others": [
     {
@@ -36,12 +36,12 @@
     {
       "catalog_number": 48274,
       "name": "CSS (TIANHE)",
-      "epoch": "2026-08-19T21:42:40Z",
+      "epoch": "2026-08-20T06:56:06Z",
       "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=48274&FORMAT=TLE",
       "tle": {
         "name": "CSS (TIANHE)",
-        "line1": "1 48274U 21035A   26231.90462391  .00009226  00000+0  11886-3 0  9999",
-        "line2": "2 48274  41.4692 295.2187 0001482 258.9033 101.1638 15.59088740303117"
+        "line1": "1 48274U 21035A   26232.28896125  .00009901  00000+0  12719-3 0  9993",
+        "line2": "2 48274  41.4691 292.8853 0001495 258.3241 101.7429 15.59098335303179"
       }
     }
   ]

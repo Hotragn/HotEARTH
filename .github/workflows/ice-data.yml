@@ -1,0 +1,75 @@
+name: ice-data
+
+# NSIDC finalises a month's sea ice figures in the first days of the following
+# month, and reprocesses the record when calibrations improve, so monthly is the
+# natural cadence: anything more frequent would commit the same numbers again and
+# again, and anything less would leave the daily curve visibly short at the right
+# hand edge, which is exactly where a reader looks first.
+#
+# 07:10 on the 5th: after the usual finalisation window, with a :10 offset to
+# stay clear of the top-of-hour GitHub Actions congestion where scheduled jobs
+# get delayed. A missed run costs nothing, because a monthly mean extent is a
+# state rather than a list of events and stays correct while it ages. The
+# earthquake tab refuses a mirror for exactly the opposite reason.
+on:
+  schedule:
+    - cron: "10 7 5 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ice-data
+  cancel-in-progress: false
+
+jobs:
+  update-ice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history so the push step below can rebase onto main if the
+          # branch advanced during the run.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No third-party dependencies: the script uses only the standard library.
+      #
+      # It fetches 26 files and validates before writing any of them: the exact
+      # first year of every month (1978 for November and December, 1979 for the
+      # other ten, because the record starts on 26 October 1978 and six days is
+      # not a month), extents inside a sane physical range, area never exceeding
+      # extent, strictly increasing years, and percentiles ordered on every day
+      # of the climatology. A changed upstream layout fails the job loudly rather
+      # than committing a mislabelled series.
+      - name: Fetch the NSIDC Sea Ice Index
+        run: python scripts/ice/fetch_seaice.py --out public/data/ice/sea-ice.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/ice/sea-ice.json
+          if git diff --cached --quiet; then
+            echo "No change (same values as last run)."
+            exit 0
+          fi
+          git commit -m "chore(data): update sea ice record"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          echo "::error::Failed to push sea ice data after 5 attempts."
+          exit 1

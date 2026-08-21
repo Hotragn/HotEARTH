@@ -20,6 +20,7 @@ export type WorldTab =
   | "climate"
   | "carbon"
   | "magnetic"
+  | "ice"
   | "air"
   | "tonight"
   | "quakes"
@@ -291,6 +292,39 @@ export const WORLDS: readonly World[] = [
       "navigation",
       "agonic line",
       "core",
+    ],
+  },
+  {
+    id: "ice",
+    label: "Ice",
+    href: "/ice",
+    group: "earth",
+    blurb:
+      "Sea ice in both hemispheres, and the 15 percent threshold that makes the headline number a third larger than the ice.",
+    accent: "#8fd8ff",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "ice",
+      "sea ice",
+      "arctic",
+      "antarctic",
+      "cryosphere",
+      "extent",
+      "concentration",
+      "nsidc",
+      "sea ice index",
+      "minimum",
+      "september minimum",
+      "melt",
+      "pack ice",
+      "polar",
+      "albedo",
+      "climate",
+      "trend",
+      "satellite record",
+      "passive microwave",
+      "ice loss",
     ],
   },
   {

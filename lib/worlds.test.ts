@@ -22,7 +22,7 @@ import {
  */
 describe("worlds registry", () => {
   it("has the thirty-six world views, all unique", () => {
-    expect(WORLDS).toHaveLength(38);
+    expect(WORLDS).toHaveLength(39);
     const ids = WORLDS.map((w) => w.id);
     expect(new Set(ids).size).toBe(ids.length);
     const hrefs = WORLDS.map((w) => w.href);
@@ -37,6 +37,7 @@ describe("worlds registry", () => {
       climate: "/climate",
       carbon: "/carbon",
       magnetic: "/magnetic",
+      ice: "/ice",
       tonight: "/tonight",
       quakes: "/earthquakes",
       tides: "/tides",
@@ -80,7 +81,7 @@ describe("worlds registry", () => {
     }
   });
 
-  it("splits 14 Earth, 14 Solar System and 10 Beyond worlds", () => {
+  it("splits 15 Earth, 14 Solar System and 10 Beyond worlds", () => {
     expect(getWorldsInGroup("earth").map((w) => w.id)).toEqual([
       "earth",
       "tonight",
@@ -88,6 +89,7 @@ describe("worlds registry", () => {
       "climate",
       "carbon",
       "magnetic",
+      "ice",
       "quakes",
       "aurora",
       "tides",
@@ -152,7 +154,7 @@ describe("worlds registry", () => {
       "solar-system",
       "beyond",
     ]);
-    expect(grouped[0].worlds).toHaveLength(14);
+    expect(grouped[0].worlds).toHaveLength(15);
     expect(grouped[1].worlds).toHaveLength(14);
     expect(grouped[2].worlds).toHaveLength(10);
   });
@@ -204,7 +206,7 @@ describe("fuzzyScore", () => {
 describe("searchWorlds", () => {
   it("returns every world in canonical order for an empty query", () => {
     expect(searchWorlds("").map((w) => w.id)).toEqual(WORLDS.map((w) => w.id));
-    expect(searchWorlds("   ")).toHaveLength(38);
+    expect(searchWorlds("   ")).toHaveLength(39);
   });
 
   it("finds a world by exact label", () => {

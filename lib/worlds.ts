@@ -21,6 +21,7 @@ export type WorldTab =
   | "carbon"
   | "magnetic"
   | "ice"
+  | "sea-level"
   | "air"
   | "tonight"
   | "quakes"
@@ -325,6 +326,39 @@ export const WORLDS: readonly World[] = [
       "satellite record",
       "passive microwave",
       "ice loss",
+    ],
+  },
+  {
+    id: "sea-level",
+    label: "Sea level",
+    href: "/sea-level",
+    group: "earth",
+    blurb:
+      "Satellites against tide gauges, and the places where the sea is going down because the land is coming up.",
+    accent: "#7fc4ff",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "sea level",
+      "sea level rise",
+      "altimetry",
+      "tide gauge",
+      "psmsl",
+      "topex",
+      "jason",
+      "sentinel-6",
+      "subsidence",
+      "glacial isostatic adjustment",
+      "post-glacial rebound",
+      "acceleration",
+      "coastal",
+      "flooding",
+      "mean sea level",
+      "datum",
+      "thermal expansion",
+      "land ice",
+      "noaa",
+      "millimetres per year",
     ],
   },
   {

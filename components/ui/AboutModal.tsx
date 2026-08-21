@@ -1835,6 +1835,111 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Sea level &mdash; in some places the sea is going down
+          </h3>
+          <p className="mt-2">
+            The ice tab says, in as many words, that melting sea ice does not
+            raise sea level and that the rise comes from land ice and thermal
+            expansion, neither of which it computes. This is the other half of
+            that sentence, and it is built on two instruments that answer
+            different questions.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              A satellite measures the sea against the centre of the Earth. A tide
+              gauge measures it against the land it is bolted to, and the land
+              moves.
+            </span>{" "}
+            The satellites give one number for the planet, about 3.2 mm a year.
+            Ten gauges, over the same decades, give Skagway MINUS 21 mm a year
+            because the land is rising two centimetres a year as Little Ice Age
+            glaciers unload it, Stockholm and Oslo negative from post-glacial
+            rebound, and Manila plus 13 because the groundwater was pumped out
+            from under the city. A spread of over 30 mm a year in one ocean. Both
+            instruments are right, and anyone asking whether their street will
+            flood wants the gauge: the global mean is the least useful number on
+            the page for that question.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">One rate is the wrong shape.</span> A
+            quadratic fit gives an acceleration of 0.081 mm a year per year,
+            matching the published 0.084, which means the rate was about 1.9 mm a
+            year at the start of the record and is about 4.5 now. The famous 3.2
+            is the average of something that has doubled and describes neither
+            end. The same thing is shown a second way with no curve assumed at
+            all: three straight lines over three decades, running about 2, 3 and 4
+            mm a year.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              A neater exhibit that had to be abandoned.
+            </span>{" "}
+            The obvious version of that staircase was one trend per SATELLITE. It
+            is not available: three of the five have flown for under ten years,
+            and this module refuses windows shorter than that everywhere else.
+            Sentinel-6 has four years of data and there is no sea level trend in
+            four years, however much one would like a number per instrument. So
+            the staircase is decades, which also attributes the acceleration to
+            the right thing, namely the ocean rather than the instruments.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">The seams are measured, not glossed.</span>{" "}
+            A continuous thirty-three-year record is five satellites. Each new
+            altimeter flies in formation with the old one before it retires, and
+            that overlap is how the splice is calibrated. TOPEX/Poseidon and
+            Jason-1 flew together for three and a half years and disagreed by 1.9
+            mm on average, up to 5.7 mm. Two instruments measuring the same ocean
+            at the same moment differ by one to two millimetres, against a signal
+            of three millimetres a YEAR. That is the honest size of a seam.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              A disagreement we could not resolve, and did not hide.
+            </span>{" "}
+            Our own least squares on NOAA&apos;s own file gives 3.23 mm a year
+            where their header says 3.17. Three explanations were tested and
+            rejected: the seasonal treatment (adding harmonics to the
+            seasonal-retained product reproduces the seasonal-removed slope to a
+            thousandth, which is a real cross-check of their deseasonalisation and
+            it passes), the start date, and which satellite is preferred during an
+            overlap. Whatever remains is a fitting-method difference not
+            recoverable from the file. Both numbers are on the page. Tuning ours
+            until it matched would have destroyed the only interesting thing here,
+            which is that two careful analyses of one file differ by two percent.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">And the global number is a choice too.</span>{" "}
+            NOAA publishes the same passes four ways, seasonal cycle removed or
+            retained and over two spatial domains, and the domain alone moves the
+            trend two percent. On top of that the figure usually quoted carries a
+            glacial isostatic adjustment of about +0.3 mm a year, because the
+            ocean floor is still sinking as the mantle relaxes from the last ice
+            age, which makes the basin bigger. So 3.2 and 3.5 are both defensible:
+            one answers how high the surface is, the other how much water is in
+            the basin. This tab names the adjustment and does not apply it.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> any projection to 2100,
+            which needs ice sheet dynamics and an emissions pathway rather than a
+            parabola carried forward; any flood risk, since mean sea level sets
+            the baseline a surge starts from and is not a forecast; any split of
+            the rise between thermal expansion, Greenland, Antarctica and
+            groundwater, which needs GRACE gravimetry and Argo floats; and any
+            gauge heights on a shared axis, because those values sit above an
+            arbitrary local datum and only their slopes mean anything.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> Altimetry data are
+            provided by NOAA Laboratory for Satellite Altimetry. Tide gauge
+            records from the Permanent Service for Mean Sea Level, Revised Local
+            Reference annual means, including Brest from 1807. The ten stations
+            are a curated set and each one&apos;s reason for being in it is
+            printed beside it on the tab, because a curated list without its
+            reasons is just a list somebody picked; see
+            docs/SEA_LEVEL_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Air &mdash; the same air, scored by two countries that disagree
           </h3>
           <p className="mt-2">

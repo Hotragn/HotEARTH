@@ -1,0 +1,75 @@
+name: sealevel-data
+
+# Both sources publish on their own slow cadence. NOAA's altimetry time series is
+# updated in batches and currently runs a little over a year behind, which is a
+# fact about the source and is stated on the tab rather than hidden. PSMSL adds a
+# year of annual means once a year. Monthly is therefore the right poll: often
+# enough to catch either one, rare enough that the fetch script's "already
+# current" branch is the normal outcome.
+#
+# 07:50 on the 12th, with the :50 offset to stay clear of the top-of-hour GitHub
+# Actions congestion where scheduled jobs get delayed. A missed run costs nothing:
+# an annual mean and a decadal trend are states, not events.
+on:
+  schedule:
+    - cron: "50 7 12 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sealevel-data
+  cancel-in-progress: false
+
+jobs:
+  update-sealevel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history so the push step below can rebase onto main if the
+          # branch advanced during the run.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No third-party dependencies: the script uses only the standard library.
+      #
+      # It fetches four altimetry variants, the PSMSL catalogue and ten gauge
+      # records, and validates before writing any of it: every file must carry
+      # NOAA's own trend in its header (there is nothing to check our arithmetic
+      # against otherwise), all four variants must share a time axis and the same
+      # per-satellite coverage, every gauge must still exist in the catalogue with
+      # at least thirty usable years, values must sit inside sane physical ranges,
+      # and years must strictly increase. A changed upstream layout fails the job
+      # loudly rather than committing a mislabelled series.
+      - name: Fetch altimetry and tide gauges
+        run: python scripts/sealevel/fetch_sealevel.py --out public/data/sealevel/sea-level.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/sealevel/sea-level.json
+          if git diff --cached --quiet; then
+            echo "No change (same values as last run)."
+            exit 0
+          fi
+          git commit -m "chore(data): update sea level record"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          echo "::error::Failed to push sea level data after 5 attempts."
+          exit 1

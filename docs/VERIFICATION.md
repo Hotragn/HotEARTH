@@ -5,11 +5,12 @@ others are blind to.
 
 ## 1. `npm test` — the physics
 
-1,400+ unit tests, pure and offline. Every physics module is checked against
+1,450+ unit tests, pure and offline. Every physics module is checked against
 **published values**, never against its own previous output: Meeus worked
 examples, NOAA tables, Hanks & Kanamori moments, published day lengths,
 elongation caps, the Gutenberg-Richter b-value, harmonic tidal constants,
-Keeling's first monthly mean, NOAA's published geomagnetic pole positions.
+Keeling's first monthly mean, NOAA's published geomagnetic pole positions, NSIDC's
+published sea ice decline.
 
 One module is checked a second way as well. A spherical harmonic synthesis
 (`lib/geomagnetism.ts`) returns plausible five-figure numbers even when the

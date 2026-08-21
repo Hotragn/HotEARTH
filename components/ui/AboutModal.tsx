@@ -1745,6 +1745,96 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Ice &mdash; two answers to one question, a third apart
+          </h3>
+          <p className="mt-2">
+            The NSIDC Sea Ice Index, both hemispheres, all twelve months since
+            1979, with the trends, ranks, error bars and gaps computed here. One
+            thing is deliberately NOT computed here: the percentile band on the
+            daily chart. A percentile of daily extent needs the full thirty-year
+            daily record and this tab mirrors a few years of it, so the band is
+            NSIDC&apos;s own numbers rather than something reconstructed from data
+            we do not have.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              Extent counts a patch of ocean as ice if 15 percent of it is ice.
+              Area adds up the fractions.
+            </span>{" "}
+            So extent is always the bigger number, at the September minimum by
+            about a third, and almost every headline figure ever published about
+            sea ice is extent. The 15 percent exists because that is where the
+            passive microwave signal becomes trustworthy, not because 15 percent
+            ice is different in kind from 14. The gap is leads, melt ponds and the
+            ragged edge of the pack, and it is not a fixed correction: across
+            1979, 1996, 2012 and 2025 it runs 35, 26, 32 and 35 percent, so it
+            cannot be subtracted away as a constant. There is also a hole in the
+            data directly over the pole, which is assumed to be ice-covered, and
+            which has shrunk as instruments changed.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">A trend depends on when you stop.</span>{" "}
+            Arctic September ice declines 13.6 percent per decade if the window
+            ends at 2012, the record low year, 12.1 percent if it ends at 2024,
+            and 11.9 percent carrying on to today. NSIDC publishes about 12.2
+            percent, and ending the window where they ended theirs reproduces it
+            to a tenth. None of those is wrong; ending on a record is what makes a
+            slope look steepest, so every trend here is printed with its window
+            and its error bar. Also worth separating: September is falling several
+            times faster than January, so a single annual number hides the fact
+            that what is going is specifically the ice that used to survive the
+            summer.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              The Antarctic contains a real rise, a real fall, and a total of
+              nothing.
+            </span>{" "}
+            February ice there ROSE by 0.13 million square km a decade from 1979
+            to 2014, at 2.3 times its own standard error, then fell by 0.92 a
+            decade after 2014, at 2.5 times, seven times steeper in the opposite
+            direction. The full-record trend that contains both is 1.5 sigma,
+            which is no signal at all. That is not a paradox; it is what a change
+            of regime looks like in a short record, and it is the honest reason
+            the same file was quoted for years on both sides of an argument.
+            Meanwhile the Arctic decline is 13 sigma. Putting those two numbers
+            side by side as comparable claims is a statement about error bars
+            nobody printed.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">A correction worth recording.</span> The
+            first version of the test file asserted that the early Antarctic
+            increase had never been significant and was only ever noise. Measured,
+            it is 2.3 times its standard error and the winter rise is 4 times.
+            The assumption was wrong, the measured story is better, and the test
+            now pins the measurement.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> any sea level
+            contribution, because sea ice floats and floating ice already
+            displaces its own weight (that comes from land ice and thermal
+            expansion, neither of which is in this dataset); volume or thickness,
+            which these instruments cannot see and which has fallen further than
+            area has; any ice-free-Arctic date, since extrapolating a noisy
+            47-year series to a threshold crossing is a projection and projections
+            need physics; and anything before 1978, because the ship and aircraft
+            records are not comparable and are not spliced on. December 1987 and
+            January 1988 are missing because the satellite failed, and are left as
+            nulls rather than zeros, with every trend skipping them.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> Sea Ice Index,
+            Version 4, National Snow and Ice Data Center, Boulder, Colorado,
+            derived from passive microwave products NSIDC-0051, NSIDC-0081 and
+            NSIDC-0803, all US Government works in the public domain. Committed
+            and refreshed monthly, because a monthly mean extent is a state
+            revised on reprocessing rather than a list of events, and NSIDC does
+            not send CORS headers. The product covering each stretch of years is
+            listed on the tab, because the instrument under the trend line changed
+            more than once; see docs/ICE_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Air &mdash; the same air, scored by two countries that disagree
           </h3>
           <p className="mt-2">

@@ -1663,6 +1663,88 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Magnetic &mdash; your compass does not point north
+          </h3>
+          <p className="mt-2">
+            This is the one tab where a 28 KB file expands into a whole planet.
+            NOAA supplies 195 numbers per epoch, the IGRF-14 spherical harmonic
+            coefficients, and nothing else. The declination where you stand, the
+            world map, all three poles, the century of pole drift, the dipole&apos;s
+            decline and the South Atlantic Anomaly are computed in your browser
+            from those numbers. No tiles, no images, no lookups.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              There are three north poles and none of them is where the needle
+              points.
+            </span>{" "}
+            The geographic pole is where the rotation axis emerges. The
+            geomagnetic pole, near 80.9 N, is where the best-fit central dipole
+            axis emerges, and it is a closed form in three of the 195
+            coefficients; it is also the pole the auroral oval is centred on,
+            which is what joins this tab to the aurora one. The dip pole, near
+            85.4 N, is where the field is actually vertical, and finding it takes
+            all 195 coefficients and an iterative search. Your compass follows
+            the local field along a curved field line, so it aims at none of
+            them, which is the whole reason declination exists as a quantity.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">The pole sprinted, then eased off.</span>{" "}
+            Computing the north dip pole for every epoch gives about 5 km a year
+            through the Canadian Arctic in the 1900s, 46 km a year by 2000, 56 by
+            2005, and then 40 by 2025. The tenfold acceleration is famous and
+            matches the last ground survey, which measured 55 km a year. The
+            recent slowing is in exactly the same data and is quoted far less
+            often. Both are on the page; neither is extrapolated.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Proved, not asserted.</span> A spherical
+            harmonic synthesis with a wrong Legendre recursion, a missing
+            geodetic-to-geocentric step or a botched frame rotation still returns
+            plausible five-figure numbers, so plausibility proves nothing. The
+            45 tests check against the official pyIGRF14 reference
+            implementation, run once at twelve places and dates from 1900 to
+            2029.9 and up to 500 km altitude, agreeing to 0.05 nanotesla and a
+            thousandth of a degree. On top of that, NOAA publishes its own pole
+            positions: for 2025 the geomagnetic pole at 80.79 N, 72.76 W with a
+            9.21 degree dipole tilt, and the dip pole at 85.762 N, 139.298 E.
+            This code computes 80.79 N, 72.76 W, 9.21 degrees, and a dip pole
+            about 20 km away from NOAA&apos;s, which is the honest gap between two
+            current field models rather than an error in either. The southern dip
+            pole agrees to a hundredth of a degree.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">A mirror with no cron.</span> The climate
+            and carbon tabs refresh monthly because an annual mean or a monthly
+            mean is a state that gets revised. A generation of IGRF is a frozen
+            publication: its numbers will never change, and IGRF-15 will be a
+            different file with a different name. So it is fetched once,
+            committed, and cited. The right refresh cadence for a document that
+            cannot change is none.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> the crustal field.
+            Degree 13 means the shortest wavelength in the model is around 3,000
+            km, so the magnetised rock under your feet is absent by construction
+            and over volcanic ground the real declination can be degrees away
+            from this. Also not claimed: today&apos;s value rather than a
+            quiet-day average (the field wobbles by tens of nanotesla daily and
+            hundreds in a storm), anything past 2030, where a secular variation
+            column is a straight line and this page returns nothing rather than a
+            number, and any reversal forecast. The dipole has weakened 7.7% since
+            1900, which is fast for a core process and is not a countdown.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> IGRF-14
+            coefficients from the International Association of Geomagnetism and
+            Aeronomy, Working Group V-MOD, distributed by NOAA NCEI. Validation
+            values generated with pyIGRF14 (MIT licence, Ciaran Beggan, British
+            Geological Survey), the official reference implementation shipped
+            alongside the coefficients. Published pole positions from NOAA NCEI,
+            Wandering of the Geomagnetic Poles; see docs/MAGNETIC_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Air &mdash; the same air, scored by two countries that disagree
           </h3>
           <p className="mt-2">

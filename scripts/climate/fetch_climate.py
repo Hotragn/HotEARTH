@@ -44,6 +44,7 @@ import argparse
 import csv
 import io
 import json
+import os
 import sys
 import urllib.request
 from datetime import datetime, timezone
@@ -199,6 +200,29 @@ def main() -> None:
             ],
         },
     }
+
+    # Only rewrite the file if the DATA changed.
+    #
+    # The payload carries a build timestamp, so a naive write produces a diff on
+    # every run and the workflow's "nothing changed" branch becomes dead code:
+    # the repository would collect a commit a month whether or not NASA and
+    # the Met Office published anything new. Comparing everything except the
+    # timestamp makes that branch true again. The timestamp sits under "meta"
+    # here rather than at the top level, so it is the meta block that has to
+    # be stripped.
+    def without_timestamp(doc: dict) -> dict:
+        meta = {k: v for k, v in doc.get("meta", {}).items() if k != "generated"}
+        return {**{k: v for k, v in doc.items() if k != "meta"}, "meta": meta}
+
+    if os.path.exists(args.out):
+        try:
+            with io.open(args.out, encoding="utf-8") as f:
+                previous = json.load(f)
+            if without_timestamp(previous) == without_timestamp(payload):
+                print(f"{args.out} is already current; leaving it alone")
+                return
+        except (OSError, ValueError):
+            pass  # unreadable or not JSON: write a fresh one
 
     with io.open(args.out, "w", encoding="utf-8", newline="\n") as f:
         json.dump(payload, f, indent=1)

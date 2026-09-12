@@ -22,6 +22,7 @@ export type WorldTab =
   | "magnetic"
   | "ice"
   | "sea-level"
+  | "rotation"
   | "air"
   | "tonight"
   | "quakes"
@@ -359,6 +360,39 @@ export const WORLDS: readonly World[] = [
       "land ice",
       "noaa",
       "millimetres per year",
+    ],
+  },
+  {
+    id: "rotation",
+    label: "Rotation",
+    href: "/rotation",
+    group: "earth",
+    blurb:
+      "The day is not 86,400 seconds, and a leap second is the integral of the difference. Drawn from the IERS record.",
+    accent: "#ffd27a",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "rotation",
+      "length of day",
+      "leap second",
+      "ut1",
+      "utc",
+      "tai",
+      "atomic time",
+      "iers",
+      "earth orientation",
+      "day length",
+      "shortest day",
+      "negative leap second",
+      "tidal braking",
+      "spin",
+      "millisecond",
+      "timekeeping",
+      "sidereal",
+      "angular momentum",
+      "core",
+      "clock",
     ],
   },
   {

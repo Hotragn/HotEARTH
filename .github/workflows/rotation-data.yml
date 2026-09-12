@@ -1,0 +1,74 @@
+name: rotation-data
+
+# The IERS updates finals2000A weekly and the definitive C04 series in batches a
+# few months behind. Weekly is therefore the natural poll for this one, unlike
+# the monthly mirrors: the whole point of the tab is that day length wanders, and
+# a page claiming to show the current state should not be a month stale.
+#
+# 06:30 on Tuesdays, after the usual Bulletin A publication, with the :30 offset
+# to stay clear of the top-of-hour GitHub Actions congestion. A missed run costs
+# nothing, because the fetch script leaves the file alone when the numbers have
+# not changed.
+on:
+  schedule:
+    - cron: "30 6 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rotation-data
+  cancel-in-progress: false
+
+jobs:
+  update-rotation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history so the push step below can rebase onto main if the
+          # branch advanced during the run.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No third-party dependencies: the script uses only the standard library.
+      #
+      # It validates before writing: length of day inside a sane physical range
+      # (which is what catches a units error, since the two IERS products publish
+      # the same quantity in seconds and in milliseconds), UT1-UTC inside the
+      # tolerance the leap second system enforces, the record starting in 1962,
+      # and the two products agreeing where they overlap to a median of 0.05 ms
+      # and a 99th percentile of 0.3 ms. It also refuses to pass over a leap
+      # second step that is not exactly +1 second, because the first negative or
+      # non-unit step in history is the one thing this tab must not miss.
+      - name: Fetch IERS Earth orientation data
+        run: python scripts/rotation/fetch_rotation.py --out public/data/rotation/rotation.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/rotation/rotation.json
+          if git diff --cached --quiet; then
+            echo "No change (same values as last run)."
+            exit 0
+          fi
+          git commit -m "chore(data): update Earth rotation record"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          echo "::error::Failed to push rotation data after 5 attempts."
+          exit 1

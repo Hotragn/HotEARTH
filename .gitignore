@@ -27,3 +27,9 @@ yarn-error.log*
 /.agents/
 /.claude/skills/ui-ux-pro-max/
 /skills-lock.json
+
+# Python bytecode. Machine- and version-specific (cpython-314 here), so it was
+# only ever noise in a repo whose Python is a handful of fetch scripts: running
+# any of them dirtied the working tree with files nobody reads.
+__pycache__/
+*.py[cod]

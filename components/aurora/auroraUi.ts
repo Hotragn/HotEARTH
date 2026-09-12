@@ -33,7 +33,7 @@ export const SWPC_CREDIT =
 export const SWPC_PAGE = "https://www.swpc.noaa.gov/products/aurora-30-minute-forecast";
 
 /** Docs base for footer links (same convention as the other tabs). */
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 /** Verdict colours: from "go outside" green down to a muted "not tonight". */
 export const CHANCE_COLOR: Record<AuroraChance, string> = {

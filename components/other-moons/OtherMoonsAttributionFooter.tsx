@@ -1,5 +1,7 @@
 "use client";
 
+import { DOCS_BASE } from "@/lib/repo";
+
 /**
  * Other Moons data-credit footer (mirrors SaturnMoonsAttributionFooter). States
  * the computed / reused split, the CC-BY obligation for the Solar System Scope
@@ -9,7 +11,6 @@
  * maps southern-hemisphere), the illustrative Proteus/Nereid spheres, the
  * config-view + accuracy honesty, and links the two docs.
  */
-const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function OtherMoonsAttributionFooter() {
   return (

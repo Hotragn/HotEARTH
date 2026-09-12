@@ -1,5 +1,7 @@
 "use client";
 
+import { DOCS_BASE } from "@/lib/repo";
+
 /**
  * Saturn's Moons data-credit footer (mirrors JupiterMoonsAttributionFooter).
  * States the computed / reused split, the CC-BY obligation for the Solar System
@@ -7,7 +9,6 @@
  * public-domain Cassini moon maps with the Titan near-IR caveat, the accuracy +
  * seasonality honesty, and links the two docs.
  */
-const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function SaturnMoonsAttributionFooter() {
   return (

@@ -1,13 +1,12 @@
 "use client";
 
+import { DOCS_BASE } from "@/lib/repo";
+
 /**
  * Jupiter's Moons data-credit footer (mirrors IssAttributionFooter). States the
  * computed / reused split and the accuracy bound honestly, cites the method
  * (Meeus Ch. 44), the reused public-domain textures, and links the two docs.
  */
-const DOCS_BASE =
-  "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
-
 export default function JupiterMoonsAttributionFooter() {
   return (
     <footer className="pointer-events-none absolute inset-x-0 clears-time-control mx-auto hidden w-fit max-w-[560px] px-4 text-center animate-hud-in lg:block">

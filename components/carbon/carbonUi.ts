@@ -17,7 +17,7 @@ export const SERIES_COLOR: Record<GasSeriesId, string> = {
 };
 
 export const NOAA_PAGE = "https://gml.noaa.gov/ccgg/trends/";
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 export const MONTH_SHORT = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",

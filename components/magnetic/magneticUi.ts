@@ -16,7 +16,7 @@ export const MAGNETIC_DATA_PATH = "/data/magnetic/igrf14.json";
 export const IGRF_PAGE =
   "https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field";
 export const POLES_PAGE = "https://www.ncei.noaa.gov/products/wandering-geomagnetic-poles";
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 /** Decimal year from an instant, for a model whose time axis is years. */
 export function decimalYear(d: Date): number {

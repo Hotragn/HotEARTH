@@ -96,7 +96,7 @@ export const STATIONS: readonly {
 ];
 
 /** Docs base for footer links (same convention as the other tabs). */
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 export const PHASE_LABEL: Record<TidePhase, string> = {
   spring: "spring tides",

@@ -33,7 +33,7 @@ export function airFeedUrl(latDeg: number, lonDeg: number): string {
 export const CAMS_CREDIT =
   "Copernicus Atmosphere Monitoring Service (CAMS) forecasts, served by Open-Meteo. CAMS data are free to use with attribution; neither requires an API key.";
 export const OPEN_METEO_PAGE = "https://open-meteo.com/en/docs/air-quality-api";
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 /** US AQI category colours, following the EPA's own published palette. */
 export const US_CATEGORY_COLOR: Record<UsCategory, string> = {

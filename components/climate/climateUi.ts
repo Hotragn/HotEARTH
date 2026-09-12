@@ -15,7 +15,7 @@ export const SERIES_COLOR: Record<SeriesId, string> = {
   hadcrut5: "#ff9b7a",
 };
 
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 export const GISTEMP_PAGE = "https://data.giss.nasa.gov/gistemp/";
 export const HADCRUT_PAGE = "https://www.metoffice.gov.uk/hadobs/hadcrut5/";
 

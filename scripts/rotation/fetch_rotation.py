@@ -5,17 +5,24 @@ Commit the Earth's rotation record as JSON.
 WHAT THIS IS. Two things the IERS measures every day, and one table it maintains:
 
   LOD, the excess length of day. How much longer than 86,400 SI seconds the
-  actual mean solar day was. It is usually a millisecond or two POSITIVE, has
-  been as high as 4.4 ms, and since 2020 has been NEGATIVE: the Earth is
-  currently turning faster than the definition of the second says it should.
+  actual mean solar day was. It is usually a millisecond or two POSITIVE and has
+  been as high as 4.4 ms. From 2020 to 2024 the annual mean went NEGATIVE, and
+  the shortest day ever measured was 5 July 2024; over the last twelve measured
+  months it is back to about +0.24 ms. Which way it is going THIS year is a
+  question for the data rather than for this comment, and lib/rotation recomputes
+  it on every load for exactly that reason.
 
   UT1-UTC. The gap between the Earth's own time and atomic time. It is kept
   inside 0.9 s by inserting leap seconds, and it is the accumulated integral of
   LOD: a millisecond a day is a third of a second a year.
 
   THE LEAP SECOND TABLE. Twenty-seven of them since 1972, every one positive,
-  and none since the end of 2016. The next one may have to be NEGATIVE, which
-  has never been done.
+  and none since the end of 2016, which is already the longest gap there has
+  been. While the Earth was running fast the next one looked like it might have
+  to be NEGATIVE, which has never been done; that prospect has receded over the
+  past year. The parser below refuses to pass over a step that is not exactly
+  +1 s, so if it ever does happen this script stops rather than shipping it
+  quietly.
 
 WHY TWO SOURCES. IERS publishes the definitive EOP 14 C04 series back to 1962,
 and it lags by several months. It also publishes finals2000A, which is updated

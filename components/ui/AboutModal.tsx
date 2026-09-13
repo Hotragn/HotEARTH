@@ -1940,6 +1940,109 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Rotation &mdash; the day is not 86,400 seconds
+          </h3>
+          <p className="mt-2">
+            The second was pinned, by way of the ephemeris second from
+            Newcomb&apos;s tables, to the mean solar day of about 1820. The Earth
+            has not kept to it since. The real day runs a millisecond or two long,
+            those milliseconds pile up at about a third of a second a year, and a
+            leap second is what takes them away. This tab closes a loop three
+            other worlds leave open: eclipses need to know where the Earth had
+            turned to, tonight needs sidereal time, and the moon explains the
+            braking, and none of them says the planet is not a clock.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              The headline is an arithmetic identity, not a picture.
+            </span>{" "}
+            Integrating the measured excess length of day from 1972 to 2025 gives
+            26.875 seconds of accumulated drift. The number of leap seconds
+            actually inserted over those years is 27. The residual is 0.125
+            seconds, and the UT1 minus UTC offset standing today is 0.116. Two
+            IERS products, computed independently and never fitted to each other,
+            landing on each other over fifty-four years, with the leftover being
+            the offset still on the books. That one test exercises the
+            measurement, the units, the sign convention and the arithmetic at
+            once. A detail worth having: the table has 28 rows but there have been
+            27 leap seconds, because the first row is the 10 second offset set in
+            1972 rather than a leap second, and 10 plus 27 is the 37 seconds TAI
+            now leads UTC by.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              The 2024 headline, checked against today.
+            </span>{" "}
+            From 2020 to 2024 the Earth turned faster than the definition of the
+            second says it should, and the shortest day ever measured was 5 July
+            2024 at 1.63 ms short. That produced a wave of coverage about a first
+            ever negative leap second. It has since partly unwound: averaged over
+            the last twelve measured months the excess is back to +0.24 ms against
+            -0.09 ms for the twelve before, every month of 2026 so far is
+            positive, and the offset peaked in October 2025 and has been falling.
+            A page written during that coverage would still be saying the Earth is
+            speeding up. This one recomputes from the record on every load, which
+            is the only way a page about a wandering quantity avoids going quietly
+            stale.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">A sign convention checked, not reasoned.</span>{" "}
+            Getting it backwards would invert everything above, so it was measured
+            from the record rather than derived: on days with an excess above +0.2
+            ms the offset moves DOWN by 0.55 ms, and on days below -0.2 ms it
+            moves UP by 0.57 ms. A long day drives the offset toward a positive
+            leap second and a short day toward a negative one.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              A guard that had to be rewritten after it fired.
+            </span>{" "}
+            Two IERS products are spliced here, and the first version refused to
+            splice if any single day disagreed by more than 0.35 ms. It failed
+            immediately on 2 January 1973 at 2.71 ms, which turns out to be a
+            filler zero rather than a measurement. Measured properly across 19,362
+            shared days the two agree to a median of 0.015 ms and a 99th
+            percentile of 0.19, with twenty-one loud days all between 1973 and
+            1989. The guard now tests the distribution. A check on the worst day
+            alone fails on one bad day in 1973 and says nothing about whether the
+            two products are the same quantity today.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Also here.</span> The day is about a
+            millisecond longer in April than in July, every year, because winds
+            trade angular momentum with the solid Earth and the total cannot
+            change: the same shape of argument as the sawtooth on the Keeling
+            curve, and a swing larger than the spread in annual means across the
+            whole record. And two published rates for the long slowing that
+            disagree honestly, 2.3 ms per century from bouncing lasers off the
+            Apollo reflectors against 1.8 from where Babylonian eclipse shadows
+            actually fell, the difference being post-glacial rebound making the
+            planet rounder. That is the same adjustment the sea level tab has to
+            name for a different reason, and the tests keep the two numbers apart
+            rather than averaging them.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> any forecast. The
+            &quot;at this rate&quot; figures are labelled as arithmetic, because
+            the rate has changed sign twice in sixty years and the IERS itself
+            announces leap seconds only six months ahead. Asking when a negative
+            leap second is due while the Earth is running slow is a malformed
+            question, and the function returns nothing rather than a number.
+            Predictions are never averaged into a statement about what the Earth
+            did. And no explanation is offered for the decadal wandering: it is
+            core, ocean and atmosphere trading angular momentum, which dominates
+            when is not settled, and the page shows the wandering and stops.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> Earth orientation
+            data from the International Earth Rotation and Reference Systems
+            Service, Paris Observatory: the definitive EOP 14 C04 series from 1962
+            and the weekly finals2000A, whose predictions are flagged and drawn
+            differently. Leap second table from IERS Bulletin C. Freely available
+            with attribution; see docs/ROTATION_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Air &mdash; the same air, scored by two countries that disagree
           </h3>
           <p className="mt-2">

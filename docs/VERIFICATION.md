@@ -5,12 +5,21 @@ others are blind to.
 
 ## 1. `npm test` — the physics
 
-1,480+ unit tests, pure and offline. Every physics module is checked against
+1,510+ unit tests, pure and offline. Every physics module is checked against
 **published values**, never against its own previous output: Meeus worked
 examples, NOAA tables, Hanks & Kanamori moments, published day lengths,
 elongation caps, the Gutenberg-Richter b-value, harmonic tidal constants,
 Keeling's first monthly mean, NOAA's published geomagnetic pole positions, NSIDC's
 published sea ice decline, NOAA's own sea level trend from its file headers.
+
+One test is not a comparison against a published value at all, and it is the best
+one in the suite. Leap seconds should equal the integral of the excess length of
+day, because that is what they are for. `lib/rotation.test.ts` integrates the
+IERS daily record from 1972 to 2025, gets 26.875 seconds, compares it against the
+27 leap seconds actually inserted, and requires the residual to match today's
+UT1-UTC offset. Two independently computed quantities landing on each other tests
+the measurement, the units, the sign convention and the arithmetic in one
+assertion.
 
 One module is checked a second way as well. A spherical harmonic synthesis
 (`lib/geomagnetism.ts`) returns plausible five-figure numbers even when the

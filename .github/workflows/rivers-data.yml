@@ -1,0 +1,87 @@
+name: rivers-data
+
+# USGS finalises a water year's peaks over the months after it ends on 30
+# September, and revises older ones whenever a rating curve is re-surveyed or a
+# historic flood is re-estimated. Both are slow. Monthly is generous rather than
+# tight, and the script compares everything except its own build timestamp before
+# writing, so most runs end at the "No change" branch below and the repository
+# does not collect a commit a month for peaks nobody published.
+#
+# 07:30 on the 7th: a day after the ozone job and two after ice, so the three are
+# not fetching at once, with a :30 offset to stay clear of the top-of-hour
+# Actions congestion where scheduled jobs get delayed. A missed run costs
+# nothing, because an annual peak is a state rather than an event and stays
+# correct while it ages. The earthquake tab refuses a mirror for exactly the
+# opposite reason.
+on:
+  schedule:
+    - cron: "30 7 7 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rivers-data
+  cancel-in-progress: false
+
+jobs:
+  update-rivers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history so the push step below can rebase onto main if the
+          # branch advanced during the run.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No third-party dependencies: the script uses only the standard library.
+      #
+      # It fetches nine files and validates before writing any of them. Two
+      # guards encode a claim rather than a range:
+      #
+      #   THE WATER YEAR. A USGS water year runs October to September and is
+      #   named for the year it ends in, so an autumn flood belongs to the
+      #   following year. The script derives the water year from the date and
+      #   then refuses to write a file with a repeated one. That check is what
+      #   found the bug: reading the calendar year straight out of the date is
+      #   wrong for 46 of the Willamette's 136 peaks and produces a list that is
+      #   still sorted and still looks like one peak a year.
+      #
+      #   THE REGULATION FLAG. Glen Canyon Dam closed in 1963 and the Colorado at
+      #   Lees Ferry has carried the USGS regulation code ever since. The script
+      #   requires that at least 90 percent of the peaks after that year carry it
+      #   and that none before it does. If the qualification column moves under
+      #   this parser, the job fails rather than shipping a tab whose claims
+      #   about managed rivers are read from the wrong field.
+      - name: Fetch the USGS peak streamflow record
+        run: python scripts/rivers/fetch_rivers.py --out public/data/rivers/rivers.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/rivers/rivers.json
+          if git diff --cached --quiet; then
+            echo "No change (same values as last run)."
+            exit 0
+          fi
+          git commit -m "chore(data): update peak streamflow record"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          echo "::error::Failed to push river data after 5 attempts."
+          exit 1

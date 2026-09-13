@@ -1940,6 +1940,106 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Rivers &mdash; a hundred year flood is not a flood every hundred years
+          </h3>
+          <p className="mt-2">
+            It means a flood with a one percent chance of being exceeded in any
+            given year. The name says century, the definition says probability,
+            and essentially every argument about flood statistics lives in the
+            gap. It is not a schedule, it does not reset, and a river that had
+            one last year is exactly as likely to have one this year. Eight USGS
+            annual peak records are committed and analysed in the browser, the
+            longest running since 1844.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">The arithmetic nobody believes.</span> A
+            one percent flood has a 26.0 percent chance of turning up at least
+            once inside a thirty year mortgage, and a 63.4 percent chance inside
+            a century rather than a certainty. Both ends of that are the
+            confusion: people expect it to be nearly impossible over thirty years
+            and guaranteed over a hundred. Two of them five years apart is a
+            0.098 percent event at one gauge, about one in a thousand, and there
+            are thousands of gauges, so it happens somewhere every year and is
+            reported every time as proof the statistics are broken.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              How much of each number is extrapolation.
+            </span>{" "}
+            Every one percent flood here is fitted to between 85 and 165 annual
+            peaks and then asked about a flood rarer than anything in them.
+            Resampling says what that costs. On the Middle Fork Flathead, 85
+            years of measurement put the answer somewhere between 38,700 and
+            122,600 cubic feet a second, a top three times its bottom. On the
+            Mississippi at St. Louis, with 165 years, the same interval is five
+            times tighter. Record length is the whole of the difference and no
+            method fixes it. The band is drawn behind the curve rather than as a
+            separate result, and on the short record it is wider than the gap
+            between a ten year and a hundred year flood.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">One gauge, two rivers.</span> Glen Canyon
+            Dam closed in 1963 and the Colorado at Lees Ferry has carried the
+            USGS regulation flag every year since. Fitting the halves separately
+            gives 197,200 before and 83,400 after. Fitting across the join gives
+            230,600, which is HIGHER than the undammed river ever managed,
+            because mixing two populations inflates the spread more than it moves
+            the middle. The split year is read out of the USGS flag rather than
+            remembered. The Sacramento at Verona is flagged in all 96 years of
+            its record, so there is no natural half at all and the comparison
+            returns nothing instead of a number; its curve is also the one that
+            misbehaves worst, calling the largest flood in its record a
+            once-in-a-million-year event, which is what happens when a frequency
+            curve is fitted to an operating rule instead of a climate.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">A bug a guard caught.</span> A USGS water
+            year runs October to September and is named for the year it ENDS in,
+            so the flood of 4 December 1861 is the water year 1862 peak. Reading
+            the calendar year out of the date is wrong for every autumn flood and
+            quietly so: the result is still sorted and still looks like one peak a
+            year. The fetch script refuses to write a repeated water year, that
+            check fired on the gauge with only two autumn peaks in 85 years, and
+            the rule was then verified across all eight: it turns 883 peaks with
+            duplicates on every single gauge into 883 with none. It would have
+            done the most damage exactly where it was least visible, since 46 of
+            the Willamette&apos;s 136 peaks are October to December.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Checked against exact mathematics.</span>{" "}
+            The distribution is log-Pearson Type III with the Wilson-Hilferty
+            frequency factor, the United States federal standard. That factor is
+            not checked against a published table but against EXACT Pearson III
+            quantiles derived in the test file: when four over the skew squared is
+            a whole number the distribution is an Erlang, whose CDF is a finite
+            series, so the exact answer falls out of a loop and a bisection. Four
+            independent check points say the approximation is inside 0.26 percent
+            in the tail where flood estimates live, and worse near the median,
+            which the tests pin as well rather than implying the error is uniform.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> any forecast, any
+            trend, and any agency number. Bulletin 17C also weights the station
+            skew against a regional map, censors low outliers and adjusts for
+            historical periods, none of which is done here, so the published
+            regulatory figures will differ and the tab says so. A frequency curve
+            assumes the record samples one unchanging process, which is the
+            assumption a changing climate puts under strain, and testing that
+            needs more than eight gauges and a straight line. What is shown is the
+            largest flood on record dated two ways, by the record and by the
+            curve, because where those disagree by a factor of ten the curve has
+            been asked for something the record cannot support.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> Annual peak
+            streamflow and station metadata from the United States Geological
+            Survey National Water Information System. Works of the USGS are in
+            the public domain and need no key. Method from the Interagency
+            Advisory Committee on Water Data, Guidelines for Determining Flood
+            Flow Frequency, Bulletin 17B and 17C; see docs/RIVERS_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Ozone &mdash; the one we acted on, measured rather than celebrated
           </h3>
           <p className="mt-2">

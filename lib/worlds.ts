@@ -24,6 +24,7 @@ export type WorldTab =
   | "sea-level"
   | "rotation"
   | "ozone"
+  | "rivers"
   | "air"
   | "tonight"
   | "quakes"
@@ -432,6 +433,46 @@ export const WORLDS: readonly World[] = [
       "recovery",
       "south pole",
       "total column",
+    ],
+  },
+  {
+    id: "rivers",
+    label: "Rivers",
+    href: "/rivers",
+    group: "earth",
+    blurb:
+      "A hundred year flood is a one percent chance every year, not a schedule. Eight USGS records, and how much of the answer is extrapolation.",
+    accent: "#5fd3e6",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "rivers",
+      "river",
+      "flood",
+      "flooding",
+      "hundred year flood",
+      "100-year flood",
+      "return period",
+      "recurrence interval",
+      "streamflow",
+      "discharge",
+      "usgs",
+      "gauge",
+      "hydrology",
+      "peak flow",
+      "log-pearson",
+      "bulletin 17c",
+      "flood frequency",
+      "dam",
+      "regulation",
+      "glen canyon",
+      "mississippi",
+      "colorado",
+      "willamette",
+      "potomac",
+      "water year",
+      "drainage basin",
+      "probability",
     ],
   },
   {

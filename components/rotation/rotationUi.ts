@@ -15,7 +15,7 @@ export const FAST_COLOR = "#8fe0c0";
 
 export const IERS_PAGE = "https://www.iers.org/";
 export const LEAP_PAGE = "https://hpiers.obspm.fr/iers/bul/bulc/";
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 /**
  * Milliseconds, signed, because the sign is the whole story: positive means the

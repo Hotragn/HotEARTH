@@ -264,7 +264,7 @@ describe("one geomagnetic pole, hardcoded in one module and computed in another"
 });
 
 describe("one repository URL", () => {
-  /** Every source file under components/, recursively. */
+  /** Every .ts and .tsx file under a directory, recursively. */
   const sources = (dir: string): string[] => {
     const out: string[] = [];
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -275,7 +275,7 @@ describe("one repository URL", () => {
     return out;
   };
 
-  it("is not hardcoded in any component", () => {
+  it("is not hardcoded anywhere outside lib/repo", () => {
     // Twenty-two files each carried their own copy of the docs URL. When the
     // repository was renamed from H.O.T-EARTH to HotEARTH they all went stale at
     // once, and nothing broke only because GitHub redirects a renamed repo --
@@ -283,8 +283,23 @@ describe("one repository URL", () => {
     //
     // This is the same fault as the two great-circle functions with different
     // Earth radii: a constant copied is a constant that will disagree with
-    // itself. Components must import from lib/repo.
-    const offenders = sources(join(process.cwd(), "components"))
+    // itself. Everything must import from lib/repo.
+    //
+    // THE SWEEP COVERS app/ AND lib/ TOO, because it originally did not and that
+    // is how one file got through. The rotation tab was written on a branch cut
+    // before lib/repo existed, so its own copy of the URL was not there to be
+    // rewritten; both branches passed CI alone and main went red the moment they
+    // were both in. A check that only looks where the last problem was will miss
+    // the next one by exactly this much.
+    const offenders = [
+      ...sources(join(process.cwd(), "components")),
+      ...sources(join(process.cwd(), "app")),
+      ...sources(join(process.cwd(), "lib")),
+    ]
+      // lib/repo.ts is where the URL is supposed to be, and a test that checks
+      // for the string has to contain it.
+      .filter((f) => !f.endsWith("repo.ts"))
+      .filter((f) => !/\.test\.tsx?$/.test(f))
       .filter((f) => /https:\/\/github\.com\/Hotragn/.test(readFileSync(f, "utf8")))
       .map((f) => f.replace(process.cwd(), ""));
     expect(offenders).toEqual([]);
@@ -305,7 +320,12 @@ describe("one repository URL", () => {
     // check them against the docs directory.
     const docs = new Set(readdirSync(join(process.cwd(), "docs")));
     const missing: string[] = [];
-    for (const file of sources(join(process.cwd(), "components"))) {
+    const files = [
+      ...sources(join(process.cwd(), "components")),
+      ...sources(join(process.cwd(), "app")),
+      ...sources(join(process.cwd(), "lib")),
+    ].filter((f) => !/\.test\.tsx?$/.test(f));
+    for (const file of files) {
       const text = readFileSync(file, "utf8");
       for (const m of text.matchAll(/\$\{DOCS_BASE\}\/([A-Za-z0-9_.-]+\.md)/g)) {
         if (!docs.has(m[1])) missing.push(`${file.replace(process.cwd(), "")}: ${m[1]}`);

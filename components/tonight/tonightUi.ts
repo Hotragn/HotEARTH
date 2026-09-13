@@ -112,4 +112,4 @@ export const PLANET_COLOR: Record<Exclude<PlanetName, "Earth">, string> = {
 };
 
 /** Docs base for the footer links (same convention as the other tabs). */
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";

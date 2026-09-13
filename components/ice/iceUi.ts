@@ -22,7 +22,7 @@ export const RECORD_COLOR = "#ff8b6b";
 
 export const NSIDC_PAGE = "https://nsidc.org/sea-ice-today";
 export const NSIDC_DATA_PAGE = "https://nsidc.org/data/g02135";
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 /** Millions of square km, the unit the whole dataset is in. */
 export function fmtExtent(v: number | null): string {

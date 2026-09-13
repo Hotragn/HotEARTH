@@ -1,5 +1,7 @@
 "use client";
 
+import { DOCS_BASE } from "@/lib/repo";
+
 /**
  * Asteroid Moons data-credit footer (mirrors DwarfMoonsAttributionFooter). States
  * the computed / reused / illustrative split, the per-system primary-paper
@@ -7,7 +9,6 @@
  * caveat, the three reused textures (Didymos and Ida public domain, 67P the required
  * ESA/Rosetta/NAVCAM CC BY-SA 3.0 IGO credit), and links the two docs.
  */
-const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function AsteroidMoonsAttributionFooter() {
   return (

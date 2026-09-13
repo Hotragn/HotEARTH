@@ -169,5 +169,4 @@ export function fmtYear(days: number): string {
 }
 
 /** Docs base for footer links. */
-export const DOCS_BASE =
-  "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";

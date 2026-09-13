@@ -134,4 +134,4 @@ export const AUDIO_CREDIT =
 export const AUDIO_SRC = "/audio/interstellar-plasma-voyager.mp3";
 
 /** Docs base for the two shipped source docs. */
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";

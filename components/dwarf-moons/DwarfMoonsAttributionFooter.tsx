@@ -1,5 +1,7 @@
 "use client";
 
+import { DOCS_BASE } from "@/lib/repo";
+
 /**
  * Dwarf Moons data-credit footer (mirrors OtherMoonsAttributionFooter). States
  * the computed / reused / illustrative split, the per-system citations, the
@@ -8,7 +10,6 @@
  * honesty (unresolvable from Earth, not an events tab), the two public-domain
  * New Horizons maps, and links the two docs.
  */
-const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function DwarfMoonsAttributionFooter() {
   return (

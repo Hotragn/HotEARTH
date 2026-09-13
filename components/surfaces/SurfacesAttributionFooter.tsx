@@ -1,5 +1,7 @@
 "use client";
 
+import { DOCS_BASE } from "@/lib/repo";
+
 /**
  * Surfaces data-credit footer (mirrors AsteroidMoonsAttributionFooter). Carries
  * every mandatory label from docs/SURFACES_DATA_SOURCES.md: live simulation not
@@ -9,7 +11,6 @@
  * asset credits (MOLA DEM, PIA25407, the verbatim PIA07232 joint credit,
  * PIA19400), with links to both docs.
  */
-const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
 
 export default function SurfacesAttributionFooter() {
   return (

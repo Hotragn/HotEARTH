@@ -115,7 +115,7 @@ export const JOY_DIVISION_LABEL =
   "An illustrative stacked pulse-profile ridgeline. Real pulsars have such profiles, and PSR B1919+21's is the artwork on Joy Division's 1979 'Unknown Pleasures'; the exact shape drawn here is illustrative, not this object's measured profile.";
 
 /** Docs base for footer links. */
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 // ── Visual spin scaling (honest: mesh spin scaled, true rate displayed) ──────
 

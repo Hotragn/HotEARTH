@@ -85,7 +85,7 @@ export const HAWKING_LABEL =
   "Hawking radiation is real, well-founded theory but has never been observed. Every real black hole here is far colder than the 2.7 K cosmic microwave background, so it absorbs more than it emits and grows, not evaporates.";
 
 /** Docs base for footer links. */
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 // ── Render scaling: apparent size from the real Schwarzschild radius ─────────
 

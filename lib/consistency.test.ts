@@ -23,9 +23,10 @@ import { sunEclipticLongitude } from "./lunar";
 import { julianDate } from "./celestial";
 import { OBLIQUITY_J2000_DEG } from "./precession";
 import { meanObliquityDeg } from "./tonight";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { geomagneticPole, parseIgrf } from "./geomagnetism";
+import { DOCS_BASE, REPO_NAME, REPO_URL } from "./repo";
 
 /**
  * CROSS-MODULE CONSISTENCY.
@@ -259,5 +260,57 @@ describe("one geomagnetic pole, hardcoded in one module and computed in another"
     const colatFromPole = p.latDeg - quiet;
     expect(colatFromPole).toBeGreaterThan(12);
     expect(colatFromPole).toBeLessThan(25);
+  });
+});
+
+describe("one repository URL", () => {
+  /** Every source file under components/, recursively. */
+  const sources = (dir: string): string[] => {
+    const out: string[] = [];
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) out.push(...sources(path));
+      else if (/\.tsx?$/.test(entry.name)) out.push(path);
+    }
+    return out;
+  };
+
+  it("is not hardcoded in any component", () => {
+    // Twenty-two files each carried their own copy of the docs URL. When the
+    // repository was renamed from H.O.T-EARTH to HotEARTH they all went stale at
+    // once, and nothing broke only because GitHub redirects a renamed repo --
+    // a redirect that lasts until somebody else claims the old name.
+    //
+    // This is the same fault as the two great-circle functions with different
+    // Earth radii: a constant copied is a constant that will disagree with
+    // itself. Components must import from lib/repo.
+    const offenders = sources(join(process.cwd(), "components"))
+      .filter((f) => /https:\/\/github\.com\/Hotragn/.test(readFileSync(f, "utf8")))
+      .map((f) => f.replace(process.cwd(), ""));
+    expect(offenders).toEqual([]);
+  });
+
+  it("names the repository as it is actually called today", () => {
+    // The old name only resolves by redirect. If the project is ever renamed
+    // again, this is the one line that has to change.
+    expect(REPO_NAME).toBe("HotEARTH");
+    expect(REPO_URL).toBe("https://github.com/Hotragn/HotEARTH");
+    expect(DOCS_BASE.startsWith(REPO_URL)).toBe(true);
+    expect(DOCS_BASE).toContain("/blob/main/docs");
+  });
+
+  it("has every docs link pointing at a file that exists", () => {
+    // The links are built as `${DOCS_BASE}/NAME.md`, so a renamed or missing doc
+    // gives a 404 that nobody notices. Collect the names the components use and
+    // check them against the docs directory.
+    const docs = new Set(readdirSync(join(process.cwd(), "docs")));
+    const missing: string[] = [];
+    for (const file of sources(join(process.cwd(), "components"))) {
+      const text = readFileSync(file, "utf8");
+      for (const m of text.matchAll(/\$\{DOCS_BASE\}\/([A-Za-z0-9_.-]+\.md)/g)) {
+        if (!docs.has(m[1])) missing.push(`${file.replace(process.cwd(), "")}: ${m[1]}`);
+      }
+    }
+    expect(missing).toEqual([]);
   });
 });

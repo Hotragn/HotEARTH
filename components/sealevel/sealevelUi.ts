@@ -17,7 +17,7 @@ export const MISSION_COLORS = ["#7fc4ff", "#a8e05f", "#ffc46b", "#ff9b7a", "#c9a
 
 export const NOAA_PAGE = "https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/";
 export const PSMSL_PAGE = "https://psmsl.org/data/obtaining/";
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 /** A rate with its sign, because at three of these stations the sign is the story. */
 export function fmtRate(mmPerYear: number | null, dp = 2): string {

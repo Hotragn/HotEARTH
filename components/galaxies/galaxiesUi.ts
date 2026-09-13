@@ -249,7 +249,7 @@ export const DEEP_FIELD_IMAGE: GalaxyImage = {
 };
 
 /** Docs base for footer links. */
-export const DOCS_BASE = "https://github.com/Hotragn/H.O.T-EARTH/blob/main/docs";
+export { DOCS_BASE } from "@/lib/repo";
 
 // ── Selector labels for the ten catalog galaxies ─────────────────────────────
 

@@ -1,0 +1,94 @@
+name: ozone-data
+
+# Three records that move on three different clocks, and none of them is fast.
+#
+# NASA adds one row to the annual hole file each year, once the September to
+# October season is over and reprocessed. NOAA updates the Ozone Depleting Gas
+# Index roughly annually, in the autumn. The Dobson stations publish rolling
+# observations, so that file is the only one that moves within a year, and even
+# there a monthly mean changes nothing about a trend measured over sixty.
+#
+# Monthly is therefore generous rather than tight. The script compares everything
+# except its own build timestamp before writing, so most runs end at the "No
+# change" branch below and the repository does not collect a commit a month for
+# numbers nobody published.
+#
+# 07:20 on the 6th: a day after the ice job so the two are not fetching at once,
+# with a :20 offset to stay clear of the top-of-hour Actions congestion where
+# scheduled jobs get delayed. A missed run costs nothing, because an annual hole
+# area and a yearly mean mixing ratio are states rather than events and stay
+# correct while they age. The earthquake tab refuses a mirror for exactly the
+# opposite reason.
+on:
+  schedule:
+    - cron: "20 7 6 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ozone-data
+  cancel-in-progress: false
+
+jobs:
+  update-ozone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history so the push step below can rebase onto main if the
+          # branch advanced during the run.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # No third-party dependencies: the script uses only the standard library.
+      #
+      # It fetches eight files and validates before writing any of them. Two
+      # guards are worth naming here because they encode a claim rather than a
+      # range:
+      #
+      #   THE INDEX IDENTITY. NOAA's index is 100 at the halogen peak and 0 at
+      #   the 1980 abundance, which makes it an affine function of the chlorine
+      #   column published beside it. The 1980 value is not in the file. The
+      #   script solves for it from every row and requires that the round trip
+      #   reproduces NOAA's own index column to better than 0.15 index points. If
+      #   NOAA rescales the index, this job fails instead of shipping a silently
+      #   wrong benchmark.
+      #
+      #   THE POLAR NIGHT. At least 95 percent of the South Pole's moon
+      #   observations must fall between April and September, which is when there
+      #   is no sun to point a Dobson at. If the observation-kind column moves
+      #   under this parser, that fraction collapses and the job fails. It is a
+      #   fraction rather than a rule because the record contains exactly one
+      #   genuine February moon reading.
+      - name: Fetch the ozone record
+        run: python scripts/ozone/fetch_ozone.py --out public/data/ozone/ozone.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/ozone/ozone.json
+          if git diff --cached --quiet; then
+            echo "No change (same values as last run)."
+            exit 0
+          fi
+          git commit -m "chore(data): update ozone record"
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          echo "::error::Failed to push ozone data after 5 attempts."
+          exit 1

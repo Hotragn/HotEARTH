@@ -23,6 +23,7 @@ export type WorldTab =
   | "ice"
   | "sea-level"
   | "rotation"
+  | "ozone"
   | "air"
   | "tonight"
   | "quakes"
@@ -393,6 +394,44 @@ export const WORLDS: readonly World[] = [
       "angular momentum",
       "core",
       "clock",
+    ],
+  },
+  {
+    id: "ozone",
+    label: "Ozone",
+    href: "/ozone",
+    group: "earth",
+    blurb:
+      "Three millimetres of gas, and the one global problem the world agreed to fix. The chemicals are falling; the hole has not noticed yet.",
+    accent: "#c08bff",
+    thumb: "/textures/earth-day-blue-marble.jpg",
+    thumbBody: "Earth",
+    keywords: [
+      "ozone",
+      "ozone hole",
+      "ozone layer",
+      "antarctic",
+      "antarctica",
+      "montreal protocol",
+      "cfc",
+      "cfcs",
+      "chlorofluorocarbon",
+      "hcfc",
+      "halon",
+      "chlorine",
+      "bromine",
+      "dobson",
+      "dobson unit",
+      "stratosphere",
+      "ultraviolet",
+      "uv",
+      "polar vortex",
+      "polar stratospheric clouds",
+      "eesc",
+      "odgi",
+      "recovery",
+      "south pole",
+      "total column",
     ],
   },
   {

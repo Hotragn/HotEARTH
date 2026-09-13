@@ -1940,6 +1940,105 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
+            Ozone &mdash; the one we acted on, measured rather than celebrated
+          </h3>
+          <p className="mt-2">
+            Every other tab here measures something getting worse, or something
+            that was never anybody&apos;s fault. This one measures the single
+            global environmental problem the world agreed to fix, which makes it
+            the easiest tab on the site to get wrong. The honest answer is not a
+            clean success story and it is not a debunking. Three keyless records
+            are committed and analysed in the browser: NASA Ozone Watch annual
+            hole area and minimum column from 1979, NOAA&apos;s Ozone Depleting
+            Gas Index with ten gases measured in actual air, and total column
+            from five NOAA Dobson stations, the longest running since 1963.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">
+              The cause is unambiguous. The effect has not followed.
+            </span>{" "}
+            The measured halogen loading over Antarctica is 28 percent of the way
+            back from its 2001 peak to the 1980 level, and methyl chloroform is
+            down 99 percent. The hole is another matter. Fitting the annual hole
+            area gives plus 0.29 plus or minus 0.06 million square km a year from
+            1979, which is 4.6 standard errors and GROWING, because that window
+            contains the onset, and minus 0.11 plus or minus 0.11 from 2000,
+            which is one standard error and nothing. Over that window the fitted
+            line moves the area 2.7 while the points scatter 4.1. The correlation
+            between the measured chlorine and the measured hole area, over the 32
+            years both series exist, is plus 0.15: negligible, and the wrong
+            sign. That is not an argument against the Montreal Protocol. It is a
+            statement that the hole area is a noisy detector dominated by the
+            polar vortex, which is why published detections of healing use
+            metrics chosen to get around exactly that. A page that showed the
+            falling chemicals and left this number out would be making a claim it
+            had not checked.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">An index rebuilt from its own definition.</span>{" "}
+            NOAA defines the index as 100 at the halogen peak and 0 at the 1980
+            abundance, which makes it affine in the chlorine column published
+            beside it. The 1980 value is not in the file. The fetch script solves
+            for it from every row and then requires that the round trip
+            reproduces NOAA&apos;s own index column: it agrees to 0.05 index
+            points across all 33 years, with the benchmark landing at 2151 ppt. A
+            hardcoded baseline would go silently wrong the day the scale was
+            revised; this fails the job instead.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Five huts settle the physics.</span> The
+            South Pole lost 46.8 percent of its October column between the years
+            before the hole and the last fifteen. Utqiagvik at 71 North, equally
+            polar, equally dark all winter, under the same global chlorine, lost
+            2.9 percent in March. A factor of sixteen, and latitude is not the
+            variable: the Antarctic vortex is colder and better sealed, because
+            the Southern Hemisphere has almost no mountains at those latitudes to
+            stir it. The same table shows the hole is a SEASON rather than a
+            place, since October, November and December at the South Pole are
+            down 47, 35 and 20 percent and no other month is beyond 12. And it
+            shows why the record has almost no March: at the equinox the sun sits
+            on the horizon and the light arrives through more than seven
+            atmospheres, which is in the file as the airmass column.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">A treaty violation in three averages.</span>{" "}
+            CFC-11 was falling 6.00 ppt a year through 2002 to 2012, slowed to
+            3.83 from 2013 to 2018, and went back to 6.33 from 2019. That
+            slowdown is how the world found out production had restarted
+            somewhere in breach of the treaty, and the recovery is what
+            enforcement looks like in global background air. Also here: published
+            lifetimes against decay rates fitted from the series, which agree only
+            for the gas whose emissions genuinely stopped and are two to three
+            times apart for the CFCs still leaking out of old foam; the halons,
+            which kept rising until 2006 because nobody scrapped the fire systems;
+            and 1995 missing entirely, because no mapping satellite flew.
+          </p>
+          <p className="mt-2">
+            <span className="text-ice">Not claimed:</span> any recovery date. The
+            tab will run a straight line through the recent index and label the
+            result as arithmetic, because it is: the line lands around 2080 where
+            the WMO assessment, which models each lifetime separately, gives 2066,
+            and that gap is what a straight line is worth on a decay that bends.
+            No claim that the hole is healing, and none that it is not; what is
+            claimed is a slope, a standard error and a correlation. The threshold
+            that defines the hole is 220 Dobson Units, a convention sitting under
+            two standard deviations below the pre-hole South Pole spring mean, and
+            it is named as one. And the air tab scores the same molecule as a
+            pollutant with a health limit, which is not a contradiction: good at
+            25 km, bad at head height, and the two tabs measure the same three
+            millimetres from opposite ends.
+          </p>
+          <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
+            <span className="text-ice">Acknowledgment.</span> Antarctic ozone hole
+            area and minimum column from NASA Ozone Watch, Goddard Space Flight
+            Center. Ozone Depleting Gas Index from the NOAA Global Monitoring
+            Laboratory, Boulder, by Montzka, Dutton and Vimont. Total column from
+            the NOAA GML Dobson network. Lifetimes from the WMO Scientific
+            Assessment of Ozone Depletion 2022, Table A-1. All free to use with
+            attribution and none needing a key; see docs/OZONE_PHYSICS.md.
+          </p>
+
+          <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Rotation &mdash; the day is not 86,400 seconds
           </h3>
           <p className="mt-2">

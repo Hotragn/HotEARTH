@@ -52,5 +52,21 @@ jobs:
 
       # Light smoke check: the wind fetcher must at least parse and compile.
       # A full fetch runs on a schedule in wind-data.yml, not here.
-      - name: Compile-check the wind pipeline
-        run: python -m py_compile scripts/wind/fetch_wind.py
+      # Compile-check EVERY pipeline, not just one.
+      #
+      # This step used to name scripts/wind/fetch_wind.py alone, from when that
+      # was the only one. There are now more than twenty five, each on its own
+      # monthly or weekly cron, so a syntax error in any of the others would sit
+      # undetected until its schedule came round and then fail in a job nobody
+      # is watching. Compiling all of them costs a second.
+      - name: Compile-check every data pipeline
+        run: |
+          set -e
+          found=$(find scripts model -name "*.py" -type f | sort)
+          if [ -z "$found" ]; then
+            echo "::error::no Python pipelines found; the layout changed"
+            exit 1
+          fi
+          echo "$found" | sed "s/^/  /"
+          echo "$found" | xargs -r python -m py_compile
+          echo "compiled $(echo "$found" | wc -l) files"

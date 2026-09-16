@@ -42,6 +42,16 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             <p className="mt-1 text-sm text-dim">
               Real data or documented physics. Nothing invented.
             </p>
+            <p className="mt-2 text-[12px] leading-relaxed text-faint">
+              Every number here comes out of a file in the repository.{" "}
+              <a
+                href="/data"
+                className="text-amber-200/80 transition-colors duration-200 hover:text-amber-100"
+              >
+                See how old all of it is
+              </a>
+              .
+            </p>
           </div>
           <button
             type="button"

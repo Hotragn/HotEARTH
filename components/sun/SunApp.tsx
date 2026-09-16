@@ -14,7 +14,7 @@ import SunAttributionFooter from "./SunAttributionFooter";
 import { useSunTextures } from "./useSunTextures";
 
 /**
- * Sun tab shell — mirrors MarsApp / SolarApp: a full-viewport WebGL scene (the
+ * Sun tab shell, mirrors MarsApp / SolarApp: a full-viewport WebGL scene (the
  * SDO full-disk image on a camera-facing disk with a limb glow) under a HUD
  * overlay. The headline feature is the live NOAA/SWPC space-weather panel, which
  * fetches client-side and falls back to the committed snapshot. Everything is

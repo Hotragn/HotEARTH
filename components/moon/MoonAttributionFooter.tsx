@@ -3,7 +3,7 @@
 /**
  * Moon data credit footer (mirrors MarsAttributionFooter / Earth's
  * AttributionFooter). Sources (see docs/MOON_DATA_SOURCES.md):
- *   Surface temperature: LRO Diviner — NASA PDS Geosciences Node (public domain)
+ *   Surface temperature: LRO Diviner, NASA PDS Geosciences Node (public domain)
  *   Illumination & libration: computed (Meeus lunar theory)
  *   Basemap: NASA SVS / LROC / ASU (public domain)
  */

@@ -4,7 +4,7 @@
  * Honest framing banner (the theme of this phase). Space weather is the one
  * genuine forecasting domain in the project: NOAA SWPC issues real operational
  * forecasts. This tab VISUALISES measured data and SWPC's own forecasts, both
- * attributed — it does not predict. Shown centered at the top on wide screens;
+ * attributed: it does not predict. Shown centered at the top on wide screens;
  * on narrower screens the same honesty rides in each panel's caption + footer.
  */
 export default function SunFramingBanner() {
@@ -14,7 +14,7 @@ export default function SunFramingBanner() {
         <p className="text-[11px] leading-snug text-dim">
           <span className="text-ice">Space weather is a real forecasting domain.</span>{" "}
           This shows measured data (NASA/SDO · NOAA GOES/DSCOVR) and NOAA SWPC&apos;s
-          own forecasts, attributed — we visualize them, we don&apos;t predict.
+          own forecasts, attributed: we visualize them, we don&apos;t predict.
         </p>
       </div>
     </div>

@@ -41,7 +41,7 @@ interface ForecastPanelProps {
 
 /**
  * Click-anywhere point forecast. Data comes straight from the browser to
- * Open-Meteo (CORS-enabled, keyless) — see lib/openmeteo.ts for the terms.
+ * Open-Meteo (CORS-enabled, keyless): see lib/openmeteo.ts for the terms.
  * The Living Earth tab reuses this same panel for city weather via the
  * optional label/title/subtitle/extra props.
  */
@@ -249,7 +249,7 @@ export default function ForecastPanel({
 
             {extra}
 
-            {/* source label — honest-forecasting rule */}
+            {/* source label: honest-forecasting rule */}
             <a
               href="https://open-meteo.com/"
               target="_blank"

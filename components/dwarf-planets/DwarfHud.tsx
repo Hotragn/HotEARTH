@@ -25,7 +25,7 @@ const SUP = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"];
 
 /** "1.30 × 10²² kg" style mass label. */
 function formatMass(kg?: number): string {
-  if (!kg || !isFinite(kg)) return "—";
+  if (!kg || !isFinite(kg)) return "–";
   const exp = Math.floor(Math.log10(kg));
   const mant = kg / Math.pow(10, exp);
   const expStr = String(exp)
@@ -65,7 +65,7 @@ interface Core {
  * states the honesty bar. Nothing here is invented.
  *
  * Handles both the five dwarf planets and Pluto's moon Charon (which has no
- * heliocentric orbit of its own — it rides Pluto's — so its distance is Pluto's
+ * heliocentric orbit of its own; it rides Pluto's, so its distance is Pluto's
  * and its orbit is shown about Pluto). Pluto links to Charon and back, surfacing
  * the Pluto–Charon binary.
  */
@@ -104,7 +104,7 @@ export default function DwarfHud({
         rotationUncertain: false,
         distanceAU: heliocentricPosition("Pluto", date).distanceAU,
         distanceTitle:
-          "Charon has no heliocentric orbit of its own — it rides Pluto's, so this is Pluto's live distance from the Sun.",
+          "Charon has no heliocentric orbit of its own; it rides Pluto's, so this is Pluto's live distance from the Sun.",
         eccentricity: CHARON.orbit.eccentricity,
         inclinationDeg: CHARON.orbit.inclinationDeg,
         moonCount: 0,
@@ -149,7 +149,7 @@ export default function DwarfHud({
             )}
             {(name === "Pluto" || isCharon) && (
               <span
-                title="Pluto–Charon is a true binary — barycenter outside Pluto"
+                title="Pluto–Charon is a true binary: barycenter outside Pluto"
                 className="rounded-full border border-line px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider text-faint"
               >
                 binary
@@ -159,7 +159,7 @@ export default function DwarfHud({
               title={
                 imaged
                   ? "Real spacecraft surface map exists"
-                  : "Never visited — illustrative appearance"
+                  : "Never visited: illustrative appearance"
               }
               className={`rounded-full px-2 py-0.5 font-mono text-[8px] uppercase tracking-wider ${
                 imaged
@@ -217,7 +217,7 @@ export default function DwarfHud({
             }
             title={
               triaxial
-                ? "Full triaxial axis lengths — a Jacobi ellipsoid forced by the fast spin (Ortiz 2017)"
+                ? "Full triaxial axis lengths: a Jacobi ellipsoid forced by the fast spin (Ortiz 2017)"
                 : core.radiusTitle
             }
           />
@@ -227,7 +227,7 @@ export default function DwarfHud({
             value={`${core.orbitalPeriodYears.toFixed(1)} yr`}
             title={
               isCharon
-                ? "Charon shares Pluto's ~249 yr heliocentric orbit (it orbits Pluto every 6.39 d — see 'Orbit of Pluto')"
+                ? "Charon shares Pluto's ~249 yr heliocentric orbit (it orbits Pluto every 6.39 d: see 'Orbit of Pluto')"
                 : "Sidereal orbital period (JPL SBDB)"
             }
           />
@@ -288,7 +288,7 @@ export default function DwarfHud({
             className="mt-3 flex w-full cursor-pointer items-center justify-between rounded-xl border border-line px-3 py-2 text-left text-[11px] text-dim transition-colors duration-200 hover:border-solar/40 hover:text-ice focus-visible:outline focus-visible:outline-2 focus-visible:outline-solar/70"
           >
             <span>
-              Pluto–Charon <span className="text-faint">binary</span> — view Charon
+              Pluto–Charon <span className="text-faint">binary</span>: view Charon
             </span>
             <ArrowRight size={13} weight="bold" aria-hidden />
           </button>
@@ -333,7 +333,7 @@ export default function DwarfHud({
                   {f.label}
                   {f.status && (
                     <span
-                      title="Not settled — reported but uncertain"
+                      title="Not settled: reported but uncertain"
                       className="rounded-full bg-white/10 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-wider text-solar"
                     >
                       {f.status}

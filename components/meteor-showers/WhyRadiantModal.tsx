@@ -7,7 +7,7 @@ import { METEOR_ACCENT } from "./constants";
 /**
  * "Why a radiant?" explainer. A meteor shower's radiant is a PERSPECTIVE effect:
  * the meteoroids in a stream travel on essentially parallel paths, and as Earth
- * ploughs through the stream they all enter the atmosphere moving the same way —
+ * ploughs through the stream they all enter the atmosphere moving the same way,
  * so, like railway tracks converging at the horizon, their trails appear to
  * diverge from a single point on the sky. The diagram is illustrative (real
  * geometry, drawn), which is stated on it.
@@ -60,7 +60,7 @@ export default function WhyRadiantModal({ onClose }: { onClose: () => void }) {
             role="img"
             aria-label="Left: parallel meteoroid paths in space crossing Earth. Right: from the ground, the same trails appear to fan out from a single radiant point."
           >
-            {/* left panel — parallel stream in space */}
+            {/* left panel, parallel stream in space */}
             <text x="12" y="16" fill="#9aa2b1" fontSize="9" fontFamily="monospace">
               In space: parallel paths
             </text>
@@ -95,7 +95,7 @@ export default function WhyRadiantModal({ onClose }: { onClose: () => void }) {
             {/* divider */}
             <line x1="210" y1="12" x2="210" y2="198" stroke="#ffffff" strokeOpacity="0.08" />
 
-            {/* right panel — perspective convergence to the radiant */}
+            {/* right panel, perspective convergence to the radiant */}
             <text x="228" y="16" fill="#9aa2b1" fontSize="9" fontFamily="monospace">
               In the sky: one radiant
             </text>
@@ -136,7 +136,7 @@ export default function WhyRadiantModal({ onClose }: { onClose: () => void }) {
             paths, so they strike the atmosphere travelling the same direction. From
             the ground, exactly like railway tracks converging at the horizon, their
             glowing trails appear to <span className="text-ice">fan out from one
-            point</span> — the radiant. A shower is named for the constellation that
+            point</span>: the radiant. A shower is named for the constellation that
             point sits in (Perseids → Perseus).
           </p>
           <p className="mt-3 text-[12px] leading-relaxed text-faint">

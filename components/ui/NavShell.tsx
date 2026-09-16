@@ -127,11 +127,11 @@ export default function NavShell({
           </span>
         </div>
         <p className="mt-1.5 hidden max-w-[300px] pl-[32px] text-[11px] leading-snug text-faint sm:block">
-          A living digital twin of Earth — real physics, real data
+          A living digital twin of Earth: real physics, real data
         </p>
       </div>
 
-      {/* desktop grouped nav — centered */}
+      {/* desktop grouped nav, centered */}
       <nav
         aria-label="Worlds"
         className="hud-panel pointer-events-auto absolute left-1/2 top-4 hidden -translate-x-1/2 items-center gap-1 rounded-full p-1 animate-hud-in md:flex"
@@ -155,7 +155,7 @@ export default function NavShell({
         {/* mobile grouped world menu (reaches all worlds) */}
         <MobileWorldMenu active={active} />
 
-        {/* search — desktop pill */}
+        {/* search: desktop pill */}
         <button
           type="button"
           onClick={openPalette}
@@ -174,7 +174,7 @@ export default function NavShell({
           </span>
         </button>
 
-        {/* search — mobile icon */}
+        {/* search: mobile icon */}
         <button
           type="button"
           onClick={openPalette}
@@ -184,7 +184,7 @@ export default function NavShell({
           <MagnifyingGlass size={17} weight="light" aria-hidden />
         </button>
 
-        {/* all worlds launcher — desktop */}
+        {/* all worlds launcher: desktop */}
         <button
           type="button"
           onClick={openOverview}

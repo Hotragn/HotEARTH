@@ -6,7 +6,7 @@ import * as THREE from "three";
 /**
  * A dim, static backdrop of real bright stars (naked-eye subset of the HYG
  * catalogue, same J2000 frame as the radiants) drawn in ONE THREE.Points call so
- * the radiants sit against recognisable sky for context. Purely decorative — not
+ * the radiants sit against recognisable sky for context. Purely decorative: not
  * clickable, no per-frame work. Positions are precomputed by
  * lib/meteor-facts.parseStarBackdrop; here we only build/dispose the buffers.
  */

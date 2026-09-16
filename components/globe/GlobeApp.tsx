@@ -197,7 +197,7 @@ export default function GlobeApp() {
         <BootScreen label="Loading base imagery" />
       )}
 
-      {/* HUD — pointer events only on the controls themselves */}
+      {/* HUD, pointer events only on the controls themselves */}
       <div className="pointer-events-none absolute inset-0 z-10">
         <NavShell onAbout={() => setAboutOpen(true)} />
         <LayerSwitcher

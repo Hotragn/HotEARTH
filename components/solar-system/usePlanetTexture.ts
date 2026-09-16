@@ -8,8 +8,8 @@ import type { DetailPlanetName } from "@/lib/planet-facts";
 /**
  * Loads a planet's equirectangular surface texture from
  * `/textures/planets/{name}.jpg` (public-domain NASA/JPL/USGS for
- * Mercury/Venus/Jupiter; CC BY 4.0 Solar System Scope for Saturn/Uranus/Neptune
- * — see the attribution footer). Mirrors useMarsTexture/useMoonTexture: if the
+ * Mercury/Venus/Jupiter; CC BY 4.0 Solar System Scope for Saturn/Uranus/Neptune,
+ * see the attribution footer). Mirrors useMarsTexture/useMoonTexture: if the
  * texture 404s the globe falls back to a procedurally-tinted sphere so the
  * scene never breaks. Disposes the texture on unmount; never throws.
  */

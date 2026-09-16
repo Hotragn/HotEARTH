@@ -24,7 +24,7 @@ const DAY_MS = 86_400_000;
  * you scrub the orbit (demonstrating the computed terminator). The curated
  * body-specific notes come from lib/moon-facts; the individually-sourced MEASURED
  * facts (with debated/possible tags) come from phenomena.json, parsed defensively
- * upstream. A prominent honesty banner states the honesty bar for the body —
+ * upstream. A prominent honesty banner states the honesty bar for the body:
  * Titan's acknowledges its real methane weather. Nothing here is invented.
  */
 export default function MoonHud({
@@ -141,7 +141,7 @@ export default function MoonHud({
             value={phys.geometricAlbedo.toFixed(2)}
             title={
               constants?.albedoNote ??
-              "Geometric (visible) albedo — JPL SSD physical params"
+              "Geometric (visible) albedo: JPL SSD physical params"
             }
           />
           <Stat
@@ -149,21 +149,21 @@ export default function MoonHud({
             value={
               constants?.densityGCm3
                 ? `${constants.densityGCm3.toFixed(2)} g/cm³`
-                : "—"
+                : "–"
             }
             title="Bulk density (JPL SSD; derived from GM + radius)"
           />
           <Stat
             label="Sub-solar lon"
             value={subLonLabel}
-            title="Live sub-solar longitude — sweeps once per orbit (tidal lock). This drives the computed day/night terminator."
+            title="Live sub-solar longitude: sweeps once per orbit (tidal lock). This drives the computed day/night terminator."
           />
         </div>
 
         {/* tidal-lock line */}
         <p className="mt-3 rounded-xl border border-line px-3 py-2 text-[10px] leading-relaxed text-faint">
           Tidally locked: one face always points toward {data.parent}. The
-          terminator here is a real, computed sub-solar sweep — not imagery.
+          terminator here is a real, computed sub-solar sweep: not imagery.
         </p>
 
         {/* curated body-specific notes */}
@@ -211,7 +211,7 @@ export default function MoonHud({
                   {f.label}
                   {f.status && (
                     <span
-                      title="Not settled science — reported but debated"
+                      title="Not settled science: reported but debated"
                       className="rounded-full bg-white/10 px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-wider text-solar"
                     >
                       {f.status}

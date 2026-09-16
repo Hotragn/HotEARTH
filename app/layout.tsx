@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://h-o-t-earth.vercel.app"),
   title: "H.O.T Earth",
   description:
-    "A living digital twin of Earth — real physics, real data. Live NASA satellite imagery, a physically accurate day/night terminator, and point forecasts anywhere on the planet.",
+    "A living digital twin of Earth: real physics, real data. Live NASA satellite imagery, a physically accurate day/night terminator, and point forecasts anywhere on the planet.",
   openGraph: {
     title: "H.O.T Earth",
     description:

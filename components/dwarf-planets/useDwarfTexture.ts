@@ -6,12 +6,12 @@ import { prepTexture } from "@/components/globe/useBaseTextures";
 import { hasRealMap, type DwarfBodyName } from "@/lib/dwarf-facts";
 
 /**
- * Loads a dwarf-planet surface texture from `/textures/dwarf-planets/{name}.jpg`
- * — but ONLY for the three bodies that have a real spacecraft map: Pluto and
+ * Loads a dwarf-planet surface texture from `/textures/dwarf-planets/{name}.jpg`,
+ * but ONLY for the three bodies that have a real spacecraft map: Pluto and
  * Charon (New Horizons 2015) and Ceres (Dawn 2015). Mirrors usePlanetTexture /
  * useMoonSurfaceTexture, with one honest twist:
  *
- *   Eris, Haumea and Makemake have NEVER been visited — there is no map on
+ *   Eris, Haumea and Makemake have NEVER been visited; there is no map on
  *   purpose. For those bodies this hook never fetches anything; it returns
  *   `usingFallback: true` immediately so the globe renders a clearly-labelled
  *   ILLUSTRATIVE sphere. No 404 noise, no pretend imagery.
@@ -40,7 +40,7 @@ export function useDwarfTexture(name: DwarfBodyName): DwarfTextureState {
   useEffect(() => {
     let cancelled = false;
 
-    // Never-visited bodies: no map exists — go straight to the illustrative sphere.
+    // Never-visited bodies: no map exists, go straight to the illustrative sphere.
     if (!hasRealMap(name)) {
       setState({ texture: null, ready: true, usingFallback: true });
       return () => {

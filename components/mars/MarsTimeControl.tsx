@@ -81,7 +81,7 @@ export default function MarsTimeControl({
         <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-line pt-2">
           <span
             className="font-mono text-[11px] tracking-wide text-dim"
-            title="Areocentric solar longitude for the scrubbed date — NASA GISS Mars24"
+            title="Areocentric solar longitude for the scrubbed date: NASA GISS Mars24"
           >
             Ls {ls.toFixed(1)}°
           </span>

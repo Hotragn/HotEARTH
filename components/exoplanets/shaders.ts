@@ -1,5 +1,5 @@
 /**
- * GLSL for the EXOPLANETS phase. Everything here is EXPLICITLY ILLUSTRATIVE —
+ * GLSL for the EXOPLANETS phase. Everything here is EXPLICITLY ILLUSTRATIVE:
  * no exoplanet has been imaged in surface detail, so there is no real texture to
  * sample. The planet sphere is a procedural cue only: a soft day/night
  * terminator (from a supplied sun direction), a tint from lib/exoplanets
@@ -40,7 +40,7 @@ export const EXO_PLANET_FRAGMENT = /* glsl */ `
   uniform float hot;        // 1.0 for incandescent (very hot) worlds
   uniform float rimStrength;
 
-  // Smooth blobby "mottle" from layered sines — cheap, seamless, no texture.
+  // Smooth blobby "mottle" from layered sines: cheap, seamless, no texture.
   float mottle(vec3 p) {
     float a = sin(p.x * 8.0) * sin(p.y * 10.0) * sin(p.z * 7.0);
     float b = sin(p.x * 17.0 + 1.7) * sin(p.z * 15.0 - 0.6);
@@ -83,7 +83,7 @@ export const EXO_PLANET_FRAGMENT = /* glsl */ `
   }
 `;
 
-/** Additive back-side limb halo (atmosphere hint) — vertex. */
+/** Additive back-side limb halo (atmosphere hint): vertex. */
 export const EXO_LIMB_VERTEX = /* glsl */ `
   varying vec3 vObjNormal;
   varying vec3 vViewNormal;
@@ -97,7 +97,7 @@ export const EXO_LIMB_VERTEX = /* glsl */ `
   }
 `;
 
-/** Additive back-side limb halo — fragment. Brightest on the sunlit limb. */
+/** Additive back-side limb halo: fragment. Brightest on the sunlit limb. */
 export const EXO_LIMB_FRAGMENT = /* glsl */ `
   precision highp float;
   varying vec3 vObjNormal;

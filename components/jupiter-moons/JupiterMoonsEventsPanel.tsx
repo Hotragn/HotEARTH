@@ -251,7 +251,7 @@ function PhaseTime({
   return (
     <span className="flex items-baseline gap-1" title={`${label} (${label === "in" ? "ingress" : label === "out" ? "egress" : "mid"})`}>
       <span className="text-[8.5px] uppercase text-faint">{label}</span>
-      <span className={strong ? "text-ice" : ""}>{d ? hhmm(d) : "—"}</span>
+      <span className={strong ? "text-ice" : ""}>{d ? hhmm(d) : "–"}</span>
     </span>
   );
 }

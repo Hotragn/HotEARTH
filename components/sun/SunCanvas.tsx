@@ -13,7 +13,7 @@ interface SunCanvasProps {
 
 /**
  * Full-viewport canvas for the Sun disk. The SDO image is a fixed snapshot, so
- * the camera does not orbit it (that would fake rotation the data lacks) — only
+ * the camera does not orbit it (that would fake rotation the data lacks): only
  * zoom is enabled, treating the disk as an observation you can inspect closer.
  * Same performance budget as the other worlds: dpr capped at 2,
  * high-performance context.

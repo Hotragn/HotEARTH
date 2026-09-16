@@ -61,7 +61,7 @@ export default function SmallBodyBrowser({
               Real objects from the{" "}
               <span className="text-ice">JPL Small-Body Database</span>. Orbits and
               parameters are measured; classification is computed. Most bodies have
-              never been imaged — those appearances are illustrative. Open one for
+              never been imaged: those appearances are illustrative. Open one for
               its full record, or return to the orbit view.
             </p>
           </div>
@@ -259,7 +259,7 @@ function EmptyState() {
       <p className="text-sm text-ice">Catalogue unavailable</p>
       <p className="mt-2 text-[12px] leading-relaxed text-dim">
         The small-body catalogue could not be loaded. Nothing is invented in its
-        place — this view stays empty until the data is present.
+        place: this view stays empty until the data is present.
       </p>
     </div>
   );

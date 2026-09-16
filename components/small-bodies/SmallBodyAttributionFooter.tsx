@@ -9,7 +9,7 @@ import {
 /**
  * Comets & Asteroids attribution footer (mirrors DwarfAttributionFooter /
  * ExoAttributionFooter). Always credits the JPL Small-Body Database + CNEOS (a
- * courtesy credit — this is freely-usable US-Government data). On a detail body
+ * courtesy credit: this is freely-usable US-Government data). On a detail body
  * with real imagery it adds that body's exact credit; for 67P this is the
  * mandatory ESA/Rosetta/NAVCAM, CC BY-SA 3.0 IGO line. The full attribution set
  * lives in the About panel.

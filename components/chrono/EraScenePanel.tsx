@@ -4,12 +4,12 @@ import { useEffect, useRef } from "react";
 import { buildEraScene, type EraScene } from "@/lib/chrono-era";
 
 /**
- * Experimental "Era Scene" vignette — the clearly-labeled ARTISTIC layer.
+ * Experimental "Era Scene" vignette: the clearly-labeled ARTISTIC layer.
  * Renders a PROCEDURAL, stylized era panel to a small canvas: an
  * era-appropriate sky, abstract skyline silhouettes that grow from huts →
  * temples → towers → factories → skyscrapers as the year advances, and abstract
  * figure silhouettes. Purely generated from the year (+ region seed). No
- * external API, no photorealism, no data claim — the header says so.
+ * external API, no photorealism, no data claim: the header says so.
  *
  * Only shown when zoomed close (parent gates on LOD) and the mode is enabled.
  * Redraws only when the era scene meaningfully changes (year rounded), so it
@@ -157,7 +157,7 @@ export default function EraScenePanel({
           style={{ imageRendering: "auto" }}
         />
         <p className="px-3 pb-3 pt-2 text-[10px] leading-relaxed text-faint">
-          Artistic interpretation — procedurally generated, not data.
+          Artistic interpretation: procedurally generated, not data.
         </p>
       </div>
     </section>

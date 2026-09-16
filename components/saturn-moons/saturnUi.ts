@@ -45,7 +45,7 @@ export const MOON_DESIGNATION: Record<SaturnMoon, string> = {
 /**
  * Real mean radii [km] (NASA/JPL planetary-satellite physical parameters). Used
  * only to size the moon markers: the TRUE-size toggle draws radiusKm / Saturn Req
- * (which is tiny — that is the honest point), and the enlarged markers preserve
+ * (which is tiny, and that is the honest point), and the enlarged markers preserve
  * this real size ordering scaled relative to Titan (the largest).
  */
 export const MOON_RADIUS_KM: Record<SaturnMoon, number> = {

@@ -7,12 +7,12 @@ import { PRESET_CITIES, type Observer } from "./constants";
 
 /**
  * Observer + time control. Pick a preset city, type a latitude/longitude, or
- * (optionally) use the browser geolocation — never required, and it fails
+ * (optionally) use the browser geolocation: never required, and it fails
  * silently to the current preset. The time scrubs ±12 h around the moment you
  * opened the tab, with a "Now" reset. The observer + time drive the radiant
  * altitude, is-radiant-up test, observed-rate estimate and best viewing time in
- * the detail/tonight panels. The current solar longitude λ☉ — the stable timing
- * coordinate for meteor peaks — is shown, because that (not the calendar date) is
+ * the detail/tonight panels. The current solar longitude λ☉, the stable timing
+ * coordinate for meteor peaks, is shown, because that (not the calendar date) is
  * what fixes where a shower is in its activity.
  */
 export default function LocationTimeControl({
@@ -113,7 +113,7 @@ export default function LocationTimeControl({
 
         {geoError && (
           <p className="mt-1.5 font-mono text-[10px] text-solar">
-            {geoError} — using the selected place.
+            {geoError}: using the selected place.
           </p>
         )}
 
@@ -155,7 +155,7 @@ export default function LocationTimeControl({
               </span>
             )}
           </span>
-          <span title="Solar longitude λ☉ — the Sun's ecliptic longitude, the stable year-to-year coordinate meteor peaks are keyed to.">
+          <span title="Solar longitude λ☉: the Sun's ecliptic longitude, the stable year-to-year coordinate meteor peaks are keyed to.">
             λ☉ {fmtSolarLongitude(solarLon)}
           </span>
         </div>

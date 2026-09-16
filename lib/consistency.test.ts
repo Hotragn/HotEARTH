@@ -314,3 +314,59 @@ describe("one repository URL", () => {
     expect(missing).toEqual([]);
   });
 });
+
+describe("no em dashes", () => {
+  /** Every .ts and .tsx file under a directory, recursively. */
+  const sources = (dir: string): string[] => {
+    const out: string[] = [];
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) out.push(...sources(path));
+      else if (/\.tsx?$/.test(entry.name)) out.push(path);
+    }
+    return out;
+  };
+
+  /**
+   * Everything a reader could see, plus the comments.
+   *
+   * Test files are excluded because a test that checks for a character has to
+   * contain it. Nothing else is: the em dash was in 163 files and 255 of the 507
+   * occurrences were in comments, which in this repository are prose that gets
+   * read like documentation, so a rule that stopped at the JSX would have left
+   * the habit in place everywhere it started.
+   */
+  const files = [
+    ...sources(join(process.cwd(), "components")),
+    ...sources(join(process.cwd(), "app")),
+  ].filter((f) => !/\.test\.tsx?$/.test(f));
+
+  it("has no literal em dash in components or app", () => {
+    // U+2014. Replaced by a colon where the dash introduced an elaboration, a
+    // comma pair where it bracketed one, and an en dash where it stood alone
+    // for a missing value. See the commit that removed them.
+    const offenders = files
+      .filter((f) => readFileSync(f, "utf8").includes("\u2014"))
+      .map((f) => f.replace(process.cwd(), ""));
+    expect(offenders).toEqual([]);
+  });
+
+  it("has no em dash smuggled in as an HTML entity either", () => {
+    // An entity renders as exactly the character the reader sees, so a rule
+    // about the copy cannot be satisfied by changing the encoding. The About
+    // panel had it both ways at once: 21 of its headings used a literal dash
+    // and 18 the entity, which is how a convention rots.
+    const offenders = files
+      .filter((f) => /&mdash;|&#8212;|&#x2014;/i.test(readFileSync(f, "utf8")))
+      .map((f) => f.replace(process.cwd(), ""));
+    expect(offenders).toEqual([]);
+  });
+
+  it("leaves the en dash alone, because a range needs one", () => {
+    // U+2013 is legitimate: "180-360" as a numeric range, and the placeholder
+    // for a value that is not available. This asserts the sweep did not take
+    // them too, which a careless find-and-replace would have.
+    const withEnDash = files.filter((f) => readFileSync(f, "utf8").includes("\u2013"));
+    expect(withEnDash.length).toBeGreaterThan(5);
+  });
+});

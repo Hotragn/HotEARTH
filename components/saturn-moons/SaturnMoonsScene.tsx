@@ -26,7 +26,7 @@ import type { SaturnTextures } from "./useSaturnTextures";
  *
  * The seven moons sit at their real apparent (x, y, z) in Saturn equatorial radii
  * (X positive = WEST = right, Y positive = NORTH = up, Z positive = toward Earth
- * = toward the orthographic camera), straight from lib/saturn-moons — so they
+ * = toward the orthographic camera), straight from lib/saturn-moons; so they
  * string along the projected ring ellipse (that is the true geometry, a built-in
  * check). Depth is honest by construction: a frontOfDisk moon (z > 0) renders in
  * front of the opaque disk; one behind is occulted; and because the tilted ring
@@ -214,7 +214,7 @@ export default function SaturnMoonsScene({
 
 /**
  * Saturn as an OBLATE disk: a unit sphere squashed along its pole (local Y) to
- * the real polar ratio (~0.902 — Saturn is the most oblate planet, ~10% flatter),
+ * the real polar ratio (~0.902: Saturn is the most oblate planet, ~10% flatter),
  * textured with the reused Solar System Scope map (CC-BY 4.0, credited in the ring
  * panel and footer). Rendered unlit (meshBasic) and as an illustrative snapshot:
  * the point of the tab is the ring/moon geometry, not Saturn's own gibbous phase.
@@ -252,7 +252,7 @@ function SaturnDisk({
  * depthWrite + alphaTest let the tilted ring participate in the depth buffer, so
  * moons in front of the ring plane draw over it and moons behind are correctly
  * dimmed / hidden by the opaque ring bands while remaining visible through the
- * (low-alpha) gaps — the honest frontOfRingPlane geometry, resolved per pixel.
+ * (low-alpha) gaps: the honest frontOfRingPlane geometry, resolved per pixel.
  */
 function SaturnRings({ texture }: { texture: THREE.Texture | null }) {
   const geometry = useMemo(() => {

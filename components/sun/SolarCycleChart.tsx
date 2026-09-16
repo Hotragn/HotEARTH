@@ -27,7 +27,7 @@ const Y_MAX = 180;
 /**
  * Solar Cycle 25 sunspot chart: the NOAA public-domain observed monthly count
  * (primary), its 13-month smoothing (the trend + the real peak), and SWPC's
- * predicted curve with its uncertainty band — observed and forecast kept
+ * predicted curve with its uncertainty band, observed and forecast kept
  * visually distinct. Honest note: Cycle 25 ran hotter than the 2019 panel
  * forecast (~115), peaking ~161 around 2024-10. Fetched defensively from the
  * committed JSON; tolerates absence.
@@ -191,7 +191,7 @@ function Chart({ data }: { data: SolarCycleData }) {
         <path d={observedPath} fill="none" stroke="#6b7486" strokeWidth={1} strokeLinejoin="round" />
         {/* smoothed trend */}
         <path d={smoothedPath} fill="none" stroke="#ffb24d" strokeWidth={1.6} strokeLinejoin="round" />
-        {/* predicted (SWPC forecast) — dashed */}
+        {/* predicted (SWPC forecast): dashed */}
         <path
           d={predictedPath}
           fill="none"

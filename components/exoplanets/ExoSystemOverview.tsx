@@ -17,9 +17,9 @@ import {
 /**
  * Architecture-view HUD: system identity, the measured star facts, the computed
  * habitable-zone band, and a click-through planet list. Every "in HZ" mark is
- * computed with the LINEAR luminosity (derived.lumLinear). The honesty caveats —
+ * computed with the LINEAR luminosity (derived.lumLinear). The honesty caveats,
  * illustrative appearances, and the illustrative absolute phase / compressed
- * radii from lib/systemLayout — are stated verbatim so nothing is mistaken for
+ * radii from lib/systemLayout, are stated verbatim so nothing is mistaken for
  * an image or a true distance.
  */
 export default function ExoSystemOverview({
@@ -71,7 +71,7 @@ export default function ExoSystemOverview({
 
         {/* honesty banner */}
         <p className="mt-3 rounded-xl border border-solar/25 bg-solar/[0.06] px-3 py-2 text-[10px] leading-relaxed text-dim">
-          Appearances are illustrative — no exoplanet has been imaged in surface
+          Appearances are illustrative: no exoplanet has been imaged in surface
           detail. The substance here is measured parameters, real relative orbits
           and the computed habitable zone.
         </p>

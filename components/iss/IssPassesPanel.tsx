@@ -6,7 +6,7 @@ import type { IssPass } from "@/lib/iss";
 import { PRESET_CITIES, compass16, type Observer } from "@/lib/iss-facts";
 
 /**
- * "Spot the Station" — the headline feature. Pick an observing site (preset city,
+ * "Spot the Station": the headline feature. Pick an observing site (preset city,
  * typed lat/lon, or optional device geolocation) and see the next passes over the
  * coming days, each with a VISIBLE badge when it is a genuine naked-eye pass
  * (station sunlit while your sky is dark) versus a daytime / shadow pass that you
@@ -136,7 +136,7 @@ export default function IssPassesPanel({
           </div>
           {geoError && (
             <p className="mt-1.5 font-mono text-[10px] text-solar">
-              {geoError} — using the selected place.
+              {geoError}: using the selected place.
             </p>
           )}
         </div>

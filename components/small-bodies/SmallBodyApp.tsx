@@ -27,16 +27,16 @@ import SmallBodyAttributionFooter from "./SmallBodyAttributionFooter";
 
 /**
  * Comets & Asteroids tab shell. One client bundle serves three views:
- *   • the ORBIT VIEW (default) — the inner-Solar-System 3D centerpiece: the Sun,
+ *   • the ORBIT VIEW (default), the inner-Solar-System 3D centerpiece: the Sun,
  *     the planet reference orbits (Mercury→Jupiter), and every (filtered) small
- *     body's real orbit — closed ellipses for bound bodies, open arcs for the
- *     hyperbolic / interstellar ones — with illustrative comet tails;
- *   • two full overlays — the OBJECT BROWSER (searchable/filterable grid) and the
+ *     body's real orbit, closed ellipses for bound bodies, open arcs for the
+ *     hyperbolic / interstellar ones, with illustrative comet tails;
+ *   • two full overlays: the OBJECT BROWSER (searchable/filterable grid) and the
  *     CLOSE-APPROACHES panel (the real CNEOS list, Apophis highlighted);
- *   • a per-object DETAIL view — an illustrative lump or real map/photo plus the
+ *   • a per-object DETAIL view: an illustrative lump or real map/photo plus the
  *     measured elements, physical parameters and computed classification.
  *
- * The catalogue is fetched once and parsed defensively — a missing/broken file
+ * The catalogue is fetched once and parsed defensively: a missing/broken file
  * degrades to a graceful empty state, never a crash. Each body's time anchor
  * (mean anomaly + epoch, or time-of-perihelion) is spliced back on from the raw
  * JSON so the orrery shows LIVE, propagated positions on a shared sim clock that
@@ -54,7 +54,7 @@ const ORRERY_NOTE =
 
 /**
  * The catalogue's `elements` carry the time anchors (`ma`, `tp`) and `epoch_jd`,
- * but the defensive lib parser only lifts the fields the orbit SHAPE needs — so
+ * but the defensive lib parser only lifts the fields the orbit SHAPE needs; so
  * we splice the anchors back on from the raw JSON here, mapping `epoch_jd` → the
  * `epoch` name the physics module reads. With these attached, lib/small-bodies
  * `heliocentricPosition` resolves a LIVE position for every body (bound orbits via

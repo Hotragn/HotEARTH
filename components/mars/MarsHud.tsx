@@ -9,7 +9,7 @@ const SOL_MS = 88_775_244;
  * subsolar point, and a dust-storm-season indicator. Everything traces to the
  * Mars24 algorithm (lib/mars-time). Labeled as real orbital mechanics.
  *
- * Driven by `nowMs` + `offsetSols` from the parent's 1Hz tick — no per-frame
+ * Driven by `nowMs` + `offsetSols` from the parent's 1Hz tick: no per-frame
  * React work (the globe reads the same offset via a ref).
  */
 export default function MarsHud({
@@ -44,11 +44,11 @@ export default function MarsHud({
         <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-line pt-3">
           <Stat label="Mars Sol Date" value={c.msd.toFixed(2)} />
           <Stat label="Mars Time" value={formatMTC(c.mtc)} />
-          <Stat label="Subsolar lat" value={subLat} title="Solar declination — subsolar latitude" />
+          <Stat label="Subsolar lat" value={subLat} title="Solar declination, subsolar latitude" />
           <Stat label="Subsolar lon" value={subLon} />
         </div>
 
-        {/* dust-storm-season indicator — climatological season, not a forecast */}
+        {/* dust-storm-season indicator, climatological season, not a forecast */}
         <div
           className="mt-3 flex items-center gap-2.5 rounded-xl border border-line px-3 py-2"
           title="Climatological dust-storm season (Ls 180–360, peak ~240–300). This is the season storms historically cluster in, NOT a prediction of a specific storm."

@@ -16,7 +16,7 @@ interface PlanetTimeControlProps {
 
 /**
  * Season/terminator time machine for a detail globe: scrub across one full
- * orbital period and watch the sub-solar latitude (season) advance — the honest
+ * orbital period and watch the sub-solar latitude (season) advance, the honest
  * slow signal, most dramatic on Uranus (~42-yr seasons). Mirrors MarsTimeControl.
  * The globe reads the same offset via a ref per-frame, so this owns only the HUD
  * readouts. The season PHASE is an adopted reference (see lib/planets), so it is

@@ -81,7 +81,7 @@ export const MARS_FRAGMENT = /* glsl */ `
       : texture2D(dayMap, vUv).rgb;
 
     // Real terminator: smoothstep twilight band. Mars twilight is short (thin
-    // air) but not zero — a narrow band keeps the terminator physically soft.
+    // air) but not zero: a narrow band keeps the terminator physically soft.
     float daylight = smoothstep(-0.12, 0.10, sunDot);
 
     // Diffuse falloff on the lit side; imagery/albedo already looks sunlit.
@@ -119,7 +119,7 @@ export const MARS_ATMOSPHERE_VERTEX = /* glsl */ `
 
 /**
  * Thin dusty rim: same limb-glow construction as Earth's atmosphere, but a
- * tan/pink tint at much lower intensity — Mars' atmosphere is ~1% of Earth's.
+ * tan/pink tint at much lower intensity, Mars' atmosphere is ~1% of Earth's.
  */
 export const MARS_ATMOSPHERE_FRAGMENT = /* glsl */ `
   uniform vec3 sunDir;

@@ -5,7 +5,7 @@ import { METEOR_ATTRIBUTIONS } from "@/lib/meteor-facts";
 /**
  * Meteor Showers attribution footer. Credits the IAU Meteor Data Center (Jopek &
  * Kaňuchová 2017) for the catalog facts and the IMO Working List for the activity
- * windows / ZHR — with the explicit note that the IMO Calendar itself is not
+ * windows / ZHR: with the explicit note that the IMO Calendar itself is not
  * redistributed (its terms are restrictive); we ship only the underlying measured
  * facts and credit the source. The full set also appears in the About panel.
  * Shown on md+.

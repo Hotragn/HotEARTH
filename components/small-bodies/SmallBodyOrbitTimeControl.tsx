@@ -9,7 +9,7 @@ const MONTH_DAYS = 30.4375;
 /**
  * Playback speeds in simulated Earth days per real second. Small-body periods
  * span ~3 yr (Encke) to thousands of years (long-period comets), and the
- * interstellar visitors pass through only once — so the useful range is days to
+ * interstellar visitors pass through only once, so the useful range is days to
  * a few years per second: at the slow end an inner near-Earth asteroid's ~1 yr
  * loop is legible; at the fast end a Halley-type comet finally moves. Chosen to
  * keep INNER-system motion readable rather than to whip the outer aphelia round.

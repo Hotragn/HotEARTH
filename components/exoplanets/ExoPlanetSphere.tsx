@@ -10,7 +10,7 @@ import {
   EXO_PLANET_VERTEX,
 } from "./shaders";
 
-/** Jupiter radius in Earth radii — for the size-reference shell. */
+/** Jupiter radius in Earth radii: for the size-reference shell. */
 const JUPITER_RE = 11.21;
 /** Fixed object-space sun direction (the camera orbits, the light does not). */
 const SUN_DIR = new THREE.Vector3(1, 0.35, 0.55).normalize();
@@ -33,7 +33,7 @@ interface ExoPlanetSphereProps {
 
 /**
  * The single ILLUSTRATIVE planet sphere for the detail view. There is NO real
- * texture — no exoplanet has been imaged in surface detail — so this is a
+ * texture, no exoplanet has been imaged in surface detail, so this is a
  * procedural cue only (tint from planetTint, gentle bands/mottling, an optional
  * incandescent glow for very hot worlds, a soft limb). Faint wireframe shells
  * for Earth and Jupiter give an honest size comparison. Materials are built once

@@ -12,11 +12,11 @@ import {
 /**
  * Star field that precesses. The whole sky sits in a group rotated about the
  * (fixed) ecliptic-pole axis by the REAL axial-precession angle for the current
- * simulated year (lib/precession) — a full turn every ~25,772 years. This is
+ * simulated year (lib/precession): a full turn every ~25,772 years. This is
  * the honest "even the sky changes" touch: play the clock across millennia and
  * the celestial pole (and the visible star pattern) rotates exactly as physics
  * says it should. The rotation is set per-frame from a ref (no re-render), with
- * no allocations — the axis and quaternion are reused.
+ * no allocations: the axis and quaternion are reused.
  */
 export default function PrecessionStars({
   simYearRef,

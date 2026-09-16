@@ -41,7 +41,7 @@ const JULIAN_CENTURY_DAYS = 36_525;
 /**
  * Per-moon marker color. Presentation only. Icy pale tones for the Uranian and
  * Martian rocky moons; Triton a pale nitrogen-ice pink, Proteus a dark grey and
- * Nereid a neutral grey (both illustrative tinted spheres, no map — the tint
+ * Nereid a neutral grey (both illustrative tinted spheres, no map: the tint
  * approximates their measured low albedo, never a real surface).
  */
 export const MOON_COLORS: Record<OtherMoon, string> = {
@@ -79,7 +79,7 @@ export const MOON_DESIGNATION: Record<OtherMoon, string> = {
 /**
  * Real mean radii [km] (JPL SSD planetary-satellite physical parameters). Used
  * ONLY to size the moon markers: the TRUE-size toggle draws radiusKm / planet Req
- * (which is tiny — that is the honest point), and the enlarged markers preserve
+ * (which is tiny, and that is the honest point), and the enlarged markers preserve
  * this real size ordering scaled relative to each planet's largest moon. Phobos
  * and Deimos are irregular bodies; the value is their mean radius (the sphere is a
  * labeled approximation of their real lumpy shape).
@@ -97,7 +97,7 @@ export const MOON_RADIUS_KM: Record<OtherMoon, number> = {
   Nereid: 170.0,
 };
 
-/** Moons with NO shipped surface map — rendered as labeled illustrative tinted spheres. */
+/** Moons with NO shipped surface map: rendered as labeled illustrative tinted spheres. */
 export const ILLUSTRATIVE_MOONS: ReadonlySet<OtherMoon> = new Set<OtherMoon>([
   "Proteus",
   "Nereid",
@@ -226,8 +226,8 @@ export interface SystemSkyGeometry {
 /**
  * Reconstruct lib/other-moons' internal plane-of-sky basis for `planet` at `date`
  * from the planet's apparent RA/Dec (from planetGeocentric) plus the EXPOSED IAU
- * pole constants (OTHER_PLANETS). This duplicates none of the physics — it only
- * re-derives the sky pole so the frontend can orient the disk — and it carries
+ * pole constants (OTHER_PLANETS). This duplicates none of the physics, it only
+ * re-derives the sky pole so the frontend can orient the disk, and it carries
  * Neptune's WGCCRE pole precession term exactly (Mars and Uranus hold the J2000
  * pole, as the lib does), so the sky basis is identical to the one the moon
  * positions were projected in.

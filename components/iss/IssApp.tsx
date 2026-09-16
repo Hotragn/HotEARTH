@@ -40,9 +40,9 @@ import IssAttributionFooter from "./IssAttributionFooter";
 
 /** How many days ahead to search for passes. */
 const PASS_DAYS = 5;
-/** Ground track recompute cadence (ms) — keeps the line geometry stable between. */
+/** Ground track recompute cadence (ms); keeps the line geometry stable between. */
 const GROUND_TRACK_INTERVAL_MS = 15000;
-/** wheretheiss.at cross-check poll cadence (ms) — polite vs their ~1 req/s. */
+/** wheretheiss.at cross-check poll cadence (ms): polite vs their ~1 req/s. */
 const WHERETHEISS_INTERVAL_MS = 10000;
 
 export default function IssApp() {
@@ -83,7 +83,7 @@ export default function IssApp() {
       setLiveTle({ tle: set, fetchedAt: Date.now() });
       setRefreshError(null);
     } catch {
-      setRefreshError(silent ? null : "CelesTrak refresh failed — using committed TLE");
+      setRefreshError(silent ? null : "CelesTrak refresh failed, using committed TLE");
     } finally {
       setRefreshing(false);
     }
@@ -272,7 +272,7 @@ export default function IssApp() {
         <BootScreen label="Loading base imagery" />
       )}
 
-      {/* HUD — content first, NavShell last so its dropdowns paint above panels */}
+      {/* HUD, content first, NavShell last so its dropdowns paint above panels */}
       <div className="pointer-events-none absolute inset-0 z-10">
         <IssHud
           data={hudData}

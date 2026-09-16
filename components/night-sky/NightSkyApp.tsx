@@ -31,7 +31,7 @@ import {
 
 /**
  * Night Sky tab shell (the second "Beyond" world). Loads the three shipped
- * catalogues once — stars (HYG), constellation figures, Messier deep-sky — each
+ * catalogues once, stars (HYG), constellation figures, Messier deep-sky, each
  * parsed defensively so a missing/broken file degrades to a graceful empty state
  * rather than a crash. Holds the view state (layer toggles, sky vs local mode,
  * observer + time) and composes the 3D planetarium with the DOM HUD. The heavy
@@ -85,7 +85,7 @@ export default function NightSkyApp() {
 
   const conNameMap = useMemo(() => constellationNameMap(conCat), [conCat]);
   const conName = useCallback(
-    (abbr: string | null) => (abbr ? conNameMap.get(abbr) ?? abbr : "—"),
+    (abbr: string | null) => (abbr ? conNameMap.get(abbr) ?? abbr : "–"),
     [conNameMap]
   );
 
@@ -124,7 +124,7 @@ export default function NightSkyApp() {
         {!loaded && <CenteredNote>Charting the sky…</CenteredNote>}
         {loaded && !hasStars && (
           <CenteredNote>
-            Star catalogue unavailable — the sky data failed to load.
+            Star catalogue unavailable: the sky data failed to load.
           </CenteredNote>
         )}
 

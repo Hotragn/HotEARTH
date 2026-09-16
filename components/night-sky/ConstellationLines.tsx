@@ -10,7 +10,7 @@ import {
 import { CONSTELLATION_RADIUS, NIGHT_SKY_ACCENT_DIM } from "./constants";
 
 /**
- * The constellation stick figures — a CULTURAL OVERLAY, not physics. The stars
+ * The constellation stick figures: a CULTURAL OVERLAY, not physics. The stars
  * are real measured objects; the lines joining them into figures are a human
  * convention (the modern IAU / Western set, from Marc van der Sluys'
  * ConstellationLines, CC BY 4.0). Every segment connects two real catalogue

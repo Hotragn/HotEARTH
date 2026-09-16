@@ -22,7 +22,7 @@ interface DwarfTimeControlProps {
 
 /**
  * Rotation / terminator time machine for a detail globe: scrub across one full
- * rotation period and watch the sub-solar longitude sweep the surface — the
+ * rotation period and watch the sub-solar longitude sweep the surface, the
  * honest, computed signal that drives the day/night terminator on every body
  * (imaged or illustrative). Mirrors the Moons' MoonTimeControl. The globe reads
  * the same offset via a ref per frame, so this owns only the HUD readouts. The
@@ -100,7 +100,7 @@ export default function DwarfTimeControl({
         <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-line pt-2">
           <span
             className="font-mono text-[11px] tracking-wide text-dim"
-            title="Live sub-solar longitude — sweeps once per rotation. This drives the computed day/night terminator."
+            title="Live sub-solar longitude: sweeps once per rotation. This drives the computed day/night terminator."
           >
             sub-solar {subLon}
           </span>

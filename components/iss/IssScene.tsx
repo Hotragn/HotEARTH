@@ -138,7 +138,7 @@ function EarthBody({
     };
   }, [earthMaterial, atmosphereMaterial, blankOverlay]);
 
-  // Live terminator — refresh the Sun vector every 500 ms of real time (cheap;
+  // Live terminator: refresh the Sun vector every 500 ms of real time (cheap;
   // no need for 60 Hz). No allocation: subsolar → set on the reused vector.
   const lastSun = useRef(0);
   useFrame(() => {
@@ -169,7 +169,7 @@ function EarthBody({
  * sub-point lat/lon and its REAL altitude (scaled by `exaggeration`; 1 = true).
  * A faint tether drops to the ground point so the height reads at a glance, and
  * an Html tag shows the live altitude. Only the group position changes as the
- * station moves — the glyph geometry is fixed.
+ * station moves: the glyph geometry is fixed.
  */
 function IssMarker({
   lat,
@@ -229,7 +229,7 @@ function IssMarker({
       <primitive object={tether} />
 
       <group position={surfacePoint}>
-        {/* sub-point dot on the ground — the "now" position on the track */}
+        {/* sub-point dot on the ground: the "now" position on the track */}
         <mesh>
           <sphereGeometry args={[0.006, 16, 16]} />
           <meshBasicMaterial color="#c0d0e8" toneMapped={false} />
@@ -417,7 +417,7 @@ function buildFootprint(lat: number, lon: number, altKm: number): THREE.LineLoop
 
 // ────────────────────────────── observer marker ────────────────────────────
 
-/** A small amber pin at the passes observer's location — an orientation cue. */
+/** A small amber pin at the passes observer's location: an orientation cue. */
 function ObserverMarker({ observer }: { observer: Observer }) {
   const position = useMemo<[number, number, number]>(
     () => latLonToVector3(observer.lat, observer.lon, SURFACE),

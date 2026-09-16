@@ -7,7 +7,7 @@ import { PRESET_CITIES, type Observer } from "./constants";
 
 /**
  * Observer + time control for the "sky from your location" mode. Pick a preset
- * city, type a latitude/longitude, or (optionally) use the browser geolocation —
+ * city, type a latitude/longitude, or (optionally) use the browser geolocation:
  * never required, and it fails silently to the current preset. The time scrubs
  * ±12 h around the moment you opened the tab, with a "Now" reset. The current
  * local sidereal time (the RA on your meridian, from real GMST + longitude) is
@@ -110,7 +110,7 @@ export default function LocationTimeControl({
         </div>
 
         {geoError && (
-          <p className="mt-1.5 font-mono text-[10px] text-solar">{geoError} — using the selected place.</p>
+          <p className="mt-1.5 font-mono text-[10px] text-solar">{geoError}: using the selected place.</p>
         )}
 
         {/* time row */}
@@ -151,8 +151,8 @@ export default function LocationTimeControl({
               </span>
             )}
           </span>
-          <span title="Local sidereal time — the right ascension on your meridian (computed from GMST + longitude).">
-            LST {lst ?? "—"}
+          <span title="Local sidereal time: the right ascension on your meridian (computed from GMST + longitude).">
+            LST {lst ?? "–"}
           </span>
         </div>
       </div>

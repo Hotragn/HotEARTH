@@ -20,16 +20,16 @@ import ExoAttributionFooter from "./ExoAttributionFooter";
 
 /**
  * Exoplanets tab shell. Three views share one client bundle:
- *   • the SYSTEM BROWSER (default) — a fast, searchable/sortable DOM list of the
+ *   • the SYSTEM BROWSER (default), a fast, searchable/sortable DOM list of the
  *     real catalogue systems (no 3D), with a headline stat row;
- *   • the SYSTEM ARCHITECTURE view — a 3D scene of one host star and its planets
+ *   • the SYSTEM ARCHITECTURE view: a 3D scene of one host star and its planets
  *     on their real relative orbits (radius-compressed), a computed habitable
  *     zone shaded green, and an optional overlay of our Solar System's orbits;
- *   • a per-planet DETAIL view — an illustrative sphere (no imagery) + the
+ *   • a per-planet DETAIL view: an illustrative sphere (no imagery) + the
  *     measured parameters, opened by clicking a planet.
  *
  * The catalogue (public/data/exoplanets/systems.json) is fetched once and parsed
- * defensively — a missing/broken file degrades to a graceful empty state, never
+ * defensively: a missing/broken file degrades to a graceful empty state, never
  * a crash. Animation time lives in a ref read per-frame by the scene (no
  * per-frame React work); state drives only the HUD, ticked ~3 Hz.
  */

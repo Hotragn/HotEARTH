@@ -61,7 +61,7 @@ export default function ExoSystemBrowser({
             <span className="text-ice">NASA Exoplanet Archive</span>. Distances
             and star types are measured; the count of planets in the{" "}
             <span style={{ color: HZ_GREEN }}>habitable zone</span> is computed
-            (Kopparapu 2013). No exoplanet has been imaged in surface detail —
+            (Kopparapu 2013). No exoplanet has been imaged in surface detail:
             appearances are illustrative. Open a system to see its architecture.
           </p>
         </header>
@@ -267,7 +267,7 @@ function EmptyState() {
       <p className="text-sm text-ice">Catalogue unavailable</p>
       <p className="mt-2 text-[12px] leading-relaxed text-dim">
         The exoplanet catalogue could not be loaded. Nothing is invented in its
-        place — this view stays empty until the data is present.
+        place: this view stays empty until the data is present.
       </p>
     </div>
   );

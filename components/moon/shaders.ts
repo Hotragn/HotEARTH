@@ -3,7 +3,7 @@
  *
  * Mirrors components/mars/shaders.ts, with the key physical difference: the
  * Moon has NO atmosphere, so there is NO atmospheric rim glow (no wind, clouds,
- * pressure — nothing). This airless look is what visually distinguishes the
+ * pressure, nothing). This airless look is what visually distinguishes the
  * Moon from Earth and Mars. The terminator is HARD: with no air to scatter
  * light there is essentially no twilight, so day flips to night across a very
  * narrow band (a razor-sharp terminator is itself an honest lunar signal).
@@ -11,7 +11,7 @@
  * Day/night is physically driven: `sunDir` is the Moon-fixed unit vector to the
  * Sun from lib/lunar.ts (Meeus sub-solar point). The globe mesh is unrotated,
  * so object-space normals are Moon-fixed and dot(normal, sunDir) is the sine of
- * solar elevation — the same shared dot(P̂, sunDir) > 0 daylight test used by
+ * solar elevation: the same shared dot(P̂, sunDir) > 0 daylight test used by
  * Earth and Mars.
  *
  * `useProcedural` (0/1) switches between the real LROC/Kaguya basemap texture
@@ -73,7 +73,7 @@ export const MOON_FRAGMENT = /* glsl */ `
     float n = fbm(vObjPos * 5.0);
     vec3 col = highland * (0.72 + 0.5 * n);
 
-    // Darker maria (the "seas" — basaltic plains) as broad low-frequency
+    // Darker maria (the "seas": basaltic plains) as broad low-frequency
     // patches, biased toward the near-side face (+X in the Moon-fixed frame).
     float m = fbm(vObjPos * 1.7 + vec3(3.1, 1.7, 0.4));
     float nearSide = smoothstep(-0.1, 0.7, normalize(vObjPos).x);
@@ -102,7 +102,7 @@ export const MOON_FRAGMENT = /* glsl */ `
     float diffuse = 0.5 + 0.5 * pow(clamp(sunDot, 0.0, 1.0), 0.7);
     vec3 lit = surface * diffuse;
 
-    // Night side: no city lights, no airglow — earthshine only lifts it a hair
+    // Night side: no city lights, no airglow, earthshine only lifts it a hair
     // so the dark limb reads as a sphere, not a void.
     vec3 night = surface * 0.03;
 
@@ -114,7 +114,7 @@ export const MOON_FRAGMENT = /* glsl */ `
 `;
 
 /**
- * A VERY faint neutral edge (limb) — NOT an atmosphere. Airless bodies have no
+ * A VERY faint neutral edge (limb): NOT an atmosphere. Airless bodies have no
  * limb glow; this is a barely-there rim so the sphere separates cleanly from
  * the starfield, kept neutral grey and extremely dim so it never reads as air.
  */

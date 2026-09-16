@@ -34,8 +34,8 @@ const HAS_ATMOSPHERE: Record<DwarfBodyName, boolean> = {
 
 /**
  * Haumea's illustrative spin rate (rad/s of wall time). Its REAL period is a
- * well-determined ~3.9155 h — far too slow to read at a globe and unrelated to
- * wall time — so, exactly like the Solar-System Venus super-rotation shell, the
+ * well-determined ~3.9155 h, far too slow to read at a globe and unrelated to
+ * wall time, so, exactly like the Solar-System Venus super-rotation shell, the
  * spin here is illustrative of that measured fast rotation, labelled as such in
  * the HUD. ~1 lap / 11 s.
  */
@@ -57,12 +57,12 @@ interface DwarfGlobeProps {
  * uniform (material built once, disposed on unmount), NO per-frame allocations.
  *
  * Three honest rendering paths:
- *   • IMAGED (Pluto, Charon, Ceres) — a real grayscale albedo map + a computed
+ *   • IMAGED (Pluto, Charon, Ceres), a real grayscale albedo map + a computed
  *     terminator that sweeps at the body's real rotation rate.
- *   • ILLUSTRATIVE (Eris, Makemake) — a tinted, softly-mottled sphere; NO real
+ *   • ILLUSTRATIVE (Eris, Makemake): a tinted, softly-mottled sphere; NO real
  *     map exists, so the HUD/scene label it clearly. The terminator is still a
  *     real, computed sub-solar sweep.
- *   • HAUMEA — the real, measured GEOMETRY: a triaxial ellipsoid scaled to its
+ *   • HAUMEA, the real, measured GEOMETRY: a triaxial ellipsoid scaled to its
  *     ~2100×1680×1074 km axes, spinning about its short axis (illustrative rate),
  *     plus its real ring (Ortiz 2017). Surface still illustrative + labelled; the
  *     shape and ring are real. `sunDir` is counter-rotated per frame so the
@@ -162,7 +162,7 @@ export default function DwarfGlobe({
   }, [name]);
 
   // Haumea ring: real radius/width (Ortiz 2017), illustrative particle look. A
-  // thin flat annulus in the equatorial (XZ) plane — no texture, no CC-BY.
+  // thin flat annulus in the equatorial (XZ) plane: no texture, no CC-BY.
   const ringGeometry = useMemo(() => {
     if (!spins) return null;
     return new THREE.RingGeometry(ringInner, ringOuter, 160, 1);
@@ -203,7 +203,7 @@ export default function DwarfGlobe({
   }, [surfaceMaterial, surfaceTexture, usingFallback, blank, imaged]);
 
   // Sun direction (cheap): refresh the world sun every 500ms of real time, or
-  // immediately on scrub. Reuses vectors — no per-frame allocation. For Haumea
+  // immediately on scrub. Reuses vectors: no per-frame allocation. For Haumea
   // the ellipsoid spins each frame and sunVec is counter-rotated about Y so the
   // terminator stays fixed in world space.
   const innerRef = useRef<THREE.Group>(null);
@@ -246,7 +246,7 @@ export default function DwarfGlobe({
         </mesh>
       </group>
 
-      {/* Haumea's ring — real geometry, in the equatorial plane, does not spin */}
+      {/* Haumea's ring: real geometry, in the equatorial plane, does not spin */}
       {ringGeometry && ringMaterial && (
         <mesh
           geometry={ringGeometry}

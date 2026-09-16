@@ -8,7 +8,7 @@ import { X } from "@phosphor-icons/react";
 import { groupedWorlds, type World, type WorldTab } from "@/lib/worlds";
 
 /**
- * "All worlds" launcher — a grouped grid of every world with a shipped-texture
+ * "All worlds" launcher: a grouped grid of every world with a shipped-texture
  * thumbnail (loaded defensively, falling back to an accent tile), label, blurb
  * and accent. Portalled to <body>, focus-trapped, Esc / outside-click to close.
  */

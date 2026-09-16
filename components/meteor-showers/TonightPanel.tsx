@@ -23,7 +23,7 @@ import { METEOR_ACCENT, type Observer } from "./constants";
  * the observer's date, each with its altitude-corrected OBSERVED-rate estimate
  * (honestly lower than ZHR, and "below horizon" when the radiant is down), the
  * next shower to peak, and a live countdown to the next MAJOR peak. The current
- * solar longitude λ☉ — the stable coordinate meteor peaks are keyed to — is
+ * solar longitude λ☉, the stable coordinate meteor peaks are keyed to, is
  * shown up top. Clicking any shower opens its detail.
  */
 export default function TonightPanel({
@@ -79,7 +79,7 @@ export default function TonightPanel({
           </p>
           <span
             className="font-mono text-[10px] text-faint"
-            title="Solar longitude λ☉ — the stable coordinate meteor peaks are keyed to."
+            title="Solar longitude λ☉: the stable coordinate meteor peaks are keyed to."
           >
             λ☉ {fmtSolarLongitude(solarLon)}
           </span>
@@ -141,7 +141,7 @@ export default function TonightPanel({
             </span>
           </button>
         ) : (
-          <p className="mt-1 text-[12px] text-dim">—</p>
+          <p className="mt-1 text-[12px] text-dim">–</p>
         )}
 
         {/* countdown to next major peak */}
@@ -164,13 +164,13 @@ export default function TonightPanel({
               {fmtCountdown(major.target, now)}
             </p>
             <p className="mt-0.5 font-mono text-[8.5px] leading-relaxed text-faint">
-              approx — peaks drift ~1 day/yr; timing keyed to solar longitude
+              approx: peaks drift ~1 day/yr; timing keyed to solar longitude
             </p>
           </div>
         )}
 
         <p className="mt-3 border-t border-line pt-2.5 text-[10px] leading-relaxed text-faint">
-          Rates shown are the altitude-corrected OBSERVED estimate — lower than the
+          Rates shown are the altitude-corrected OBSERVED estimate: lower than the
           idealised ZHR. Open a shower for the full breakdown.
         </p>
 

@@ -10,7 +10,7 @@ import type { City } from "@/lib/cities";
 import EarthGlobe from "@/components/globe/EarthGlobe";
 import CityPoints from "./CityPoints";
 
-// Same opening frame as the Earth tab — mid-Atlantic, whole civilization.
+// Same opening frame as the Earth tab: mid-Atlantic, whole civilization.
 const INITIAL_CAMERA = latLonToVector3(20, -30, 2.9);
 
 interface LivingEarthCanvasProps {

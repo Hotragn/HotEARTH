@@ -9,7 +9,7 @@ import { GRID_RADIUS } from "./constants";
  * Optional reference circles (a nice-to-have, labelled): the CELESTIAL EQUATOR
  * (declination 0°) and the ECLIPTIC (the Sun's apparent path, the equator tilted
  * by the mean obliquity ε ≈ 23.44°). Both are computed great circles, not data
- * about the stars — they are orientation aids. Off by default.
+ * about the stars: they are orientation aids. Off by default.
  */
 const OBLIQUITY_DEG = 23.4393;
 const SEG = 256;

@@ -4,7 +4,7 @@
  *
  * Mirrors components/mars/shaders.ts and components/moon/shaders.ts exactly in
  * construction: the mesh is UNROTATED, so object-space normals are body-fixed
- * and dot(normal, sunDir) is the sine of solar elevation — the shared
+ * and dot(normal, sunDir) is the sine of solar elevation, the shared
  * dot(P̂, sunDir) > 0 daylight test. `sunDir` is the body-fixed unit vector to
  * the Sun from lib/planets.ts planetSunDirection. Any visual axial tilt is a
  * rigid rotation of the PARENT group (like MoonGlobe's libration), so it never
@@ -94,7 +94,7 @@ export const PLANET_FRAGMENT = /* glsl */ `
     float diffuse = 0.55 + 0.45 * pow(clamp(sunDot, 0.0, 1.0), 0.6);
     vec3 lit = surface * diffuse;
 
-    // Night side: no city lights out here — keep a faint ambient so the dark
+    // Night side: no city lights out here, keep a faint ambient so the dark
     // limb reads as a sphere, not a void.
     vec3 night = surface * 0.04;
 
@@ -106,7 +106,7 @@ export const PLANET_FRAGMENT = /* glsl */ `
 /**
  * Faint tinted limb glow for bodies WITH an atmosphere (Venus + all four
  * giants). Same limb-glow construction as Earth/Mars atmospheres but per-body
- * tinted and subtle. Airless Mercury renders WITHOUT this shell (honest — no
+ * tinted and subtle. Airless Mercury renders WITHOUT this shell (honest: no
  * air, no rim glow), exactly as MoonGlobe omits an atmosphere.
  */
 export const PLANET_LIMB_VERTEX = /* glsl */ `

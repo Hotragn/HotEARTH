@@ -36,7 +36,7 @@ const ORRERY_SPEEDS = [
 
 /**
  * Major Moons tab shell. Two views share one client bundle:
- *   • the overview (default) — a per-parent mini-orrery (Jupiter / Saturn /
+ *   • the overview (default), a per-parent mini-orrery (Jupiter / Saturn /
  *     Neptune, selectable) with the moons at their real relative orbital speeds,
  *     plus a prominent Laplace-resonance callout for Jupiter's Galileans;
  *   • a per-moon detail globe, opened by clicking a moon.
@@ -46,7 +46,7 @@ const ORRERY_SPEEDS = [
  * State drives only the HUD readouts, ticked ~1Hz. Everything is real orbital
  * mechanics (lib/moons); the honest compression note comes straight from
  * moonOrreryLayout().note. phenomena.json + constants.json are fetched once and
- * parsed defensively — the UI degrades gracefully to lib data if either is
+ * parsed defensively: the UI degrades gracefully to lib data if either is
  * missing.
  */
 export default function MoonsApp() {
@@ -318,7 +318,7 @@ function LaplaceCallout({
         </p>
         <p className="mt-1 text-[11px] leading-relaxed text-dim">
           {note} The three are mean-motion locked to ≈ 1 : 2 : 4, so a triple
-          conjunction never happens — and the forced eccentricity drives Io&apos;s
+          conjunction never happens, and the forced eccentricity drives Io&apos;s
           volcanism and the Galilean oceans.
         </p>
       </div>

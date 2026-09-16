@@ -8,7 +8,7 @@ import { advectLatLon, sampleWind, type WindField } from "@/lib/wind";
 import { GLOBE_RADIUS } from "./EarthGlobe";
 
 /**
- * Global wind particle layer — the earth.nullschool look on a sphere.
+ * Global wind particle layer: the earth.nullschool look on a sphere.
  *
  * Technique: one indexed THREE.LineSegments holding short per-particle
  * trails. Each particle keeps TRAIL positions in a flat Float32Array; per
@@ -26,7 +26,7 @@ const TRAIL = 8;
 const ALTITUDE = GLOBE_RADIUS * 1.006;
 /**
  * Simulated seconds of wind advection per real second. Real 10 m/s wind
- * moves ~0.5 m per frame — invisible at globe scale — so, like the classic
+ * moves ~0.5 m per frame, invisible at globe scale, so, like the classic
  * earth.nullschool animation, time is exaggerated: 55,000x ≈ 15 h of wind
  * per wall-clock second, i.e. ~0.08°/frame at 10 m/s.
  */
@@ -70,7 +70,7 @@ function spawn(state: SimState, p: number, scatterAge: boolean): void {
   state.lons[p] = lon;
   state.ages[p] = scatterAge ? Math.random() * AGE_MIN : 0;
   state.maxAges[p] = AGE_MIN + Math.random() * AGE_SPAN;
-  // collapse the whole trail onto the spawn point — no streak across the globe
+  // collapse the whole trail onto the spawn point: no streak across the globe
   const base = p * TRAIL * 3;
   latLonToVector3Into(lat, lon, ALTITUDE, state.positions, base);
   for (let t = 1; t < TRAIL; t++) {

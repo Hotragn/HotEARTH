@@ -8,7 +8,7 @@ import { PLANET_FACTS, type DetailPlanetName } from "@/lib/planet-facts";
 import PlanetGlobe from "./PlanetGlobe";
 import { usePlanetTexture } from "./usePlanetTexture";
 
-/** Solar System Scope ring texture (CC BY 4.0) — see the attribution footer. */
+/** Solar System Scope ring texture (CC BY 4.0): see the attribution footer. */
 const RING_TEXTURE_PATH = "/textures/planets/saturn-rings.png";
 
 interface PlanetDetailCanvasProps {

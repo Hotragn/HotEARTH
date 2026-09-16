@@ -21,7 +21,7 @@ type LoadState =
  *    latitude) from public/data/planets/zonal_winds.json, with its source.
  *    Loaded DEFENSIVELY (the file is written concurrently): if it is absent or
  *    malformed the panel shows an honest "awaiting data" note, never crashes.
- *  - Venus: shows the measured cloud-top super-rotation card (no external file).
+ *  - Venus; shows the measured cloud-top super-rotation card (no external file).
  *  - Mercury / Uranus: nothing to plot, panel is omitted.
  */
 export default function ZonalWindPanel({ name }: { name: DetailPlanetName }) {
@@ -112,7 +112,7 @@ export default function ZonalWindPanel({ name }: { name: DetailPlanetName }) {
         />
       )}
       <p className="mt-3 border-t border-line pt-2 font-mono text-[9px] leading-relaxed text-faint">
-        Measured / climatological averages — not a forecast.
+        Measured / climatological averages: not a forecast.
       </p>
     </Panel>
   );

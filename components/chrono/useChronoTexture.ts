@@ -5,9 +5,9 @@ import * as THREE from "three";
 
 /**
  * Loads the Earth base day texture for the Virtual Earth globe, read-only from
- * the existing public path (owned by the Earth data pipeline — we do NOT create
+ * the existing public path (owned by the Earth data pipeline: we do NOT create
  * or edit it). If it 404s we fall back to a plain earthy sphere via the shader
- * (usingFallback = true). Never throws, never blocks the scene — mirrors the
+ * (usingFallback = true). Never throws, never blocks the scene; mirrors the
  * Mars useMarsTexture defensive pattern.
  */
 export const EARTH_DAY_TEXTURE = "/textures/earth-day-blue-marble.jpg";

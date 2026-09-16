@@ -21,7 +21,7 @@ const DEG2RAD = Math.PI / 180;
 
 /**
  * Neptune's semi-major axis [AU] (JPL). Neptune's orbit is nearly circular
- * (e ≈ 0.009), so a plain ring at this distance is honest to the eye — it is the
+ * (e ≈ 0.009), so a plain ring at this distance is honest to the eye: it is the
  * trans-Neptunian REFERENCE line, so viewers can see that Pluto/Haumea/Makemake/
  * Eris live beyond Neptune and that Pluto's eccentric orbit crosses it.
  */
@@ -30,7 +30,7 @@ const NEPTUNE_AU = 30.06992276;
 /**
  * Log-compressed orrery scale. innerAU 2.5 (just inside Ceres at 2.77) →
  * outerAU 100 (just beyond Eris' ~98 AU aphelion) map to scene radii 1→10, so
- * all five orbits — a ~35× true-distance range — are visible together. ANGLES
+ * all five orbits, a ~35× true-distance range, are visible together. ANGLES
  * are real heliocentric longitudes; only the RADIUS is compressed (the control
  * says so).
  */
@@ -75,7 +75,7 @@ function buildOrbitGeometry(name: DwarfName, samples = 240): THREE.BufferGeometr
  * radius-compressed orbits. Angular motion and relative speeds are physically
  * correct (Ceres laps in ~4.6 yr while Eris crawls over ~560 yr); the true AU
  * distance is labelled live. Each dwarf orbit is the traced compressed path, so
- * its dot always rides exactly on its line — and Pluto's line visibly dips
+ * its dot always rides exactly on its line: and Pluto's line visibly dips
  * inside the Neptune ring near perihelion (the Neptune-crossing 3:2 resonance).
  */
 export default function DwarfOrrery({

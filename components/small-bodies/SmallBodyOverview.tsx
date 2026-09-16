@@ -90,10 +90,10 @@ export default function SmallBodyOverview({
         {/* legend */}
         <div className="mt-3 space-y-1.5 border-t border-line pt-3">
           <LegendRow color={EARTH_REF_COLOR} label="Planet reference orbits (Earth highlighted)" line />
-          <LegendRow color={COMET_COLOR} label="Comet — closed ellipse + illustrative tail" line />
-          <LegendRow color={ASTEROID_COLOR} label="Asteroid — closed ellipse" line />
-          <LegendRow color={OPEN_ORBIT_COLOR} label="Unbound / interstellar — open arc" line />
-          <LegendRow color={PHA_COLOR} label="Potentially Hazardous — amber ring" />
+          <LegendRow color={COMET_COLOR} label="Comet, closed ellipse + illustrative tail" line />
+          <LegendRow color={ASTEROID_COLOR} label="Asteroid, closed ellipse" line />
+          <LegendRow color={OPEN_ORBIT_COLOR} label="Unbound / interstellar, open arc" line />
+          <LegendRow color={PHA_COLOR} label="Potentially Hazardous, amber ring" />
         </div>
 
         {/* launchers */}

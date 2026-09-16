@@ -6,7 +6,7 @@ import { TEXTURE_CAVEAT } from "@/lib/moon-facts";
 /**
  * Major-moons attribution footer (mirrors SolarAttributionFooter /
  * MoonAttributionFooter). ALL moon maps this phase are public domain
- * (NASA / JPL / USGS) — no CC-BY obligation — so we credit them as a courtesy.
+ * (NASA / JPL / USGS), no CC-BY obligation, so we credit them as a courtesy.
  * Specific map credits: Triton mosaic by P. Schenk (LPI); Mimas by
  * NASA/JPL-Caltech/SSI. Orbital + physical constants are JPL SSD satellite
  * parameters. Per-moon texture caveats (Titan near-IR, Triton synthetic north)

@@ -5,7 +5,7 @@
  * Sources (see docs/MARS_DATA_SOURCES.md):
  *   Terrain: NASA/JPL/USGS Viking MDIM 2.1 colorized mosaic (public domain)
  *   Mars24 time: NASA GISS (Allison & McEwen 2000)
- *   Climatology: NASA PDS — measured Viking Lander surface pressure (Hess 1980)
+ *   Climatology: NASA PDS, measured Viking Lander surface pressure (Hess 1980)
  */
 export default function MarsAttributionFooter({
   usingFallbackTexture = false,

@@ -314,7 +314,7 @@ function PlanetDisk({
 
 /**
  * One moon: a small textured sphere, or a flat tinted sphere when its map is
- * missing (Proteus / Nereid — illustrative, no fake surface detail).
+ * missing (Proteus / Nereid, illustrative, no fake surface detail).
  */
 function MoonMarker({
   moon,

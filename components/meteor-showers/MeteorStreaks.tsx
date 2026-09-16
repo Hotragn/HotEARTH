@@ -8,15 +8,15 @@ import { RADIANT_SPHERE_RADIUS } from "./constants";
 /**
  * ILLUSTRATIVE meteor streaks for ONE shower, emanating FROM its radiant. The
  * geometry is real: meteoroids in a stream travel on parallel paths, so by
- * perspective their trails all appear to diverge from a single point on the sky —
+ * perspective their trails all appear to diverge from a single point on the sky,
  * the radiant. We draw that honestly: each streak starts near the radiant
  * direction and lengthens OUTWARD along a great circle away from it, then fades
- * and respawns. The particles themselves are drawn (not observed) — clearly
+ * and respawns. The particles themselves are drawn (not observed): clearly
  * labelled illustrative in the HUD.
  *
  * Performance: everything is preallocated ONCE (positions + per-vertex alpha +
  * per-streak scalar state). The per-frame path only writes into those Float32
- * buffers and flips one needsUpdate flag — no allocation in the loop, mirroring
+ * buffers and flips one needsUpdate flag: no allocation in the loop, mirroring
  * the wind-particle / star-field budgets elsewhere in the app.
  */
 

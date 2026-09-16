@@ -20,7 +20,7 @@ function makeCornerMask(): THREE.Texture {
   // solar disk fills the frame), then fades through the black corners only.
   const g = ctx.createRadialGradient(c, c, 0, c, c, c * Math.SQRT2);
   g.addColorStop(0, "#ffffff");
-  g.addColorStop(0.707, "#ffffff"); // mid-edge — keep the whole disk
+  g.addColorStop(0.707, "#ffffff"); // mid-edge: keep the whole disk
   g.addColorStop(0.9, "#000000");
   g.addColorStop(1, "#000000");
   ctx.fillStyle = g;
@@ -54,7 +54,7 @@ function makeCoronaGlow(): THREE.Texture {
  * The Sun rendered honestly: the real NASA/SDO full-disk image on a
  * camera-facing quad (these are SQUARE photos of the Earth-facing side, not
  * wrapped maps), with a subtle additive limb glow tinted to the channel's
- * false-colour palette. No rotation — a single snapshot does not rotate — so
+ * false-colour palette. No rotation, a single snapshot does not rotate, so
  * the presentation never implies motion the data does not have.
  *
  * Materials + mask/glow canvases are built once and swapped through uniforms;
@@ -115,7 +115,7 @@ export default function SunDisk({ channel, textures }: SunDiskProps) {
   }, [diskMaterial, glowMaterial, cornerMask, coronaGlow, blank]);
 
   // Swap the disk image + glow tint in place when the channel or its texture
-  // changes — never rebuild the material.
+  // changes: never rebuild the material.
   const activeTex = textures[channel.id] ?? null;
   useEffect(() => {
     diskMaterial.map = activeTex ?? blank;

@@ -84,10 +84,10 @@ interface ExoSystemSceneProps {
 }
 
 /**
- * The 3D SYSTEM ARCHITECTURE — the centerpiece. The host star sits at centre
+ * The 3D SYSTEM ARCHITECTURE: the centerpiece. The host star sits at centre
  * (colour from starColor(teff), illustrative size from star.rad); each planet
  * rides its real, radius-compressed orbit at the correct RELATIVE speed
- * (lib/systemLayout — order + angular speeds are physical, absolute phase +
+ * (lib/systemLayout: order + angular speeds are physical, absolute phase +
  * radial distance are illustrative). The computed Kopparapu (2013) habitable
  * zone is shaded as a green annulus (conservative bright, optimistic faint), and
  * an optional overlay draws our own Solar System's orbits on the SAME compressed
@@ -107,7 +107,7 @@ export default function ExoSystemScene({
   const mStar = system.star.mass && system.star.mass > 0 ? system.star.mass : 1;
 
   // Compression window: always spans the planets + the (optimistic) HZ, and the
-  // Solar-System references when the overlay is on — so nothing renders off-frame.
+  // Solar-System references when the overlay is on, so nothing renders off-frame.
   const { innerAU, outerAU } = useMemo(() => {
     const smas = system.planets
       .map((p) => resolveSmaAU(p, mStar))
@@ -215,7 +215,7 @@ export default function ExoSystemScene({
     <group>
       <StarBody color={starCol} radius={starR} name={displayName(system)} />
 
-      {/* Habitable zone (computed) — optimistic faint, conservative brighter */}
+      {/* Habitable zone (computed): optimistic faint, conservative brighter */}
       {hzRings && hzRings.optOuter > hzRings.optInner && (
         <mesh rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[Math.max(0.05, hzRings.optInner), hzRings.optOuter, 96]} />

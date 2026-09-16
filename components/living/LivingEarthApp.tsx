@@ -26,10 +26,10 @@ import { useBaseTextures } from "@/components/globe/useBaseTextures";
 import LivingEarthCanvas from "./LivingEarthCanvas";
 
 /**
- * Living Earth — the human layer of the twin. Everything on screen is real
+ * Living Earth: the human layer of the twin. Everything on screen is real
  * data (Natural Earth cities, the computed solar terminator, live Open-Meteo
  * weather) or a clearly-labeled simulation derived from it (the city
- * activity pulse — see lib/activity.ts and the legend in the stats strip).
+ * activity pulse: see lib/activity.ts and the legend in the stats strip).
  */
 
 /** hover/click hit radius around a city, as cos(angular distance) */
@@ -38,7 +38,7 @@ const PICK_MIN_DOT = Math.cos((3.0 * Math.PI) / 180);
 
 /**
  * Fixed 10-city sample for the warmest/coldest HUD stat. Fetched in ONE
- * batched Open-Meteo request, once per session — far inside the 600/min
+ * batched Open-Meteo request, once per session: far inside the 600/min
  * free-tier limit.
  */
 const TEMP_SAMPLE: readonly SamplePoint[] = [
@@ -152,7 +152,7 @@ export default function LivingEarthApp() {
     },
     [cities, findNearest]
   );
-  // stable LatLon identity per selection — ForecastPanel refetches on change
+  // stable LatLon identity per selection: ForecastPanel refetches on change
   const selectedLatLon = useMemo<LatLon | null>(
     () => (selected ? { lat: selected.lat, lon: selected.lon } : null),
     [selected]
@@ -190,7 +190,7 @@ export default function LivingEarthApp() {
     fetchCurrentTemps(TEMP_SAMPLE, controller.signal)
       .then(setTemps)
       .catch(() => {
-        /* stat is optional — drop it quietly rather than hammer the API */
+        /* stat is optional: drop it quietly rather than hammer the API */
       });
     return () => controller.abort();
   }, []);
@@ -274,13 +274,13 @@ export default function LivingEarthApp() {
               <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1 font-mono text-[11px] tracking-wide text-dim">
                 <span>
                   <span className="text-ice">
-                    {cities ? cities.length.toLocaleString() : "—"}
+                    {cities ? cities.length.toLocaleString() : "–"}
                   </span>{" "}
                   <span className="text-faint">cities</span>
                 </span>
                 <span>
                   <span className="text-ice">
-                    {nightPct !== null ? `${nightPct}%` : "—"}
+                    {nightPct !== null ? `${nightPct}%` : "–"}
                   </span>{" "}
                   <span className="text-faint">in night</span>
                 </span>
@@ -305,12 +305,12 @@ export default function LivingEarthApp() {
             <p className="mt-2 border-t border-line pt-2 text-[10px] leading-relaxed text-faint">
               Night-side cities glow along the real computed terminator. City
               activity is a simulation driven by real local time and
-              population — not measured data.
+              population: not measured data.
             </p>
           </div>
         </section>
 
-        {/* city weather panel — the Earth tab's ForecastPanel, reused */}
+        {/* city weather panel: the Earth tab's ForecastPanel, reused */}
         {selected && selectedLatLon && (
           <ForecastPanel
             picked={selectedLatLon}
@@ -346,7 +346,7 @@ export default function LivingEarthApp() {
 }
 
 /**
- * The simulated-activity block inside the city panel. Kept honest: shows the
+ * The simulated-activity block inside the city panel. Kept honest; shows the
  * inputs (local solar time, population) and states that it is a simulation.
  */
 function ActivityExtra({ city }: { city: City }) {
@@ -386,7 +386,7 @@ function ActivityExtra({ city }: { city: City }) {
       </p>
       <p className="mt-2 text-[11px] leading-relaxed text-faint">
         Simulation from real local time and population (diurnal commute
-        curve) — not measured data.
+        curve), not measured data.
       </p>
     </div>
   );

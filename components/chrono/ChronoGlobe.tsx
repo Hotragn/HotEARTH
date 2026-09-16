@@ -20,7 +20,7 @@ interface ChronoGlobeProps {
   /**
    * Current simulated decimal year, read per-frame from a ref so the timeline
    * playback never re-renders the canvas. Drives the (real) solar terminator
-   * for the simulated date — day/night still sweeps as history plays.
+   * for the simulated date: day/night still sweeps as history plays.
    */
   simYearRef: React.RefObject<number>;
 }
@@ -100,7 +100,7 @@ export default function ChronoGlobe({
     }
   }, [earthMaterial, surfaceTexture, usingFallback, blank]);
 
-  // Terminator: cheap, but no need every frame — refresh when the simulated
+  // Terminator: cheap, but no need every frame, refresh when the simulated
   // year moves meaningfully or every 400ms. sunVec is reused (no allocation).
   const lastSun = useRef({ at: 0, year: Number.NaN });
   useFrame(() => {

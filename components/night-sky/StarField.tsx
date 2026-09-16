@@ -17,7 +17,7 @@ import { STAR_SPHERE_RADIUS } from "./constants";
  * comes from raDecToVector3 (real RA/Dec, J2000), colour from the physical
  * B-V → black-body mapping (bvToColor), size + opacity from apparent magnitude.
  * Everything is baked into Float32 attributes once; the per-frame path only pokes
- * two scalar uniforms (dpr, size multiplier) — no allocation.
+ * two scalar uniforms (dpr, size multiplier): no allocation.
  *
  * The "sky from your location" mode is handled entirely on the GPU: the parent
  * group is rotated into the local horizon frame, and this shader hides any star

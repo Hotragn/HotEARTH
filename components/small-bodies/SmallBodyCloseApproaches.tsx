@@ -13,7 +13,7 @@ import {
 } from "@/lib/small-body-facts";
 
 /**
- * The close-approaches panel — the real CNEOS close-approach list. A calm,
+ * The close-approaches panel: the real CNEOS close-approach list. A calm,
  * factual header (no alarm styling): object, date, distance in BOTH lunar
  * distances and km, and relative velocity. Apophis's 2029 pass is highlighted
  * with the exact factual framing (~31,600 km above the surface, naked-eye
@@ -50,7 +50,7 @@ export default function SmallBodyCloseApproaches({
             </h1>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-dim">
               The closest sizeable Earth approaches in the catalogue window, in
-              chronological order. Distances are real numbers from NASA/JPL CNEOS —
+              chronological order. Distances are real numbers from NASA/JPL CNEOS:
               stated plainly, neither amplified nor downplayed. A lunar distance
               (LD) is the Earth–Moon distance, ~384,400 km.
             </p>

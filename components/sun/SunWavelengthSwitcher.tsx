@@ -24,7 +24,7 @@ function fmtObs(raw: string | null): string | null {
 }
 
 /**
- * SDO wavelength layer switcher — mirrors Earth's GIBS LayerSwitcher: a
+ * SDO wavelength layer switcher, mirrors Earth's GIBS LayerSwitcher: a
  * radiogroup of the six committed channels as a bottom-centered filmstrip, with
  * an honest caption (what the active channel shows, its temperature, the real
  * observation timestamp, and the "full-disk snapshot, not a map" note).

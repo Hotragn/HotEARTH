@@ -73,7 +73,7 @@ export default function MoonTemperaturePanel() {
 
         <p className="mt-3 border-t border-line pt-2 font-mono text-[9px] leading-relaxed text-faint">
           Model anchored to LRO Diviner measurements. Not a live feed. The Moon
-          has no atmosphere — this is surface temperature, not weather.
+          has no atmosphere: this is surface temperature, not weather.
         </p>
       </div>
     </section>
@@ -112,7 +112,7 @@ function TempBody({ data }: { data: DiurnalTemperature }) {
       <EquatorChart data={data} />
 
       <p className="mt-1.5 font-mono text-[9px] leading-snug text-faint">
-        Polar cold traps: {m.polarPsrColdTrap} K — among the coldest measured
+        Polar cold traps: {m.polarPsrColdTrap} K, among the coldest measured
         places in the solar system.
       </p>
     </>

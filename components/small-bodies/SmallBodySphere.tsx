@@ -10,7 +10,7 @@ function fade(t: number): number {
   return t * t * (3 - 2 * t);
 }
 
-/** Hash of an integer lattice point, seeded — deterministic pseudo-random [0,1). */
+/** Hash of an integer lattice point, seeded: deterministic pseudo-random [0,1). */
 function hash(xi: number, yi: number, zi: number, seed: number): number {
   const h = Math.sin(xi * 127.1 + yi * 311.7 + zi * 74.7 + seed * 13.13) * 43758.5453;
   return h - Math.floor(h);
@@ -67,11 +67,11 @@ interface SmallBodySphereProps {
 
 /**
  * The single detail body for the object view. Two honest rendering paths:
- *   • MAP (Eros / Vesta / Bennu) — the real equirectangular mosaic wrapped on a
+ *   • MAP (Eros / Vesta / Bennu), the real equirectangular mosaic wrapped on a
  *     SLIGHTLY-displaced sphere, smooth-shaded so the imagery reads. Labelled
  *     "real imagery … shape approximated" in the HUD/badge.
  *   • LUMP (everything else, incl. the photo bodies whose single-view frames are
- *     shown flat in the panel) — a strongly-displaced, flat-shaded irregular rock
+ *     shown flat in the panel): a strongly-displaced, flat-shaded irregular rock
  *     tinted from the body's albedo. Purely illustrative; labelled as such.
  *
  * The geometry is displaced on the CPU with seeded value noise (normals

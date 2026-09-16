@@ -6,11 +6,11 @@ import { radiantVector3, type MeteorShowerRecord } from "@/lib/meteor-facts";
 import { METEOR_ACCENT, RADIANT_SPHERE_RADIUS } from "./constants";
 
 /**
- * Labelled radiant markers — one per shower, placed at its real J2000 radiant
+ * Labelled radiant markers: one per shower, placed at its real J2000 radiant
  * direction (radiantVector3 → lib/celestial). ACTIVE and near-peak radiants pulse
  * and are always labelled; the selected one gets a highlight ring; the rest are
  * faint dots that label on hover. The markers are purely visual (pointer-events
- * off) — clicking is resolved by the scene's manual picker, which is robust under
+ * off): clicking is resolved by the scene's manual picker, which is robust under
  * OrbitControls where THREE.Points threshold-picking is not.
  */
 export default function RadiantMarkers({

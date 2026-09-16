@@ -12,7 +12,7 @@ const DAY_MS = 86_400_000;
  * the honest per-body notes and named features. Every printed number is either
  * computed live from lib/planets (distance, sub-solar point, season, solar day)
  * or transcribed from constants.json via lib/planet-facts (temperature,
- * features) — nothing is invented. A prominent banner states the honesty bar.
+ * features): nothing is invented. A prominent banner states the honesty bar.
  */
 export default function PlanetHud({
   name,
@@ -42,7 +42,7 @@ export default function PlanetHud({
     : `${facts.meanTempC}°C`;
   const tempTitle = facts.tempExtremesC
     ? facts.tempExtremesC.note
-    : `${facts.tempKind} — NASA NSSDC Planetary Fact Sheet`;
+    : `${facts.tempKind}: NASA NSSDC Planetary Fact Sheet`;
 
   return (
     <section
@@ -97,7 +97,7 @@ export default function PlanetHud({
           <Stat label="Orbit period" value={`${phys.orbitalPeriodYears.toFixed(2)} yr`} />
           <Stat label="Axial tilt" value={`${phys.obliquityDeg.toFixed(1)}°`} title="Obliquity to orbit (NASA Fact Sheet)" />
           <Stat label="Distance" value={`${st.position.distanceAU.toFixed(3)} AU`} title="Live heliocentric distance (JPL Keplerian elements)" />
-          <Stat label="Subsolar lat" value={subLat} title="Solar declination — the modelled seasonal latitude" />
+          <Stat label="Subsolar lat" value={subLat} title="Solar declination: the modelled seasonal latitude" />
           <Stat label="Modelled season" value={st.season.replace("Northern ", "N. ")} title="Season cycle position (adopted reference), not calendar-anchored" />
         </div>
 

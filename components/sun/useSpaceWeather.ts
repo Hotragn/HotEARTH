@@ -29,7 +29,7 @@ export interface SpaceWeatherState {
  * Loads the committed snapshot first (instant, defensive baseline), then
  * overlays each fast-changing SWPC feed that fetches + parses successfully,
  * tagging those fields source="live". On total live failure the snapshot stands
- * and `liveError` is set — the panel never blanks or crashes. Monthly F10.7 and
+ * and `liveError` is set: the panel never blanks or crashes. Monthly F10.7 and
  * sunspot number stay on the snapshot (slow signals; no live override).
  */
 export function useSpaceWeather(): SpaceWeatherState {
@@ -67,7 +67,7 @@ export function useSpaceWeather(): SpaceWeatherState {
       setView(base);
       setStatus("ready");
 
-      // 2. overlay live SWPC feeds — each independent + defensive.
+      // 2. overlay live SWPC feeds: each independent + defensive.
       const [ws, wm, kp, xr, fl, au] = await Promise.allSettled([
         getJson(SWPC_ENDPOINTS.windSpeed),
         getJson(SWPC_ENDPOINTS.windMag),
@@ -139,7 +139,7 @@ export function useSpaceWeather(): SpaceWeatherState {
 
       setView(live);
       setAnyLive(live_);
-      setLiveError(live_ ? null : "live SWPC feeds unreachable — showing snapshot");
+      setLiveError(live_ ? null : "live SWPC feeds unreachable, showing snapshot");
     })();
 
     return () => {

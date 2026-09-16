@@ -109,7 +109,7 @@ function StarBody({
           style={{ backgroundColor: colorHex, boxShadow: `0 0 8px ${colorHex}` }}
         />
         <p className="font-mono text-[10px] leading-relaxed text-faint">
-          Physical colour {colorHex} — computed from the measured B–V index, not a
+          Physical colour {colorHex}, computed from the measured B–V index, not a
           palette choice.
         </p>
       </div>
@@ -153,7 +153,7 @@ function MessierBody({
       <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-line pt-2.5">
         <Stat label="Type" value={obj.type} />
         <Stat label="Magnitude" value={fmtMag(obj.mag)} />
-        <Stat label="NGC" value={obj.ngc != null ? `NGC ${obj.ngc}` : "—"} />
+        <Stat label="NGC" value={obj.ngc != null ? `NGC ${obj.ngc}` : "–"} />
         {common && <Stat label="Common name" value={common} />}
       </div>
 
@@ -165,7 +165,7 @@ function MessierBody({
 
       <p className="mt-3 border-t border-line pt-2.5 font-mono text-[9px] leading-relaxed text-faint">
         Position, magnitude and type are measured catalogue values (OpenNGC,
-        J2000). No distance is shipped — OpenNGC has no single reliable distance
+        J2000). No distance is shipped: OpenNGC has no single reliable distance
         for every object, so we omit rather than guess.
       </p>
     </>

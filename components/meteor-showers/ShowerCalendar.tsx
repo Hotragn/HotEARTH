@@ -49,7 +49,7 @@ function windowSegments(s: MeteorShowerRecord): Segment[] {
  * Year calendar / timeline. A Jan–Dec strip with every shower's activity window
  * (split when it wraps past New Year), its peak marked, the current date drawn as
  * a vertical line, and active showers highlighted. Rows are ordered by peak so the
- * year reads left-to-right. Click a row to open that shower's detail. Pure DOM —
+ * year reads left-to-right. Click a row to open that shower's detail. Pure DOM:
  * fast and crisp at any zoom.
  */
 export default function ShowerCalendar({
@@ -99,7 +99,7 @@ export default function ShowerCalendar({
             </h2>
             <p className="mt-1 text-[12px] text-dim">
               Activity windows and peaks. Bar colour = strength (ZHR). Peaks drift
-              ~1 day/yr — timing is keyed to solar longitude.
+              ~1 day/yr: timing is keyed to solar longitude.
             </p>
           </div>
           <button

@@ -29,12 +29,12 @@ import { cometActivity } from "@/lib/small-bodies";
 
 /**
  * Per-object detail HUD. Prints the MEASURED orbital elements (a, e, q, Q or
- * "none — unbound", i, period or "unbound", MOID, Tisserand), the physical
+ * "none: unbound", i, period or "unbound", MOID, Tisserand), the physical
  * parameters (diameter, rotation, albedo, spectral type, H or comet total mag),
  * and the COMPUTED classification (NEO group, comet family, regime). The PHA
  * badge is stated factually with the CNEOS definition; interstellar bodies carry
  * a prominent "unbound" note; comets get their illustrative-tail + activity note.
- * Appearance follows the texture rules — a labelled real photo for the photo
+ * Appearance follows the texture rules: a labelled real photo for the photo
  * bodies (67P with its exact ESA credit), a map note for Eros/Vesta/Bennu, the
  * illustrative disclaimer otherwise. Missing values render "not measured".
  */
@@ -103,13 +103,13 @@ export default function SmallBodyHud({
         {/* badges */}
         <div className="mt-2 flex flex-wrap items-center gap-1.5">
           {object.pha && (
-            <Badge title="Potentially Hazardous Asteroid — a factual classification, see the definition below.">
+            <Badge title="Potentially Hazardous Asteroid: a factual classification, see the definition below.">
               PHA
             </Badge>
           )}
           {object.neo && <Badge>Near-Earth</Badge>}
           {d.interstellar && (
-            <Badge color="#c8a6ff" title="Unbound hyperbolic orbit — not gravitationally bound to the Sun.">
+            <Badge color="#c8a6ff" title="Unbound hyperbolic orbit: not gravitationally bound to the Sun.">
               interstellar
             </Badge>
           )}
@@ -131,7 +131,7 @@ export default function SmallBodyHud({
               Interstellar visitor
             </p>
             <p className="mt-1 text-[11px] leading-relaxed text-dim">
-              Hyperbolic orbit (e = {fmtEcc(el.e)}) — not bound to the Sun. It
+              Hyperbolic orbit (e = {fmtEcc(el.e)}): not bound to the Sun. It
               enters the Solar System once and leaves forever; it is passing
               through, not orbiting.
             </p>
@@ -149,7 +149,7 @@ export default function SmallBodyHud({
           <Stat label="Perihelion q" value={fmtAU(el.q)} title="Closest approach to the Sun." />
           <Stat
             label="Aphelion Q"
-            value={d.bound ? fmtAU(el.Q) : "none — unbound"}
+            value={d.bound ? fmtAU(el.Q) : "none, unbound"}
             title={d.bound ? "Farthest point from the Sun." : "An open orbit has no aphelion."}
           />
           <Stat
@@ -161,12 +161,12 @@ export default function SmallBodyHud({
           <Stat label="Inclination" value={fmtDeg(el.i)} title="To the J2000 ecliptic." />
           <Stat
             label="Period"
-            value={d.bound ? fmtYears(el.period_yr) : "unbound — no period"}
+            value={d.bound ? fmtYears(el.period_yr) : "unbound, no period"}
           />
           <Stat
             label="Earth MOID"
             value={fmtAU(el.moid_au)}
-            title="Minimum distance between this orbit and Earth's — a close-approach proxy, not the current gap."
+            title="Minimum distance between this orbit and Earth's: a close-approach proxy, not the current gap."
           />
           <Stat
             label="Tisserand (Jup.)"
@@ -182,8 +182,8 @@ export default function SmallBodyHud({
         <div className="mt-1.5 space-y-1.5 border-t border-line pt-2.5 text-[11px] leading-relaxed text-dim">
           <p>
             <span className="text-faint">Regime: </span>
-            {d.regime ?? "—"}
-            {d.bound ? " (bound — closed orbit)" : " (unbound — open orbit)"}
+            {d.regime ?? "–"}
+            {d.bound ? " (bound, closed orbit)" : " (unbound, open orbit)"}
           </p>
           {d.nea && (
             <p>
@@ -199,7 +199,7 @@ export default function SmallBodyHud({
           )}
         </div>
 
-        {/* PHA definition — stated factually */}
+        {/* PHA definition: stated factually */}
         {object.pha && (
           <div className="mt-3 rounded-xl border border-solar/30 bg-solar/[0.06] px-3 py-2.5">
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-solar">
@@ -239,7 +239,7 @@ export default function SmallBodyHud({
               {activity > 0
                 ? `Water-ice sublimation switches on inside ~3 AU; near perihelion (q = ${fmtAU(
                     el.q
-                  )}) this comet is at its most active. In the orbit view the tail is drawn anti-sunward (away from the Sun) from the comet's live position and grows as it nears the Sun — an illustrative activity cue, not a photometric measurement.`
+                  )}) this comet is at its most active. In the orbit view the tail is drawn anti-sunward (away from the Sun) from the comet's live position and grows as it nears the Sun: an illustrative activity cue, not a photometric measurement.`
                 : `Its perihelion (q = ${fmtAU(
                     el.q
                   )}) lies beyond the ~3 AU water-ice activity onset, so little dust/gas tail is expected. Any tail shown is illustrative.`}
@@ -300,7 +300,7 @@ function AppearanceBlock({ object }: { object: SmallBodyObject }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={appearance.texture}
-          alt={`${object.name} — real mission photo`}
+          alt={`${object.name}: real mission photo`}
           className="mt-2 w-full rounded-lg border border-line"
           loading="lazy"
         />
@@ -308,7 +308,7 @@ function AppearanceBlock({ object }: { object: SmallBodyObject }) {
           {appearance.credit}
         </p>
         <p className="mt-1 text-[10px] leading-relaxed text-dim/90">
-          A single-view frame — not wrappable on a sphere, so the 3D body shown is
+          A single-view frame: not wrappable on a sphere, so the 3D body shown is
           an illustrative shape.
         </p>
       </div>

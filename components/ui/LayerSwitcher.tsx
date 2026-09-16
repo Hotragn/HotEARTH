@@ -30,7 +30,7 @@ interface LayerSwitcherProps {
   loading: boolean;
   error: string | null;
   imageryDate: string | null;
-  /** wind particle layer — combinable with any imagery layer */
+  /** wind particle layer, combinable with any imagery layer */
   windActive: boolean;
   onToggleWind: () => void;
   windLoading: boolean;
@@ -109,7 +109,7 @@ export default function LayerSwitcher({
             })}
           </div>
 
-          {/* wind particles — a toggle, not a radio: combines with imagery */}
+          {/* wind particles, a toggle, not a radio: combines with imagery */}
           <button
             type="button"
             role="switch"
@@ -146,7 +146,7 @@ export default function LayerSwitcher({
         <div className="hidden border-t border-line px-2.5 pb-1.5 pt-2 sm:block">
           {error ? (
             <p className="font-mono text-[10px] leading-relaxed text-solar">
-              Imagery unavailable — showing Blue Marble.{" "}
+              Imagery unavailable: showing Blue Marble.{" "}
               <button
                 type="button"
                 onClick={onRetry}

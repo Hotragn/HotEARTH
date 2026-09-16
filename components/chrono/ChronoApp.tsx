@@ -35,7 +35,7 @@ import EraScenePanel from "./EraScenePanel";
 import ChronoAttributionFooter from "./ChronoAttributionFooter";
 
 /**
- * Virtual Earth — a deep-zoomable time-machine globe that plays through
+ * Virtual Earth: a deep-zoomable time-machine globe that plays through
  * history. Mirrors MarsApp: full-viewport canvas + HUD overlay, dynamically
  * imported (see ChronoShell) so the r3f bundle only loads on this route.
  *
@@ -45,7 +45,7 @@ import ChronoAttributionFooter from "./ChronoAttributionFooter";
  * except the clearly-labeled procedural Era Scene.
  */
 
-// starting year — deep enough to watch civilization emerge, not the very edge
+// starting year: deep enough to watch civilization emerge, not the very edge
 const START_YEAR = -3200;
 
 export default function ChronoApp() {
@@ -138,7 +138,7 @@ export default function ChronoApp() {
     (climate?.usingFallback ?? true);
 
   // region seed for the era scene: derived from the current view center. We
-  // keep it simple/stable — the opening framing over the mid-Atlantic — since
+  // keep it simple/stable, the opening framing over the mid-Atlantic, since
   // the era scene is stylized, not place-specific.
   const regionSeed = regionSeedFromLatLon(20, -20);
 
@@ -186,7 +186,7 @@ export default function ChronoApp() {
               )}
             </div>
 
-            {/* procedural era vignette — only when zoomed close + enabled */}
+            {/* procedural era vignette: only when zoomed close + enabled */}
             {eraSceneOn && lod === "close" && (
               <EraScenePanel
                 year={displayYear}

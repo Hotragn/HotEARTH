@@ -73,10 +73,10 @@ export default function ShowerDetail({
 
   const observedText =
     shower.zhr === null
-      ? "Variable — no fixed ZHR to scale from"
+      ? "Variable: no fixed ZHR to scale from"
       : !radiantUp
         ? "radiant below horizon now (0/hr)"
-        : `${fmtObservedRate(observedRate)} — approx, lower than ZHR`;
+        : `${fmtObservedRate(observedRate)}: approx, lower than ZHR`;
 
   return (
     <section
@@ -130,7 +130,7 @@ export default function ShowerDetail({
             label="Observed estimate"
             value={
               shower.zhr === null || !radiantUp
-                ? "—"
+                ? "–"
                 : fmtObservedRate(observedRate)
             }
             sub={observedText}
@@ -208,7 +208,7 @@ export default function ShowerDetail({
           )}
           {shower.parent_body && isAsteroidParent(shower) && (
             <p className="mt-1 text-[10px] leading-relaxed text-solar/90">
-              Asteroid parent — unusual; most streams come from comets (a
+              Asteroid parent: unusual; most streams come from comets (a
               &quot;rock-comet&quot; type source).
             </p>
           )}
@@ -228,7 +228,7 @@ export default function ShowerDetail({
         <p className="mt-3 border-t border-line pt-2.5 font-mono text-[9px] leading-relaxed text-faint">
           Radiant, peak, solar longitude, window, velocity and parent are catalog
           data (IAU MDC + IMO). ZHR is idealised; the observed estimate, radiant
-          altitude, best time and moon phase are computed. Peaks drift ~1 day/yr —
+          altitude, best time and moon phase are computed. Peaks drift ~1 day/yr:
           timing is keyed to λ☉.
         </p>
       </div>

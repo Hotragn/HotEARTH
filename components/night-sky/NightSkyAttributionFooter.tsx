@@ -5,7 +5,7 @@ import { NIGHT_SKY_ATTRIBUTIONS } from "@/lib/star-facts";
 /**
  * Night Sky attribution footer. Displaying all five credits is a HARD
  * REQUIREMENT of the licenses (CC BY / CC BY-SA), so the exact strings are
- * rendered verbatim here — star data (HYG, CC BY-SA 4.0), constellation lines
+ * rendered verbatim here: star data (HYG, CC BY-SA 4.0), constellation lines
  * (van der Sluys, CC BY 4.0), deep-sky objects (OpenNGC, CC BY-SA 4.0), star
  * names (IAU WGSN) and the Milky Way panorama (ESO/S. Brunier, CC BY 4.0). The
  * full set also appears in the About panel, which is reachable at any screen

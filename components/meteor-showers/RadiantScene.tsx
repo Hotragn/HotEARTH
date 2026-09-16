@@ -31,7 +31,7 @@ interface RadiantSceneProps {
  * The 3D centrepiece: real star backdrop, every shower's radiant as a labelled
  * marker, and illustrative streaks radiating from the active/selected radiants.
  * All picking is manual (nearest radiant direction to the look/click ray) against
- * an invisible dome — the same robust approach the Night Sky uses, because
+ * an invisible dome: the same robust approach the Night Sky uses, because
  * OrbitControls + THREE.Points threshold-picking do not mix well.
  */
 export default function RadiantScene({

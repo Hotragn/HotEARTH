@@ -27,7 +27,7 @@ const DAY_MS = 86_400_000;
 const DEG2RAD = Math.PI / 180;
 
 /**
- * Moon sphere + a very faint neutral edge (NOT an atmosphere — the Moon is
+ * Moon sphere + a very faint neutral edge (NOT an atmosphere: the Moon is
  * airless). Mirrors MarsGlobe/EarthGlobe: same GLOBE_RADIUS, unrotated mesh for
  * the coordinate convention, shared sun vector referenced by both materials,
  * texture swaps through uniforms (never rebuild the material). Real terminator
@@ -112,7 +112,7 @@ export default function MoonGlobe({
   }, [moonMaterial, surfaceTexture, usingFallback, blank]);
 
   // Sun direction + libration tilt: cheap. Refresh every 500ms of real time or
-  // immediately when the user scrubs (offset changes). No per-frame allocation —
+  // immediately when the user scrubs (offset changes). No per-frame allocation:
   // sunVec is reused and the group Euler is set in place.
   const lastSun = useRef({ at: 0, offset: Number.NaN });
   useFrame(() => {

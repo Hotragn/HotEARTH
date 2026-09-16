@@ -46,7 +46,7 @@ interface NightSkySceneProps {
 /**
  * The 3D centrepiece. All sky layers live in ONE group whose orientation is the
  * only thing that changes between the two modes:
- *   • "sky" (equatorial free-look): identity — the J2000 celestial sphere, N pole
+ *   • "sky" (equatorial free-look): identity, the J2000 celestial sphere, N pole
  *     up, look anywhere.
  *   • "local" (sky from your location): the group is rotated by the real
  *     equatorial→horizon rotation for the observer's latitude and local sidereal
@@ -304,7 +304,7 @@ function BrightStarLabels({
       {labeled.map((l) => {
         if (localMode) {
           const up = upRow[0] * l.dir[0] + upRow[1] * l.dir[1] + upRow[2] * l.dir[2];
-          if (up <= 0) return null; // below the horizon — hidden with its star
+          if (up <= 0) return null; // below the horizon: hidden with its star
         }
         return (
           <Html

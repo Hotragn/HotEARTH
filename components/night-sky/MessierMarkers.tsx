@@ -12,7 +12,7 @@ import {
 import { MESSIER_RADIUS } from "./constants";
 
 /**
- * Messier deep-sky objects (110) as hollow ring glyphs, coloured by type —
+ * Messier deep-sky objects (110) as hollow ring glyphs, coloured by type:
  * galaxy / nebula / star cluster / other. Positions and types are MEASURED
  * OpenNGC values (J2000). One THREE.Points draw call; the same GPU horizon-hide
  * as the stars keeps below-horizon objects out of the local-sky view. A curated

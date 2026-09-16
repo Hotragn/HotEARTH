@@ -47,7 +47,7 @@ function sceneVec(p: { x: number; y: number; z: number }): THREE.Vector3 {
 interface VisitorsSceneProps {
   selectedId: InterstellarId;
   displayedMsRef: React.RefObject<number>;
-  /** trajectory sample window (ms) — matches the scrubber range in the section. */
+  /** trajectory sample window (ms): matches the scrubber range in the section. */
   fromMs: number;
   toMs: number;
 }
@@ -192,7 +192,7 @@ export default function VisitorsScene({
         </group>
       ))}
 
-      {/* incoming asymptote — where the object CAME FROM (labeled with origin) */}
+      {/* incoming asymptote: where the object CAME FROM (labeled with origin) */}
       {asymptotes.incoming && (
         <AsymptoteLine
           end={asymptotes.incoming}
@@ -201,7 +201,7 @@ export default function VisitorsScene({
           label={obj ? `from ${obj.originConstellation.split(",")[0]}` : "incoming"}
         />
       )}
-      {/* outgoing asymptote — where it HEADS TO (fainter) */}
+      {/* outgoing asymptote: where it HEADS TO (fainter) */}
       {asymptotes.outgoing && (
         <AsymptoteLine
           end={asymptotes.outgoing}

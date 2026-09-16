@@ -12,7 +12,7 @@ import MoonAttributionFooter from "./MoonAttributionFooter";
 import { useMoonTexture } from "./useMoonTexture";
 
 /**
- * Moon tab shell — mirrors MarsApp: full-viewport canvas + HUD overlay.
+ * Moon tab shell, mirrors MarsApp: full-viewport canvas + HUD overlay.
  * Everything is honest: illumination & libration are COMPUTED (Meeus lunar
  * theory, lib/lunar); surface temperature is a MODEL anchored to MEASURED LRO
  * Diviner data. The Moon has NO atmosphere → NO weather (no wind/clouds/
@@ -78,7 +78,7 @@ function NoWeatherNote() {
   return (
     <div className="pointer-events-none absolute inset-x-0 top-[68px] flex justify-center px-3 sm:top-[76px]">
       <p className="hud-panel max-w-[92vw] rounded-full px-4 py-1.5 text-center font-mono text-[10px] leading-snug tracking-wide text-dim animate-hud-in sm:text-[11px]">
-        The Moon has no atmosphere — no weather. Shown: illumination, libration,
+        The Moon has no atmosphere, no weather. Shown: illumination, libration,
         and Diviner-measured surface temperature.
       </p>
     </div>

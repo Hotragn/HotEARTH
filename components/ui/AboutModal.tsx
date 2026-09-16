@@ -61,12 +61,12 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Imagery — NASA GIBS / Worldview
+            Imagery: NASA GIBS / Worldview
           </h3>
           <ul className="mt-2 space-y-2">
             {GIBS_LAYERS.map((l) => (
               <li key={l.slug}>
-                <span className="text-ice">{l.title}</span> —{" "}
+                <span className="text-ice">{l.title}</span>:{" "}
                 <span className="font-mono text-xs text-dim">{l.gibsId}</span>
                 <span className="text-faint">
                   {" "}
@@ -76,14 +76,14 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
               </li>
             ))}
             <li>
-              <span className="text-ice">Base day map</span> —{" "}
+              <span className="text-ice">Base day map</span>:{" "}
               <span className="font-mono text-xs text-dim">
                 BlueMarble_ShadedRelief_Bathymetry
               </span>
               <span className="text-faint"> · static composite</span>
             </li>
             <li>
-              <span className="text-ice">Night lights</span> —{" "}
+              <span className="text-ice">Night lights</span>:{" "}
               <span className="font-mono text-xs text-dim">
                 VIIRS_Black_Marble
               </span>
@@ -110,7 +110,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </h3>
           <p className="mt-2">
             Point forecasts come from the Open-Meteo API (CC-BY 4.0) and are
-            labeled as such. They are Open-Meteo&apos;s weather models — we make
+            labeled as such. They are Open-Meteo&apos;s weather models: we make
             no forecast claims of our own in this phase.
           </p>
 
@@ -133,25 +133,25 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             The 1,200 most populous places from Natural Earth (public
             domain), lit by the same computed solar terminator. The pulsing
             &quot;activity&quot; of each city is a simulation driven by real
-            local solar time, day of week and population — clearly labeled,
+            local solar time, day of week and population: clearly labeled,
             never presented as measured data. City weather is live
             Open-Meteo.
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Mars — real orbital mechanics
+            Mars: real orbital mechanics
           </h3>
           <p className="mt-2">
             The Mars tab runs the NASA GISS <span className="text-ice">Mars24</span>{" "}
             algorithm (Allison &amp; McEwen 2000): areocentric solar longitude
             (Ls) and season, Mars Sol Date, Coordinated Mars Time, and a
             physically computed day/night terminator from the Mars subsolar
-            point — unit-tested against the Mars24 worked example and known
+            point, unit-tested against the Mars24 worked example and known
             landing dates. The dust-storm indicator is a{" "}
             <span className="text-ice">climatological season</span> (Ls
             180–360, peak ~240–300), not a prediction of any specific storm. If
             a seasonal climatology dataset is present it is plotted as seasonal
-            averages, clearly labeled — never as a live forecast. The seasonal
+            averages, clearly labeled: never as a live forecast. The seasonal
             surface-pressure plot is real measured Viking Lander data (the ~30%
             annual CO₂ condensation cycle), shown as a seasonal climatology by
             Ls. Terrain is the NASA/JPL/USGS Viking MDIM 2.1 colorized global
@@ -159,65 +159,65 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Moon — no weather, real geometry
+            Moon: no weather, real geometry
           </h3>
           <p className="mt-2">
             The Moon has essentially no atmosphere, so there is{" "}
-            <span className="text-ice">no weather</span> — no wind, clouds,
+            <span className="text-ice">no weather</span>, no wind, clouds,
             precipitation, pressure or storms, and we invent none. What is real
             and dynamic is geometry. Lunar{" "}
             <span className="text-ice">phase, illuminated fraction and the
             day/night terminator</span>{" "}
             are computed client-side from Meeus lunar theory (the Moon analogue
             of Earth&apos;s NOAA terminator and Mars&apos; Mars24 clock), no
-            runtime API. <span className="text-ice">Optical libration</span> —
+            runtime API. <span className="text-ice">Optical libration</span>,
             the Moon&apos;s monthly nod, up to ±~7.9° in longitude and ±~6.9° in
-            latitude — is computed the same way; it is why an Earth observer sees
+            latitude, is computed the same way; it is why an Earth observer sees
             ~59% of the surface over time, not just 50%. Surface temperature is
             the flagship measured signal: the ~300 K day-night swing (equatorial
             ~392 K at noon, ~95 K before dawn; polar cold traps 25–40 K) from
             NASA&apos;s <span className="text-ice">LRO Diviner</span> radiometer
-            (Williams et al. 2017) — shown as a model anchored to those
+            (Williams et al. 2017): shown as a model anchored to those
             measurements (day = radiative equilibrium, night = Diviner-anchored),
             never as a live sensor feed. The basemap is the public-domain LROC
             WAC mosaic (NASA SVS / LROC / ASU); no science is claimed from it.
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Virtual Earth — the time machine
+            Virtual Earth: the time machine
           </h3>
           <p className="mt-2">
             A deep-zoomable Earth played through history. The city layer is{" "}
             <span className="text-ice">real data</span>: 1,730 settlements from
             Reba, Reitsma &amp; Seto (2016), &quot;6,000 years of global
-            urbanization&quot; (CC-BY 4.0) — cities appear at their founding and
+            urbanization&quot; (CC-BY 4.0): cities appear at their founding and
             grow with recorded population. The shifting night sky is{" "}
             <span className="text-ice">computed</span> axial precession (IAU
             2006 constants, uniform single-term model; ~25,772-year cycle). World population, dated events (incl. the
             World Wars, at real coordinates) and industrial-era climate are
             built-in historical estimates, labeled as such. The optional{" "}
             <span className="text-ice">Era Scenes</span> overlay is explicitly
-            marked artistic — procedurally generated, not data.
+            marked artistic: procedurally generated, not data.
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            ISS tracker — real orbit, propagated live
+            ISS tracker: real orbit, propagated live
           </h3>
           <p className="mt-2">
             The ISS Tracker (the fourth Earth-group world) shows the real
             International Space Station orbiting Earth live.{" "}
             <span className="text-ice">Measured:</span> a real{" "}
             <span className="text-ice">orbital element set (TLE)</span> for
-            catalog #25544 — a US Space Force / 18th Space Defense Squadron
+            catalog #25544: a US Space Force / 18th Space Defense Squadron
             product redistributed by <span className="text-ice">CelesTrak</span>,
             public domain. A committed mirror is refreshed twice daily; the tab
             also attempts one optional live refresh from CelesTrak
             (CORS-enabled), falling back to the committed set on any failure.{" "}
-            <span className="text-ice">Computed:</span> everything you see — the
+            <span className="text-ice">Computed:</span> everything you see (the
             sub-satellite point, altitude (~420 km), inertial speed (~7.66 km/s),
             orbital period (~93 min), the ground track (split at the antimeridian),
             the footprint circle, whether the station is sunlit or in Earth&apos;s
-            shadow, and the visible passes over your location — is propagated by{" "}
+            shadow, and the visible passes over your location) is propagated by{" "}
             <span className="text-ice">SGP4 via satellite.js</span> (MIT), the
             standard NORAD analytic model, not a reinvented one. The day/night
             terminator is the same NOAA solar geometry as the Earth tab.
@@ -226,14 +226,14 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             <span className="text-ice">Honesty on scale:</span> the ISS orbits at
             only ~1.07 Earth radii, so at{" "}
             <span className="text-ice">true scale</span> (the default) it hugs the
-            globe — a real, striking fact, not a bug. An optional, clearly-labelled
+            globe: a real, striking fact, not a bug. An optional, clearly-labelled
             toggle exaggerates the altitude for visibility. The{" "}
             <span className="text-ice">TLE epoch and age</span> are shown
             prominently because SGP4 accuracy is ~1 km near the element epoch and
             degrades ~1–3 km/day; a week-old TLE can be tens of km off. A pass is
             flagged <span className="text-ice">naked-eye visible</span> only when
             the station is sunlit while the observer&apos;s sky is dark (below
-            civil twilight) — the real &quot;Spot the Station&quot; criterion;
+            civil twilight): the real &quot;Spot the Station&quot; criterion;
             daytime and shadow passes are labelled not visible. An optional
             independent live sub-point from{" "}
             <span className="text-ice">wheretheiss.at</span> is cross-checked
@@ -242,7 +242,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
           <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
             <span className="text-ice">Acknowledgment.</span> Orbital data: US
-            Space Force (18 SDS) via CelesTrak (celestrak.org) — US-Government
+            Space Force (18 SDS) via CelesTrak (celestrak.org): US-Government
             work, public domain (17 U.S.C. 105). Propagation: SGP4 via
             satellite.js (MIT). Live sub-point cross-check: wheretheiss.at. Earth
             imagery: NASA Blue Marble / Black Marble (public domain), as on the
@@ -250,7 +250,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Solar System — other planets
+            Solar System: other planets
           </h3>
           <p className="mt-2">
             The orrery places all eight planets at their{" "}
@@ -258,10 +258,10 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             computed from JPL&apos;s approximate-positions Keplerian elements
             (Standish, 1800–2050). Angular positions and relative orbital speeds
             are physical; only the radial distances are log-compressed so every
-            orbit fits on screen — the app says so on the control. The six
+            orbit fits on screen: the app says so on the control. The six
             detail globes (Mercury, Venus, Jupiter, Saturn, Uranus, Neptune) use
             real textures, a computed day/night terminator, and each body&apos;s{" "}
-            <span className="text-ice">real axial tilt</span> — Uranus is drawn
+            <span className="text-ice">real axial tilt</span>: Uranus is drawn
             tipped 98° onto its side, Venus and Uranus spin retrograde. Most of
             these worlds have{" "}
             <span className="text-ice">no measurable weather</span>, so we invent
@@ -269,9 +269,9 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             day/night temperature extremes, Venus&apos; cloud-top{" "}
             <span className="text-ice">super-rotation</span> (~100 m/s,
             illustrated), the MEASURED gas/ice-giant{" "}
-            <span className="text-ice">zonal-wind profiles</span> (Jupiter —
-            Barrado-Izagirre et al. 2013; Saturn — García-Melendo et al. 2011;
-            Neptune — Sromovsky et al. 1993), Saturn&apos;s rings (drawn from
+            <span className="text-ice">zonal-wind profiles</span> (Jupiter:
+            Barrado-Izagirre et al. 2013; Saturn: García-Melendo et al. 2011;
+            Neptune: Sromovsky et al. 1993), Saturn&apos;s rings (drawn from
             occultation-measured radii) and north-polar hexagon, and
             Neptune&apos;s record winds. Neptune&apos;s Great Dark Spot is
             labelled <span className="text-ice">transient</span> (GDS-89 was gone
@@ -283,7 +283,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Major moons — orbital mechanics, not weather
+            Major moons: orbital mechanics, not weather
           </h3>
           <p className="mt-2">
             The Moons tab covers the major satellites of the giant planets. Each
@@ -291,7 +291,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             <span className="text-ice">mini-orrery</span>: the moons sit at their
             real orbital angles (from their JPL sidereal periods), so inner moons
             whip around while outer ones amble and{" "}
-            <span className="text-ice">Triton visibly orbits retrograde</span> —
+            <span className="text-ice">Triton visibly orbits retrograde</span>:
             only the radial distances are log-compressed so each system fits on
             screen (the app says so). Jupiter&apos;s Galileans carry a live{" "}
             <span className="text-ice">Laplace-resonance</span> callout: Io :
@@ -307,7 +307,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             oceans, Europa plumes) flagged as such. Most of these worlds have{" "}
             <span className="text-ice">no weather</span>, so we invent none. The
             single exception is <span className="text-ice">Titan</span>, whose
-            real methane cycle (clouds, rain, rivers, north-polar seas — Cassini/
+            real methane cycle (clouds, rain, rivers, north-polar seas: Cassini/
             Huygens) is presented as the weather it is. Texture honesty is
             surfaced per moon: Titan&apos;s map is a Cassini{" "}
             <span className="text-ice">near-IR surface map that sees through the
@@ -319,7 +319,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Jupiter&apos;s Moons — computed events, real geometry
+            Jupiter&apos;s Moons: computed events, real geometry
           </h3>
           <p className="mt-2">
             The Jupiter&apos;s Moons tab predicts the mutual events of the four
@@ -362,7 +362,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Saturn&apos;s Moons — ring geometry and seasonal events
+            Saturn&apos;s Moons: ring geometry and seasonal events
           </h3>
           <p className="mt-2">
             The Saturn&apos;s Moons tab is the twin of the Jupiter one, but its
@@ -417,7 +417,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Other Moons — a configuration view, not an events clock
+            Other Moons: a configuration view, not an events clock
           </h3>
           <p className="mt-2">
             The Other Moons tab combines the major moons of{" "}
@@ -478,7 +478,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Dwarf Moons — a configuration view, in two honest tiers
+            Dwarf Moons: a configuration view, in two honest tiers
           </h3>
           <p className="mt-2">
             The Dwarf Moons tab combines the moon systems of{" "}
@@ -536,14 +536,14 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Dwarf planets — orbital mechanics, not weather
+            Dwarf planets: orbital mechanics, not weather
           </h3>
           <p className="mt-2">
             The Dwarfs tab covers the five IAU dwarf planets (Ceres, Pluto,
             Haumea, Makemake, Eris) plus Pluto&apos;s moon Charon. The{" "}
             <span className="text-ice">mini-orrery</span> places each on its real,
             eccentric orbit (from JPL Small-Body Database elements), at its real
-            heliocentric longitude, so relative speeds are physical — only the
+            heliocentric longitude, so relative speeds are physical: only the
             radial distance is log-compressed so Ceres (~2.8 AU) and Eris (~68 AU)
             fit together (the control says so). Neptune&apos;s orbit is drawn as
             the trans-Neptunian reference ring, and Pluto&apos;s traced orbit
@@ -558,7 +558,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             shown as grayscale albedo mosaics (real data, not colourised; the
             single-flyby Pluto/Charon far sides are lower-resolution).{" "}
             <span className="text-ice">Eris, Haumea and Makemake have never been
-            visited</span> — there is no surface map, so they are rendered as
+            visited</span>: there is no surface map, so they are rendered as
             clearly-labelled illustrative spheres, never implying real imagery.
             Haumea is the exception worth the caveat: its{" "}
             <span className="text-ice">triaxial ellipsoid shape</span>{" "}
@@ -576,7 +576,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Comets & asteroids — real orbits, factual hazards
+            Comets & asteroids: real orbits, factual hazards
           </h3>
           <p className="mt-2">
             The Comets &amp; Asteroids tab draws real comet and near-Earth-asteroid
@@ -586,9 +586,9 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             the classification (near-Earth group, comet family, Tisserand) is
             computed. Bound bodies trace{" "}
             <span className="text-ice">closed ellipses</span>; the hyperbolic and
-            interstellar visitors —{" "}
+            interstellar visitors:{" "}
             <span className="text-ice">1I/&apos;Oumuamua</span> and{" "}
-            <span className="text-ice">2I/Borisov</span> — trace{" "}
+            <span className="text-ice">2I/Borisov</span>: trace{" "}
             <span className="text-ice">open arcs</span>, labelled unbound. Radial
             distances are log-compressed (comet aphelia reach tens–thousands of AU)
             and, because the catalogue carries no epoch anchor, bodies are marked at
@@ -598,12 +598,12 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           <p className="mt-2">
             Hazard facts are stated plainly, never sensationalised. The{" "}
             <span className="text-ice">Potentially Hazardous Asteroid</span> (PHA)
-            flag is the CNEOS definition — Earth MOID ≤ 0.05 AU and absolute
-            magnitude H ≤ 22 — reported as the classification it is. The
+            flag is the CNEOS definition: Earth MOID ≤ 0.05 AU and absolute
+            magnitude H ≤ 22: reported as the classification it is. The
             close-approach panel lists real CNEOS distances in lunar distances and
             km. <span className="text-ice">Apophis</span>&apos;s 13 April 2029 pass
-            is a real close approach — about 31,600 km above Earth&apos;s surface
-            (~0.099 lunar distances), bright enough to see with the naked eye — and
+            is a real close approach: about 31,600 km above Earth&apos;s surface
+            (~0.099 lunar distances), bright enough to see with the naked eye: and
             its 2029 / 2036 / 2068 impact scenarios were{" "}
             <span className="text-ice">ruled out</span> after 2021 radar tracking;
             NASA removed Apophis from the Sentry risk list.
@@ -623,7 +623,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
             <span className="text-ice">Acknowledgment.</span> Orbits, physical
             parameters and close approaches: NASA/JPL Small-Body Database (SBDB) and
-            CNEOS Close-Approach Data — US-Government (NASA/JPL-Caltech) data, freely
+            CNEOS Close-Approach Data, US-Government (NASA/JPL-Caltech) data, freely
             usable; courtesy credit given. Real imagery: NASA / JPL / USGS public
             domain for Eros, Vesta, Bennu, Gaspra, Ida and Didymos (NEAR, Dawn,
             OSIRIS-REx, Galileo, DART). 67P/Churyumov-Gerasimenko photo:{" "}
@@ -683,7 +683,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Meteor showers — real catalog data, idealised rates
+            Meteor showers: real catalog data, idealised rates
           </h3>
           <p className="mt-2">
             The Meteor Showers tab sits beside Comets &amp; Asteroids because a
@@ -702,12 +702,12 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             Night Sky.
           </p>
           <p className="mt-2">
-            <span className="text-ice">ZHR is an idealised peak rate</span> — the
+            <span className="text-ice">ZHR is an idealised peak rate</span>: the
             zenithal hourly rate assumes the radiant at the zenith under a perfect,
             magnitude-6.5 dark sky, so real observed rates are{" "}
             <span className="text-ice">lower</span>. We say so everywhere and compute
-            the honest first-order estimate — ZHR·sin(radiant altitude), scaled by an
-            illustrative activity profile — for your location and time; a variable /
+            the honest first-order estimate, ZHR·sin(radiant altitude), scaled by an
+            illustrative activity profile, for your location and time; a variable /
             outburst-driven shower carries no fixed ZHR and is labelled so, never
             invented. <span className="text-ice">Computed:</span> solar longitude
             λ☉, is-active / days-to-peak, the radiant&apos;s altitude and best
@@ -725,16 +725,16 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           <p className="mt-3 rounded-xl border border-line bg-white/[0.02] px-3 py-2.5 text-[12px] leading-relaxed">
             <span className="text-ice">Acknowledgment.</span> Shower catalog
             (radiants, solar longitude, velocity, parent bodies): IAU Meteor Data
-            Center shower database — Jopek &amp; Kaňuchová (2017), Planet. Space Sci.
+            Center shower database, Jopek &amp; Kaňuchová (2017), Planet. Space Sci.
             143, 3. Activity windows, peak dates, ZHR and population index: IMO
             Working List of Visual Meteor Showers (2026 IMO Meteor Shower Calendar,
-            ed. J. Rendtel) — facts used and credited; the IMO Calendar itself is not
+            ed. J. Rendtel): facts used and credited; the IMO Calendar itself is not
             redistributed (its terms are restrictive). Cross-checked with the American
             Meteor Society meteor-shower calendar.
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Sun & space weather — real forecasts, attributed
+            Sun & space weather: real forecasts, attributed
           </h3>
           <p className="mt-2">
             The Sun tab reconnects to the project&apos;s honest-forecasting theme:
@@ -743,14 +743,14 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             forecasts</span> and attribute them. We visualize them; we do not
             predict. The disk is real{" "}
             <span className="text-ice">NASA/SDO full-disk imagery</span> in six
-            wavelengths — AIA 171 (~600,000 K corona), 193 (~1.2 MK, coronal
+            wavelengths: AIA 171 (~600,000 K corona), 193 (~1.2 MK, coronal
             holes), 211 (~2 MK active regions) and 304 Å (~50,000 K chromosphere /
             prominences), plus HMI continuum (visible photosphere, sunspots) and
             the HMI magnetogram (line-of-sight magnetic field). These are{" "}
             <span className="text-ice">square snapshots of the Sun&apos;s
-            Earth-facing side</span> — not equirectangular maps, not live (the
+            Earth-facing side</span>, not equirectangular maps, not live (the
             corona changes hour to hour), and the AIA colours are false-colour by
-            wavelength — so they are rendered as the observed disk, labelled with
+            wavelength, so they are rendered as the observed disk, labelled with
             each image&apos;s real observation time. A single snapshot does not
             rotate, so the disk does not spin.
           </p>
@@ -766,8 +766,8 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             model output, tagged as theirs: the{" "}
             <span className="text-ice">OVATION aurora nowcast</span> and the
             predicted Solar Cycle 25 curve.{" "}
-            <span className="text-ice">Computed</span> values are labelled derived
-            — the flare class from the GOES flux, the G-scale from Kp, and the
+            <span className="text-ice">Computed</span> values are labelled derived:
+            the flare class from the GOES flux, the G-scale from Kp, and the
             rough auroral-oval latitude from Kp (a rule of thumb, approximate). The
             solar-cycle chart plots the observed monthly count against SWPC&apos;s
             predicted curve: Cycle 25 ran hotter than the 2019 panel forecast
@@ -790,20 +790,20 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Exoplanets — measured data, illustrative worlds
+            Exoplanets: measured data, illustrative worlds
           </h3>
           <p className="mt-2">
             The Exoplanets tab (the &quot;Beyond&quot; group) is a system explorer
             for real planetary systems around other stars. Every measured
-            number — orbital period, semi-major axis, radius, mass, equilibrium
+            number, orbital period, semi-major axis, radius, mass, equilibrium
             temperature, insolation, discovery method/year and the host-star
-            properties — is a{" "}
+            properties, is a{" "}
             <span className="text-ice">NASA Exoplanet Archive</span> value
             (Planetary Systems Composite Parameters table); a missing value is
             shown as &quot;not measured&quot;, never filled in. Masses from radial
             velocity are <span className="text-ice">minimum masses</span> (M·sin
             i) and labelled as such. The system architecture places planets on
-            their real relative orbits — the order and relative speeds are
+            their real relative orbits: the order and relative speeds are
             physical, but the radial distances are log-compressed and the absolute
             orbital phase is unknown, so it is seeded illustratively (the app says
             so). The green{" "}
@@ -812,7 +812,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             luminosity and temperature; composition classes come from the radius
             valley (Fulton et al. 2017). Crucially,{" "}
             <span className="text-ice">no exoplanet has been imaged in surface
-            detail</span> — every planet&apos;s appearance here is an illustrative
+            detail</span>: every planet&apos;s appearance here is an illustrative
             temperature/composition cue, not an observation. Even the seven{" "}
             <span className="text-ice">directly-imaged</span> planets (HR 8799 b/c/d/e,
             β Pic b/d, 51 Eri b) were captured only as unresolved points of light,
@@ -827,26 +827,26 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             Aeronautics and Space Administration under the Exoplanet Exploration
             Program. Primary citation: Christiansen et al. (2025), Planetary
             Science Journal. This catalogue also includes planets from the WASP
-            (Wide Angle Search for Planets) survey — Butters et al. (2010).
+            (Wide Angle Search for Planets) survey: Butters et al. (2010).
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Night Sky — real stars, cultural figures
+            Night Sky: real stars, cultural figures
           </h3>
           <p className="mt-2">
             The Night Sky tab (the second &quot;Beyond&quot; world) is a real star
             map. <span className="text-ice">Measured:</span> about 9,000 stars at
             their real positions, apparent magnitudes, colours (B−V index),
-            parallax distances and spectral types — the{" "}
+            parallax distances and spectral types: the{" "}
             <span className="text-ice">HYG database v4.4</span> (compiled from
             Hipparcos, the Yale Bright Star Catalog and Gliese). Every star&apos;s
             direction on the celestial sphere is its real J2000 RA/Dec; its size
             comes from apparent magnitude and its colour is the real physical
             black-body colour of its temperature.{" "}
             <span className="text-ice">Computed:</span> the temperature from the
-            B−V index (Ballesteros 2012) and the resulting colour, plus — in the{" "}
+            B−V index (Ballesteros 2012) and the resulting colour, plus: in the{" "}
             <span className="text-ice">&quot;sky from your location&quot;</span>{" "}
-            mode — the altitude/azimuth of every star for your latitude, longitude
+            mode: the altitude/azimuth of every star for your latitude, longitude
             and time, from real local-sidereal-time astronomy (Meeus), so stars
             below your horizon are correctly hidden and the current LST is shown.{" "}
             <span className="text-ice">Cultural overlay:</span> the constellation
@@ -997,7 +997,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Exoplanet Surfaces — real sky, imagined ground
+            Exoplanet Surfaces: real sky, imagined ground
           </h3>
           <p className="mt-2">
             The Exoplanet Surfaces tab (the fourth &quot;Beyond&quot; world) is the{" "}
@@ -1048,7 +1048,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Black Holes — real physics, a render not a photo
+            Black Holes: real physics, a render not a photo
           </h3>
           <p className="mt-2">
             The Black Holes tab (the fifth &quot;Beyond&quot; world) leads with its
@@ -1105,7 +1105,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Neutron Stars — real timing, an illustrative lighthouse
+            Neutron Stars: real timing, an illustrative lighthouse
           </h3>
           <p className="mt-2">
             The Neutron Stars tab (the sixth &quot;Beyond&quot; world) leads with
@@ -1169,7 +1169,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Galaxies & Cosmic Web — a real map, in redshift-space
+            Galaxies & Cosmic Web: a real map, in redshift-space
           </h3>
           <p className="mt-2">
             The Galaxies tab (the seventh &quot;Beyond&quot; world) leads with its
@@ -1227,7 +1227,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Stars &mdash; measured photometry, derived astrophysics
+            Stars: measured photometry, derived astrophysics
           </h3>
           <p className="mt-2">
             The Stars tab plots a real Hertzsprung-Russell diagram and{" "}
@@ -1278,7 +1278,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Eclipses &mdash; a published canon, not our prediction
+            Eclipses: a published canon, not our prediction
           </h3>
           <p className="mt-2">
             The Eclipses tab (the sixth Earth world) carries every solar and lunar
@@ -1322,7 +1322,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Aurora &mdash; where the sky is lit, and whether you are under it
+            Aurora: where the sky is lit, and whether you are under it
           </h3>
           <p className="mt-2">
             The Sun tab had the source and the Earth tabs had the sky, with
@@ -1384,7 +1384,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Seismic Earth &mdash; the solid planet, live
+            Seismic Earth: the solid planet, live
           </h3>
           <p className="mt-2">
             Every other Earth world in this app is about the sky over the planet:
@@ -1463,7 +1463,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Tides &mdash; a correct theory that gets the answer wrong
+            Tides: a correct theory that gets the answer wrong
           </h3>
           <p className="mt-2">
             Newton&apos;s equilibrium tide is real physics, derived correctly,
@@ -1483,7 +1483,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             overhead AND where it is underfoot, which is why there are two high
             tides a day rather than one. 29 tests pin the textbook coefficients
             (0.36 m lunar, 0.16 m solar), the 1.4&times; perigee-to-apogee swing,
-            springs at both new and full Moon, and&mdash;the strongest one&mdash;
+            springs at both new and full Moon, and, the strongest one of them,
             the PERIOD of the computed curve against the published M2 constituent
             of 12 h 25 m, which exercises the whole chain at once.
           </p>
@@ -1512,7 +1512,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Climate &mdash; the number is a choice, the trend is not
+            Climate: the number is a choice, the trend is not
           </h3>
           <p className="mt-2">
             Two independent analyses of the instrumental record: NASA GISTEMP
@@ -1579,7 +1579,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Carbon &mdash; you can hear the planet breathing
+            Carbon: you can hear the planet breathing
           </h3>
           <p className="mt-2">
             The Climate tab measures an effect. This one measures the driver, with
@@ -1663,7 +1663,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Magnetic &mdash; your compass does not point north
+            Magnetic: your compass does not point north
           </h3>
           <p className="mt-2">
             This is the one tab where a 28 KB file expands into a whole planet.
@@ -1745,7 +1745,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Ice &mdash; two answers to one question, a third apart
+            Ice: two answers to one question, a third apart
           </h3>
           <p className="mt-2">
             The NSIDC Sea Ice Index, both hemispheres, all twelve months since
@@ -1835,7 +1835,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Sea level &mdash; in some places the sea is going down
+            Sea level: in some places the sea is going down
           </h3>
           <p className="mt-2">
             The ice tab says, in as many words, that melting sea ice does not
@@ -1940,7 +1940,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Rotation &mdash; the day is not 86,400 seconds
+            Rotation: the day is not 86,400 seconds
           </h3>
           <p className="mt-2">
             The second was pinned, by way of the ephemeris second from
@@ -2043,7 +2043,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Air &mdash; the same air, scored by two countries that disagree
+            Air: the same air, scored by two countries that disagree
           </h3>
           <p className="mt-2">
             The Earth worlds cover the sky over the planet, the solid planet, the
@@ -2104,7 +2104,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Tonight &mdash; the one page organised around you, not an object
+            Tonight: the one page organised around you, not an object
           </h3>
           <p className="mt-2">
             Every other tab is built around a <em>thing</em>. The Tonight tab is
@@ -2159,7 +2159,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Transits &mdash; the measurement behind the Exoplanets tab
+            Transits: the measurement behind the Exoplanets tab
           </h3>
           <p className="mt-2">
             The Transits tab shows <em>how we know</em>. When a planet crosses its
@@ -2202,7 +2202,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Satellites &amp; Debris &mdash; the real catalogue, honestly sampled
+            Satellites &amp; Debris: the real catalogue, honestly sampled
           </h3>
           <p className="mt-2">
             The Satellites tab (the fifth Earth world) shows{" "}
@@ -2248,7 +2248,7 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
           </p>
 
           <h3 className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            Gravitational Waves &mdash; real detections, a computed chirp
+            Gravitational Waves: real detections, a computed chirp
           </h3>
           <p className="mt-2">
             The Gravitational Waves tab (the eighth &quot;Beyond&quot; world) leads

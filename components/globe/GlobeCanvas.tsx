@@ -12,7 +12,7 @@ import EarthGlobe from "./EarthGlobe";
 import WindLayer from "./WindLayer";
 
 // Open on the mid-Atlantic (20N, 30W): Americas on the left, Europe/Africa
-// on the right — the classic "whole civilization in one frame" view.
+// on the right, the classic "whole civilization in one frame" view.
 const INITIAL_CAMERA = latLonToVector3(20, -30, 2.9);
 
 interface GlobeCanvasProps {
@@ -23,7 +23,7 @@ interface GlobeCanvasProps {
   timeOffsetHoursRef: React.RefObject<number>;
   picked: LatLon | null;
   onPick: (latLon: LatLon | null) => void;
-  /** GFS wind field — non-null renders the particle flow layer */
+  /** GFS wind field, non-null renders the particle flow layer */
   windField: WindField | null;
 }
 

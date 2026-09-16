@@ -18,7 +18,7 @@ export interface SunTextureState {
 }
 
 function prepDisk(tex: THREE.Texture): THREE.Texture {
-  // Full-disk SDO images are square photos, NOT wrapped maps — clamp edges (no
+  // Full-disk SDO images are square photos, NOT wrapped maps: clamp edges (no
   // seam repeat) and decode sRGB so the false-colour palettes read correctly.
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.wrapS = THREE.ClampToEdgeWrapping;

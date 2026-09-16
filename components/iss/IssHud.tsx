@@ -77,7 +77,7 @@ export default function IssHud({
             Sub-satellite point
           </p>
           <p className="mt-1 font-mono text-[15px] tracking-wide text-ice">
-            {hasFix ? formatLatLon({ lat: data.lat as number, lon: data.lon as number }) : "—"}
+            {hasFix ? formatLatLon({ lat: data.lat as number, lon: data.lon as number }) : "–"}
           </p>
         </div>
 
@@ -85,32 +85,32 @@ export default function IssHud({
         <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2.5 border-t border-line pt-3">
           <Stat
             label="Altitude"
-            value={data.altitudeKm !== null ? `${data.altitudeKm.toFixed(1)} km` : "—"}
+            value={data.altitudeKm !== null ? `${data.altitudeKm.toFixed(1)} km` : "–"}
             title="Geodetic height above the WGS72 ellipsoid, from SGP4."
           />
           <Stat
             label="Speed"
-            value={data.velocityKmS !== null ? `${data.velocityKmS.toFixed(2)} km/s` : "—"}
-            title="Inertial (ECI) speed — the ~7.66 km/s figure normally quoted for the ISS."
+            value={data.velocityKmS !== null ? `${data.velocityKmS.toFixed(2)} km/s` : "–"}
+            title="Inertial (ECI) speed: the ~7.66 km/s figure normally quoted for the ISS."
           />
           <Stat
             label="Period"
-            value={data.periodMin !== null ? `${data.periodMin.toFixed(1)} min` : "—"}
+            value={data.periodMin !== null ? `${data.periodMin.toFixed(1)} min` : "–"}
             title="Orbital period from the TLE mean motion (~93 min)."
           />
           <Stat
             label="Inclination"
-            value={data.inclinationDeg !== null ? `${data.inclinationDeg.toFixed(1)}°` : "—"}
-            title="Orbital inclination from the TLE — bounds the ground track to ±this latitude (~51.6°)."
+            value={data.inclinationDeg !== null ? `${data.inclinationDeg.toFixed(1)}°` : "–"}
+            title="Orbital inclination from the TLE: bounds the ground track to ±this latitude (~51.6°)."
           />
           <Stat
             label="Orbits / day"
-            value={data.orbitsPerDay !== null ? data.orbitsPerDay.toFixed(2) : "—"}
+            value={data.orbitsPerDay !== null ? data.orbitsPerDay.toFixed(2) : "–"}
             title="Revolutions per day = 1440 / period (~16)."
           />
           <Stat
             label="Footprint"
-            value={data.footprintRadiusKm !== null ? `~${data.footprintRadiusKm.toFixed(0)} km` : "—"}
+            value={data.footprintRadiusKm !== null ? `~${data.footprintRadiusKm.toFixed(0)} km` : "–"}
             title="Ground radius of the circle from which the ISS is above the horizon right now (geometry from altitude)."
           />
         </div>
@@ -160,7 +160,7 @@ export default function IssHud({
           </div>
           <p className="mt-1.5 text-[10px] leading-relaxed text-faint">
             {altExaggeration === 1
-              ? "True scale: the ISS orbits at ~1.07 Earth radii — it really does hug the globe."
+              ? "True scale: the ISS orbits at ~1.07 Earth radii, so it really does hug the globe."
               : `Altitude exaggerated ×${altExaggeration} for visibility (not to scale).`}
           </p>
         </div>
@@ -192,13 +192,13 @@ export default function IssHud({
                       hour: "2-digit",
                       minute: "2-digit",
                     })
-                  : "—"
+                  : "–"
               }
               title="Reference time of the TLE (from line 1)."
             />
             <Stat
               label="Age"
-              value={data.ageDays !== null ? `${data.ageDays.toFixed(2)} d` : "—"}
+              value={data.ageDays !== null ? `${data.ageDays.toFixed(2)} d` : "–"}
               title="Time since the TLE epoch. SGP4 error grows a few km per day."
             />
           </div>
@@ -250,7 +250,7 @@ export default function IssHud({
               </p>
               <p className="mt-1 text-[10px] leading-relaxed text-faint">
                 {data.crossCheck.divergenceKm > 25
-                  ? "Divergence consistent with TLE age — not hidden."
+                  ? "Divergence consistent with TLE age: not hidden."
                   : "In agreement (both propagate SGP4)."}
               </p>
             </>

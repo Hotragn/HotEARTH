@@ -3,7 +3,7 @@
  *
  * The observer sits at the ORIGIN looking OUT at the inside of a large celestial
  * sphere. Every catalogue direction (RA/Dec, or alt/az in local mode) is placed
- * on this sphere at a common scene radius — RA/Dec fix only the DIRECTION, never
+ * on this sphere at a common scene radius: RA/Dec fix only the DIRECTION, never
  * true distance (distances are astronomically incommensurable and carried for
  * labels only). The camera orbits the origin at a tiny radius, so it reads as a
  * rotate-in-place planetarium; zoom is by field-of-view, not dolly (dolly is

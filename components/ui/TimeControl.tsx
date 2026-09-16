@@ -24,7 +24,7 @@ function formatOffset(hours: number): string {
 /**
  * Terminator time machine: live solar time plus a ±24h scrubber.
  * The globe reads the offset via a ref per-frame; this component only owns
- * the HUD readouts (1Hz tick — no per-frame React work).
+ * the HUD readouts (1Hz tick: no per-frame React work).
  */
 export default function TimeControl({ offsetHours, onChange }: TimeControlProps) {
   const [nowMs, setNowMs] = useState(() => Date.now());
@@ -97,7 +97,7 @@ export default function TimeControl({ offsetHours, onChange }: TimeControlProps)
           </span>
           <span
             className="truncate font-mono text-[10px] uppercase tracking-[0.14em] text-faint"
-            title="The point on Earth where the sun is directly overhead right now — computed with the NOAA solar position algorithm"
+            title="The point on Earth where the sun is directly overhead right now: computed with the NOAA solar position algorithm"
           >
             Subsolar {Math.abs(sub.lat).toFixed(1)}°{sub.lat >= 0 ? "N" : "S"}{" "}
             {Math.abs(sub.lon).toFixed(1)}°{sub.lon >= 0 ? "E" : "W"}

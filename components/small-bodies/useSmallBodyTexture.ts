@@ -6,11 +6,11 @@ import { prepTexture } from "@/components/globe/useBaseTextures";
 import { appearanceFor, type SmallBodyObject } from "@/lib/small-body-facts";
 
 /**
- * Loads a small body's MAP texture from /textures/small-bodies/{file}.jpg — but
+ * Loads a small body's MAP texture from /textures/small-bodies/{file}.jpg: but
  * ONLY for the three bodies whose imagery is a wrappable equirectangular mosaic
  * (433 Eros, 4 Vesta, 101955 Bennu). Everything else renders an illustrative
  * procedural lump (no texture), and the single-view mission PHOTOS (Gaspra, Ida,
- * Didymos, 67P) are shown FLAT in the detail panel, never wrapped on the sphere —
+ * Didymos, 67P) are shown FLAT in the detail panel, never wrapped on the sphere:
  * so this hook never fetches for those. Mirrors useDwarfTexture: if a map 404s
  * the sphere falls back to the lump. Disposes on unmount; never throws.
  */

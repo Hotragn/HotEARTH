@@ -15,7 +15,7 @@ import {
  * returns it with long CDN cache headers, keyed by layer + date (the date is
  * part of the URL, so Vercel's CDN caches each day separately). This is the
  * "route-handler cache proxy" pattern from
- * .claude/skills/vercel-compute-architecture — a thin image passthrough that
+ * .claude/skills/vercel-compute-architecture: a thin image passthrough that
  * protects GIBS and speeds up users. No keys, no secrets.
  *
  * GIBS daily layers lag real time (~1 day, IMERG ~2), so on a missing/blank
@@ -80,7 +80,7 @@ export async function GET(
         status: 200,
         headers: {
           "Content-Type": contentType,
-          // One imagery day is immutable once published — cache hard.
+          // One imagery day is immutable once published, cache hard.
           "Cache-Control":
             "public, s-maxage=86400, stale-while-revalidate=172800",
           "X-Gibs-Layer": layer.gibsId,

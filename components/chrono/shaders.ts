@@ -1,7 +1,7 @@
 /**
  * GLSL for the Virtual Earth chrono layers.
  *
- * Two point clouds, both single draw calls (globe-3d-visualization skill —
+ * Two point clouds, both single draw calls (globe-3d-visualization skill,
  * never one mesh per city/event):
  *   - CHRONO_CITY_*   : cities sized/lit by interpolated population at the
  *                       current simulated year; the REAL solar terminator
@@ -87,7 +87,7 @@ export const CHRONO_EARTH_FRAGMENT = /* glsl */ `
     float daylight = smoothstep(-0.12, 0.12, sunDot);
     float diffuse = 0.5 + 0.5 * pow(clamp(sunDot, 0.0, 1.0), 0.6);
     vec3 lit = surface * diffuse;
-    // night side: dim, cool — city glow comes from the separate points layer
+    // night side: dim, cool, city glow comes from the separate points layer
     vec3 night = surface * 0.06 + vec3(0.01, 0.02, 0.04);
     vec3 color = mix(night, lit, daylight);
 
@@ -210,7 +210,7 @@ export const CHRONO_EVENT_FRAGMENT = /* glsl */ `
     vec2 d = gl_PointCoord - vec2(0.5);
     float r = length(d) * 2.0;
     if (r > 1.0) discard;
-    // ring: bright at the rim, hollow center — reads as an "event pulse"
+    // ring: bright at the rim, hollow center, reads as an "event pulse"
     float ring = smoothstep(0.55, 0.85, r) * (1.0 - smoothstep(0.92, 1.0, r));
     float core = smoothstep(0.35, 0.0, r) * 0.6;
     float a = (ring + core) * vIntensity;

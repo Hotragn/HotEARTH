@@ -3,7 +3,7 @@
  *
  * Construction mirrors components/moon/shaders.ts and components/solar-system/
  * shaders.ts EXACTLY: the mesh is UNROTATED, so object-space normals are
- * body-fixed and dot(normal, sunDir) is the sine of solar elevation — the shared
+ * body-fixed and dot(normal, sunDir) is the sine of solar elevation, the shared
  * dot(P̂, sunDir) > 0 daylight test. `sunDir` is the body-fixed unit vector to
  * the Sun from lib/moons.ts moonSunDirection (tidally-locked sub-solar sweep).
  *
@@ -13,7 +13,7 @@
  *   • `twilight` sets the terminator half-width: airless moons get a HARD
  *     terminator (~0); only Titan, with its thick haze, gets a soft one.
  *
- * Honesty: no gas-giant banding, no invented colour — the fallback is a neutral
+ * Honesty: no gas-giant banding, no invented colour, the fallback is a neutral
  * tinted, softly-mottled sphere. Titan alone carries a faint orange haze rim via
  * the limb material below; every other moon is airless (a barely-there neutral
  * edge only, explicitly NOT an atmosphere, exactly like the Earth-Moon globe).
@@ -80,7 +80,7 @@ export const MOON_SURFACE_FRAGMENT = /* glsl */ `
     float diffuse = 0.52 + 0.48 * pow(clamp(sunDot, 0.0, 1.0), 0.65);
     vec3 lit = surface * diffuse;
 
-    // Night side: no city lights out here — a hair of ambient so the dark limb
+    // Night side: no city lights out here, a hair of ambient so the dark limb
     // reads as a sphere, not a void.
     vec3 night = surface * 0.035;
 
@@ -91,9 +91,9 @@ export const MOON_SURFACE_FRAGMENT = /* glsl */ `
 
 /**
  * Limb material, dual-purpose via uniforms:
- *   • airless moons — a VERY faint neutral silver rim (NOT an atmosphere), just
+ *   • airless moons, a VERY faint neutral silver rim (NOT an atmosphere), just
  *     so the sphere separates cleanly from the starfield.
- *   • Titan — a warmer, slightly stronger orange haze rim, the one honest
+ *   • Titan: a warmer, slightly stronger orange haze rim, the one honest
  *     atmosphere in this phase.
  * Both are driven by the same body-fixed sunDir so the rim brightens on the lit
  * side and fades into the terminator.

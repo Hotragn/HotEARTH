@@ -7,7 +7,7 @@ import { HZ_GREEN } from "@/lib/exo-facts";
  * Animation speed multipliers. The base rate is set per-system from the
  * innermost planet's period (so it is always watchable); these only scale
  * wall-time → sim-days. The RELATIVE speeds between planets stay physical
- * whatever the multiplier — that is the honest part.
+ * whatever the multiplier: that is the honest part.
  */
 export const EXO_SPEEDS = [
   { label: "0.5×", mult: 0.5 },
@@ -28,7 +28,7 @@ interface ExoSystemTimeControlProps {
 /**
  * Bottom-center control for the architecture view: play/pause the orbital
  * animation, choose a playback multiplier, and toggle the "compare to our Solar
- * System" overlay. Deliberately has NO absolute-date scrubber — an exoplanet's
+ * System" overlay. Deliberately has NO absolute-date scrubber: an exoplanet's
  * absolute orbital phase is unknown, so a calendar date would be a fiction.
  */
 export default function ExoSystemTimeControl({

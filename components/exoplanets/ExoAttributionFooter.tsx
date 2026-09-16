@@ -9,8 +9,8 @@ import {
  * Exoplanets attribution footer. Displaying the NASA Exoplanet Archive
  * acknowledgment is a HARD REQUIREMENT of using the archive, so the exact
  * `meta.acknowledgment` string is rendered verbatim here (falling back to the
- * constant if the file is missing), alongside the primary citation and — because
- * WASP survey planets are included — the WASP acknowledgment. The full set also
+ * constant if the file is missing), alongside the primary citation and, because
+ * WASP survey planets are included, the WASP acknowledgment. The full set also
  * appears in the About panel. Shown on md+ (the About panel guarantees it is
  * always reachable on any screen size).
  */
@@ -29,7 +29,7 @@ export default function ExoAttributionFooter({
         <span className="block">{ack}</span>
         <span className="mt-1 block text-faint/80">{EXO_PRIMARY_CITATION}</span>
         <span className="mt-0.5 block text-faint/80">
-          Incl. WASP survey — Butters et al. (2010).
+          Incl. WASP survey: Butters et al. (2010).
         </span>
         <a
           href="https://exoplanetarchive.ipac.caltech.edu/"

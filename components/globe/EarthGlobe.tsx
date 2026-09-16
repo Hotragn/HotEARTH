@@ -24,7 +24,7 @@ interface EarthGlobeProps {
   /** current GIBS layer texture (null = plain Blue Marble) */
   layerTexture: THREE.Texture | null;
   layerKind: LayerKind | null;
-  /** mutable, read per-frame — avoids re-rendering the canvas while scrubbing */
+  /** mutable, read per-frame, avoids re-rendering the canvas while scrubbing */
   timeOffsetHoursRef: React.RefObject<number>;
   picked: LatLon | null;
   onPick: (latLon: LatLon) => void;
@@ -54,7 +54,7 @@ export default function EarthGlobe({
     return tex;
   }, []);
 
-  // Shared sun vector — one instance referenced by both materials.
+  // Shared sun vector: one instance referenced by both materials.
   const sunVec = useMemo(() => new THREE.Vector3(1, 0, 0), []);
 
   const earthMaterial = useMemo(
@@ -98,7 +98,7 @@ export default function EarthGlobe({
     };
   }, [earthMaterial, atmosphereMaterial, blankOverlay]);
 
-  // Swap texture uniforms in place — never rebuild the material on layer
+  // Swap texture uniforms in place: never rebuild the material on layer
   // change (globe-3d-visualization skill).
   useEffect(() => {
     const u = earthMaterial.uniforms;
@@ -121,7 +121,7 @@ export default function EarthGlobe({
     earthMaterial.uniforms.nightMap.value = nightTexture;
   }, [earthMaterial, nightTexture]);
 
-  // Sun direction: cheap, but no need for 60Hz — refresh every 500ms of real
+  // Sun direction: cheap, but no need for 60Hz, refresh every 500ms of real
   // time, or immediately when the user scrubs the time control.
   const lastSun = useRef({ at: 0, offset: Number.NaN });
   useFrame(() => {

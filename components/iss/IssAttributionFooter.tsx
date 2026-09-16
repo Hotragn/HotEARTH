@@ -17,7 +17,7 @@ export default function IssAttributionFooter() {
           rel="noreferrer"
           className="pointer-events-auto transition-colors duration-200 hover:text-dim"
         >
-          orbital elements — US Space Force (18 SDS) via CelesTrak
+          orbital elements: US Space Force (18 SDS) via CelesTrak
         </a>
         {" · "}
         Computed: position, ground track &amp; passes via{" "}

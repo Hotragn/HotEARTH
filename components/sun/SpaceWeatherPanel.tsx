@@ -89,7 +89,7 @@ function Metric({
  * The headline feature: live NOAA/SWPC space weather, fetched client-side with
  * the committed snapshot as a defensive fallback. Every row carries a
  * MEASURED / FORECAST / COMPUTED tag and a live/snapshot marker; nothing here is
- * our own prediction — the aurora line is explicitly SWPC's OVATION forecast,
+ * our own prediction: the aurora line is explicitly SWPC's OVATION forecast,
  * and the oval latitude is COMPUTED from the measured Kp (labelled approximate).
  */
 export default function SpaceWeatherPanel() {
@@ -151,7 +151,7 @@ export default function SpaceWeatherPanel() {
             <>
               <Metric
                 label="Solar wind speed"
-                value={view.windSpeed.value != null ? view.windSpeed.value.toFixed(0) : "—"}
+                value={view.windSpeed.value != null ? view.windSpeed.value.toFixed(0) : "–"}
                 unit="km/s"
                 sub={windLbl ?? undefined}
                 category="MEASURED"
@@ -163,7 +163,7 @@ export default function SpaceWeatherPanel() {
                 value={
                   view.bz.value != null
                     ? `${view.bz.value >= 0 ? "+" : ""}${view.bz.value.toFixed(1)}`
-                    : "—"
+                    : "–"
                 }
                 unit="nT"
                 sub={
@@ -177,7 +177,7 @@ export default function SpaceWeatherPanel() {
               />
               <Metric
                 label="Planetary Kp"
-                value={kp != null ? kp.toFixed(2) : "—"}
+                value={kp != null ? kp.toFixed(2) : "–"}
                 sub={
                   kp != null
                     ? `${kpLabel(kp) ?? ""}${gScale ? ` · ${gLabel}` : " · below G1"}`
@@ -189,7 +189,7 @@ export default function SpaceWeatherPanel() {
               />
               <Metric
                 label="GOES X-ray (0.1–0.8 nm)"
-                value={flareClass ?? "—"}
+                value={flareClass ?? "–"}
                 sub={
                   view.xrayFlux.value != null
                     ? `${view.xrayFlux.value.toExponential(1)} W/m²`
@@ -202,7 +202,7 @@ export default function SpaceWeatherPanel() {
               {(view.largestFlareClass || view.largestFlareTime) && (
                 <div className="border-t border-line py-2 font-mono text-[10px] leading-relaxed text-dim">
                   Largest recent flare:{" "}
-                  <span className="text-ice">{view.largestFlareClass ?? "—"}</span>
+                  <span className="text-ice">{view.largestFlareClass ?? "–"}</span>
                   {view.largestFlareTime && (
                     <span className="text-faint"> · {fmtTime(view.largestFlareTime)}</span>
                   )}
@@ -210,20 +210,20 @@ export default function SpaceWeatherPanel() {
               )}
               <Metric
                 label={`Sunspot number${view.sunspotMonth ? ` · ${view.sunspotMonth}` : ""}`}
-                value={view.sunspotNumber.value != null ? view.sunspotNumber.value.toFixed(0) : "—"}
+                value={view.sunspotNumber.value != null ? view.sunspotNumber.value.toFixed(0) : "–"}
                 sub="NOAA count (monthly)"
                 category="MEASURED"
                 live={false}
               />
               <Metric
                 label={`F10.7 radio flux${view.f107Month ? ` · ${view.f107Month}` : ""}`}
-                value={view.f107.value != null ? view.f107.value.toFixed(0) : "—"}
+                value={view.f107.value != null ? view.f107.value.toFixed(0) : "–"}
                 unit="sfu"
                 category="MEASURED"
                 live={false}
               />
 
-              {/* Aurora — SWPC's own forecast + a computed oval latitude */}
+              {/* Aurora, SWPC's own forecast + a computed oval latitude */}
               <div className="mt-1 rounded-xl border border-line bg-white/[0.02] p-3">
                 <div className="flex items-center justify-between gap-2">
                   <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
@@ -232,11 +232,11 @@ export default function SpaceWeatherPanel() {
                   <Tag category="FORECAST" />
                 </div>
                 <p className="mt-1 text-xs text-dim">
-                  SWPC OVATION nowcast — max{" "}
+                  SWPC OVATION nowcast: max{" "}
                   <span className="text-ice">
                     {view.auroraMaxProbPct.value != null
                       ? `${view.auroraMaxProbPct.value.toFixed(0)}%`
-                      : "—"}
+                      : "–"}
                   </span>{" "}
                   aurora probability (their model, not ours).
                 </p>
@@ -272,7 +272,7 @@ export default function SpaceWeatherPanel() {
                   <>Committed snapshot. </>
                 )}
                 {updated && <>Updated {updated}. </>}
-                Measured (NASA/GOES/DSCOVR) &amp; SWPC forecasts — attributed, not
+                Measured (NASA/GOES/DSCOVR) &amp; SWPC forecasts: attributed, not
                 our own.
               </p>
             </>

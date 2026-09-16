@@ -306,7 +306,7 @@ function ObserverVisibility({
 
       {geoError && (
         <p className="mt-1.5 font-mono text-[10px] text-solar">
-          {geoError} — using {observer.label}.
+          {geoError}: using {observer.label}.
         </p>
       )}
 

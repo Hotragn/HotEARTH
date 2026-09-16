@@ -108,7 +108,7 @@ export default function CommandPalette({
         onClose();
         break;
       case "Tab":
-        // trap focus — this is a single-input dialog
+        // trap focus: this is a single-input dialog
         e.preventDefault();
         break;
     }

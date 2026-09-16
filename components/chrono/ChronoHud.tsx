@@ -24,7 +24,7 @@ import type { LodLevel } from "./ChronoCanvas";
 /**
  * Virtual Earth mission-control readout (top-left): world population counter,
  * active-event card, industrial-era climate, and the axial-precession sky
- * state — all driven by the parent's ~10Hz year tick (no per-frame React work).
+ * state, all driven by the parent's ~10Hz year tick (no per-frame React work).
  *
  * Everything here is REAL data (or interpolation of it). The honesty note in
  * the legend states exactly what is real vs. the artistic era scenes.
@@ -89,7 +89,7 @@ export default function ChronoHud({
               </p>
             </div>
           ) : (
-            <p className="mt-1.5 text-sm text-faint">— quiet year —</p>
+            <p className="mt-1.5 text-sm text-faint">quiet year</p>
           )}
         </div>
 
@@ -101,13 +101,13 @@ export default function ChronoHud({
               value={
                 clim.tempAnomalyC !== null
                   ? `${clim.tempAnomalyC >= 0 ? "+" : ""}${clim.tempAnomalyC.toFixed(2)}°C`
-                  : "—"
+                  : "–"
               }
               title="Global mean surface temperature vs 1850–1900 baseline"
             />
             <Stat
               label="CO₂"
-              value={clim.co2ppm !== null ? `${Math.round(clim.co2ppm)} ppm` : "—"}
+              value={clim.co2ppm !== null ? `${Math.round(clim.co2ppm)} ppm` : "–"}
               title="Atmospheric CO₂ (ice core + Mauna Loa)"
             />
           </div>

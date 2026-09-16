@@ -225,7 +225,7 @@ function clamp(x: number, lo: number, hi: number): number {
 export interface SystemSkyGeometry {
   /**
    * The central body's north pole as a UNIT vector in the plane-of-sky / scene
-   * frame (+X west, +Y north, +Z toward Earth — the SAME axes the scene renders
+   * frame (+X west, +Y north, +Z toward Earth: the SAME axes the scene renders
    * the moons in), so the textured sphere can be tilted with
    * Quaternion.setFromUnitVectors(up, poleSky). null for the illustrative systems
    * (Eris/Haumea/Makemake have no exposed pole; their bodies render upright).
@@ -238,7 +238,7 @@ export interface SystemSkyGeometry {
 /**
  * Reconstruct lib/dwarf-moons' plane-of-sky pole for `system` from the system's
  * apparent RA/Dec (from dwarfGeocentric) plus the EXPOSED IAU pole constants
- * (DWARF_SYSTEMS). This duplicates none of the physics — it only re-derives the
+ * (DWARF_SYSTEMS). This duplicates none of the physics: it only re-derives the
  * sky pole so the frontend can tilt Pluto's disk to match the real moon geometry.
  * Pluto's pole is fixed at J2000 (no precession term in the lib), so no time
  * dependence. Returns poleSky = null for the illustrative systems.

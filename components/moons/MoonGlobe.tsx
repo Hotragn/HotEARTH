@@ -34,11 +34,11 @@ interface MoonGlobeProps {
  * The terminator is driven by lib/moons.moonSunDirection: because each moon is
  * tidally locked, the sub-solar point sweeps the surface once per orbit (in the
  * period's sign, so retrograde Triton sweeps the other way). The globe mesh is
- * never rotated — the sub-solar sweep alone moves the terminator, which is the
+ * never rotated: the sub-solar sweep alone moves the terminator, which is the
  * honest way to depict synchronous rotation.
  *
  * Airless moons get only a barely-there neutral rim (NOT an atmosphere). Titan
- * alone carries a faint orange haze rim — the one honest atmosphere this phase.
+ * alone carries a faint orange haze rim: the one honest atmosphere this phase.
  */
 export default function MoonGlobe({
   name,
@@ -125,7 +125,7 @@ export default function MoonGlobe({
   }, [surfaceMaterial, surfaceTexture, usingFallback, blank]);
 
   // Sun direction: cheap. Refresh every 500ms of real time, or immediately on
-  // scrub. Reuses sunVec — no per-frame allocation. The mesh is never rotated;
+  // scrub. Reuses sunVec: no per-frame allocation. The mesh is never rotated;
   // the sub-solar sweep alone moves the terminator (synchronous rotation).
   const lastSun = useRef({ at: 0, offset: Number.NaN });
   useFrame(() => {

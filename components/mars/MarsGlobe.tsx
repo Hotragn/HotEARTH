@@ -102,7 +102,7 @@ export default function MarsGlobe({
   }, [marsMaterial, surfaceTexture, usingFallback, blank]);
 
   // Sun direction: cheap. Refresh every 500ms of real time or immediately when
-  // the user scrubs the Mars year (offset changes). No per-frame allocation —
+  // the user scrubs the Mars year (offset changes). No per-frame allocation:
   // sunVec is reused.
   const lastSun = useRef({ at: 0, offset: Number.NaN });
   useFrame(() => {

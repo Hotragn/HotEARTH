@@ -15,7 +15,7 @@ import { useMarsTexture } from "./useMarsTexture";
 const SOL_MS = 88_775_244;
 
 /**
- * Mars tab shell — mirrors GlobeApp: full-viewport canvas + HUD overlay.
+ * Mars tab shell, mirrors GlobeApp: full-viewport canvas + HUD overlay.
  * Everything is honest, real orbital mechanics (NASA GISS Mars24). The
  * climatology panel is clearly labeled as seasonal averages, not a forecast.
  */

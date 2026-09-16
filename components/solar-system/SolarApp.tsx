@@ -16,7 +16,7 @@ import SolarAttributionFooter from "./SolarAttributionFooter";
 
 /**
  * Solar System tab shell. Two views share one client bundle:
- *   • the orrery (default) — all eight planets orbiting the Sun in real time;
+ *   • the orrery (default), all eight planets orbiting the Sun in real time;
  *   • a per-planet detail globe, opened by clicking one of the six "other
  *     planets" (Earth and Mars link out to their own tabs).
  *
@@ -119,7 +119,7 @@ export default function SolarApp() {
                 <p className="mt-1 text-[11px] leading-relaxed text-dim">
                   Each planet sits at its real heliocentric longitude for the
                   simulated date. Press play to watch them orbit at correct
-                  relative speeds. Click a planet to open its globe — Earth and
+                  relative speeds. Click a planet to open its globe: Earth and
                   Mars open their own tabs.
                 </p>
               </div>

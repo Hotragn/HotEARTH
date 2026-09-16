@@ -25,10 +25,10 @@ import {
 
 /**
  * Per-planet detail HUD. Prints the MEASURED archive parameters with units
- * (radius, mass — flagged as a minimum mass for RV planets, period, sma,
+ * (radius, mass, flagged as a minimum mass for RV planets, period, sma,
  * eccentricity, equilibrium temperature, insolation, discovery method/year) and
  * the host-star facts, then the COMPUTED layers (equilibrium temperature when
- * the archive has none, composition estimate, HZ membership) — each labelled as
+ * the archive has none, composition estimate, HZ membership), each labelled as
  * computed/estimated. Missing values render "not measured", never a guess. The
  * illustrative-appearance disclaimer is prominent; directly-imaged planets carry
  * the "unresolved point of light" note.
@@ -138,7 +138,7 @@ export default function ExoPlanetHud({
             sub={minMass && planet.mass_me != null ? "minimum mass (M·sin i)" : undefined}
             title={
               minMass
-                ? "Radial-velocity mass is a lower limit — the true mass depends on the unknown orbital inclination."
+                ? "Radial-velocity mass is a lower limit: the true mass depends on the unknown orbital inclination."
                 : undefined
             }
           />

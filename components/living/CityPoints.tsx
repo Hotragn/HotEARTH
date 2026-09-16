@@ -14,7 +14,7 @@ import { GLOBE_RADIUS } from "@/components/globe/EarthGlobe";
  * never one mesh per city). Size scales with population; the REAL solar
  * terminator (lib/solar.ts sunDirection) makes night-side cities glow while
  * day-side ones stay subtle; pulse rate/intensity comes from the simulated
- * activity index (lib/activity.ts — clearly labeled a simulation in the HUD).
+ * activity index (lib/activity.ts: clearly labeled a simulation in the HUD).
  */
 
 const ALTITUDE = GLOBE_RADIUS * 1.004;
@@ -58,7 +58,7 @@ const FRAGMENT = /* glsl */ `
     if (r > 1.0) discard;
     float falloff = pow(1.0 - r, 1.8);
     float core = smoothstep(0.45, 0.0, r);
-    // warm sodium-lamp amber with a whiter core — matches the solar accent
+    // warm sodium-lamp amber with a whiter core: matches the solar accent
     vec3 warm = mix(vec3(1.0, 0.62, 0.28), vec3(1.0, 0.92, 0.75), core);
     gl_FragColor = vec4(warm * vIntensity * falloff, 1.0);
     #include <colorspace_fragment>

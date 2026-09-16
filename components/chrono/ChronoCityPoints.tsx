@@ -15,7 +15,7 @@ import { CHRONO_CITY_FRAGMENT, CHRONO_CITY_VERTEX } from "./shaders";
 
 /**
  * All historical cities in ONE THREE.Points draw call. Point size grows with
- * the interpolated population at the current simulated year — cities wink into
+ * the interpolated population at the current simulated year: cities wink into
  * existence at their founding and swell as they grow. The REAL solar
  * terminator (lib/solar) makes night-side cities glow. Sizes are refreshed on
  * a low-frequency cadence (not every frame) with no per-frame allocations.

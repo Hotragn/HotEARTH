@@ -35,7 +35,7 @@ interface NightSkyCanvasProps {
 
 /**
  * Full-viewport planetarium canvas. The camera sits (essentially) at the origin
- * looking OUT; OrbitControls rotate the view in place (no pan, no dolly — dolly
+ * looking OUT; OrbitControls rotate the view in place (no pan, no dolly: dolly
  * is meaningless against a far shell), and the wheel zooms by field-of-view for a
  * real "zoom into a constellation" feel. Same performance budget as the other
  * worlds (dpr capped at 2, high-performance context).

@@ -10,11 +10,11 @@ const MOON_ACCENT = "#c3c9d6";
 /**
  * Top-left honest readout for the Moon: phase name + illuminated %, lunar age,
  * sub-solar point, and optical libration (with the note that it reveals ~59% of
- * the surface). Everything traces to the Meeus lunar theory in lib/lunar —
+ * the surface). Everything traces to the Meeus lunar theory in lib/lunar:
  * labeled "computed", never a live feed. The Moon has NO atmosphere and NO
  * weather; this panel shows illumination + libration geometry only.
  *
- * Driven by `nowMs` + `offsetDays` from the parent's 1Hz tick — no per-frame
+ * Driven by `nowMs` + `offsetDays` from the parent's 1Hz tick: no per-frame
  * React work (the globe reads the same offset via a ref).
  */
 export default function MoonHud({
@@ -62,7 +62,7 @@ export default function MoonHud({
           <Stat
             label="Lunar age"
             value={`${s.phase.ageDays.toFixed(1)} d`}
-            title="Days since the last new moon (synodic cycle ~29.53 d) — computed, Meeus lunar theory"
+            title="Days since the last new moon (synodic cycle ~29.53 d): computed, Meeus lunar theory"
           />
           <Stat
             label="Phase angle"
@@ -77,7 +77,7 @@ export default function MoonHud({
           <Stat label="Subsolar lon" value={subLon} />
         </div>
 
-        {/* libration — the monthly nod that reveals ~59% of the surface */}
+        {/* libration: the monthly nod that reveals ~59% of the surface */}
         <div
           className="mt-3 rounded-xl border border-line px-3 py-2"
           title="Optical libration (Meeus Ch. 53): the Moon's apparent nod (latitude) and rock (longitude), up to ±~7.9° lon / ±~6.9° lat. Over time this reveals ~59% of the surface, not just 50%."
@@ -97,7 +97,7 @@ export default function MoonHud({
             {formatLibration(s.libration)}
           </p>
           <p className="mt-1 text-[10px] leading-snug text-faint">
-            The Moon &quot;nods&quot; — over time we see ~59% of its surface.
+            The Moon &quot;nods&quot;: over time we see ~59% of its surface.
           </p>
         </div>
       </div>

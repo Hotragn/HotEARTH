@@ -201,7 +201,7 @@ export default function PlanetGlobe({
   }, [ringMaterial, ringTexture]);
 
   // Sun direction (cheap): refresh every 500ms of real time, or immediately on
-  // scrub. Reuses sunVec — no per-frame allocation. Venus additionally scrolls
+  // scrub. Reuses sunVec: no per-frame allocation. Venus additionally scrolls
   // its cloud texture longitudinally to depict measured super-rotation (labelled
   // illustrative in the HUD).
   const lastSun = useRef({ at: 0, offset: Number.NaN });
@@ -215,7 +215,7 @@ export default function PlanetGlobe({
       sunVec.set(x, y, z);
     }
     if (facts.superRotation) {
-      // ~one visible lap every ~20 s of wall time — an illustrative rate, in
+      // ~one visible lap every ~20 s of wall time: an illustrative rate, in
       // the retrograde sense; the true ~4-day lap is stated in the HUD.
       const dir = retrograde ? 1 : -1;
       surfaceMaterial.uniforms.uvOffsetX.value =

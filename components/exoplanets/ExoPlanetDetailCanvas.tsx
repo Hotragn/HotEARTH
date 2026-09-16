@@ -107,7 +107,7 @@ export default function ExoPlanetDetailCanvas({
             }}
           >
             {imaged
-              ? "imaged only as an unresolved point of light — not a surface map"
+              ? "imaged only as an unresolved point of light: not a surface map"
               : "no exoplanet has been imaged in surface detail"}
           </div>
         </div>

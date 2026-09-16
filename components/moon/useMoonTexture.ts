@@ -8,7 +8,7 @@ import { prepTexture } from "@/components/globe/useBaseTextures";
  * Expected Moon surface texture path(s).
  *
  * Another process is dropping a real public-domain lunar basemap (NASA SVS CGI
- * Moon Kit — LROC WAC 4k color, or a Kaguya mosaic; see
+ * Moon Kit: LROC WAC 4k color, or a Kaguya mosaic; see
  * docs/MOON_DATA_SOURCES.md §1). Preferred: an equirectangular (2:1) JPEG,
  * 4096×2048, from the LROC WAC global mosaic (public domain, credit
  * "NASA SVS / LROC / ASU"). Until it lands, the loader 404s and the globe

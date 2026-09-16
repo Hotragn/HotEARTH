@@ -36,7 +36,7 @@ export default function LayerToggles({
           <ModeButton
             active={mode === "sky"}
             onClick={() => onModeChange("sky")}
-            title="The whole J2000 celestial sphere — look anywhere. North celestial pole up."
+            title="The whole J2000 celestial sphere: look anywhere. North celestial pole up."
           >
             Sky
           </ModeButton>

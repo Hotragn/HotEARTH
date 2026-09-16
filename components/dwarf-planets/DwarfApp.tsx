@@ -23,18 +23,18 @@ import DwarfAttributionFooter from "./DwarfAttributionFooter";
 
 /**
  * Dwarf Planets tab shell. Two views share one client bundle:
- *   • the mini-orrery (default) — the five dwarf planets on their real,
+ *   • the mini-orrery (default), the five dwarf planets on their real,
  *     eccentric, radius-compressed orbits, with Neptune's orbit as the trans-
  *     Neptunian reference ring and a live Pluto–Neptune 3:2 resonance callout;
  *   • a per-body detail globe, opened by clicking a dwarf planet (and Charon,
- *     reached from Pluto's HUD — the Pluto–Charon binary).
+ *     reached from Pluto's HUD: the Pluto–Charon binary).
  *
  * Time is held in refs read per-frame by the canvases (no per-frame React
  * work): the orrery advances `simMsRef`; each detail globe reads
  * `detailOffsetDaysRef`. State drives only the HUD readouts, ticked ~1–3 Hz.
  * Everything is real orbital mechanics (lib/dwarf-planets); the honest
  * compression note comes straight from the orrery layout. phenomena.json +
- * constants.json are fetched once and parsed defensively — the UI degrades
+ * constants.json are fetched once and parsed defensively: the UI degrades
  * gracefully to lib data if either is missing.
  */
 export default function DwarfApp() {
@@ -196,7 +196,7 @@ function OverviewPanel({
         <p className="mt-1.5 text-sm text-ice">Five distant worlds, live</p>
         <p className="mt-1 text-[11px] leading-relaxed text-dim">
           Each dwarf planet sits at its real heliocentric longitude and rides its
-          real, eccentric orbit — from Ceres in the asteroid belt (~2.8 AU) out to
+          real, eccentric orbit: from Ceres in the asteroid belt (~2.8 AU) out to
           Eris (~68 AU). Only the radial distance is log-compressed so all five
           fit on screen. Press play to watch them orbit at correct relative
           speeds; click a body to open its globe.
@@ -216,7 +216,7 @@ function OverviewPanel({
           </div>
           <p className="mt-1.5 text-[11px] leading-relaxed text-dim">
             The blue ring is Neptune&apos;s orbit (~
-            {resonance.neptuneSemiMajorAU.toFixed(0)} AU) — the trans-Neptunian
+            {resonance.neptuneSemiMajorAU.toFixed(0)} AU): the trans-Neptunian
             datum. Pluto, Haumea, Makemake and Eris all live beyond it. Pluto&apos;s
             orbit even dips inside Neptune&apos;s (perihelion ~
             {resonance.plutoPerihelionAU.toFixed(1)} AU), yet the{" "}
@@ -231,7 +231,7 @@ function OverviewPanel({
         </div>
 
         <p className="mt-3 border-t border-line pt-2.5 font-mono text-[9px] leading-relaxed text-faint">
-          No weather out here — orbits and rotation are computed; features are
+          No weather out here: orbits and rotation are computed; features are
           measured by spacecraft where one has visited (Pluto, Charon, Ceres).
         </p>
       </div>

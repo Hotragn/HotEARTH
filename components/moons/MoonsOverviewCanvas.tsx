@@ -39,7 +39,7 @@ interface MoonsOverviewCanvasProps {
  * One parent's moon mini-orrery. The ANGLE of each moon is its real orbital
  * angle at the simulated date (from moonOrreryLayout); only the RADIUS is
  * log-compressed so the whole system is visible at once. Inner moons whip around
- * while outer moons amble, and retrograde Triton visibly sweeps the other way —
+ * while outer moons amble, and retrograde Triton visibly sweeps the other way:
  * all physically correct relative motion. Positions are updated imperatively per
  * frame (no React re-render). Click a moon to open its detail globe.
  */

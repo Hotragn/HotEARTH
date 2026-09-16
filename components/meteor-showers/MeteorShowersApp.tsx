@@ -25,7 +25,7 @@ import {
 } from "./constants";
 
 /**
- * Meteor Showers tab shell (a "Solar System" world, beside Comets & Asteroids —
+ * Meteor Showers tab shell (a "Solar System" world, beside Comets & Asteroids:
  * showers are the debris of those same parent bodies). Loads the shower catalogue
  * (IAU MDC + IMO) and a dim real-star backdrop once, each parsed defensively so a
  * missing/broken file degrades to a graceful empty state rather than a crash.
@@ -118,7 +118,7 @@ export default function MeteorShowersApp() {
         {!loaded && <CenteredNote>Tracking the streams…</CenteredNote>}
         {loaded && !hasShowers && (
           <CenteredNote>
-            Meteor-shower catalogue unavailable — the data failed to load.
+            Meteor-shower catalogue unavailable: the data failed to load.
           </CenteredNote>
         )}
 
@@ -127,7 +127,7 @@ export default function MeteorShowersApp() {
             {/* honest framing banner (md+, non-interactive; panels paint over it) */}
             <p className="pointer-events-none absolute inset-x-0 bottom-40 hidden px-6 text-center font-mono text-[10px] leading-relaxed tracking-wide text-faint md:block">
               Radiants, dates, velocities &amp; parents are real catalog data (IAU
-              MDC + IMO) · ZHR is an idealised peak rate — observed rates are lower ·
+              MDC + IMO) · ZHR is an idealised peak rate: observed rates are lower ·
               meteor streaks are illustrative
             </p>
 

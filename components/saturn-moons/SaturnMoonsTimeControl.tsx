@@ -8,7 +8,7 @@ const DAYS_PER_YEAR = 365.25;
 /**
  * Saturn is interesting on two timescales: the inner moons orbit in days, while
  * the rings open and close over years. So the scrubber reaches ±16 years with a
- * SIGNED-CUBIC mapping (offsetDays = sign(s)·|s|³·MAX) — fine, day-scale control
+ * SIGNED-CUBIC mapping (offsetDays = sign(s)·|s|³·MAX): fine, day-scale control
  * near "now" for watching a moon move, stretching to a decade-plus at the ends
  * for watching the ring tilt B swing across a season. Play mode covers the fast
  * end (inner-moon motion); a 30 day/s preset lets you also watch the rings tilt.

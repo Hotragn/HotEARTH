@@ -21,7 +21,7 @@ interface DwarfDetailCanvasProps {
  * never re-renders the canvas.
  *
  * Haumea is framed further out (its ring spans ~3 body radii) and its camera
- * does NOT auto-rotate — the ellipsoid itself spins. Every other body gets a
+ * does NOT auto-rotate: the ellipsoid itself spins. Every other body gets a
  * gentle camera auto-rotate until the user grabs it.
  */
 export default function DwarfDetailCanvas({

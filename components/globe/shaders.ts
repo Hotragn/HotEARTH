@@ -55,7 +55,7 @@ export const EARTH_FRAGMENT = /* glsl */ `
     // Twilight band: sin(-12 deg) = -0.2079 (nautical) -> just past sunrise
     float daylight = smoothstep(-0.2079, 0.12, sunDot);
 
-    // mild diffuse term — imagery is already sunlit, so keep it gentle
+    // mild diffuse term: imagery is already sunlit, so keep it gentle
     float diffuse = 0.60 + 0.40 * pow(clamp(sunDot, 0.0, 1.0), 0.55);
     vec3 color = mix(night, day * diffuse, daylight);
 

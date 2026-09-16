@@ -4,12 +4,12 @@
  *
  * Construction mirrors components/moons/shaders.ts and components/solar-system/
  * shaders.ts EXACTLY: the mesh's OBJECT-space normals are body-fixed and
- * dot(normal, sunDir) is the sine of solar elevation — the shared
+ * dot(normal, sunDir) is the sine of solar elevation, the shared
  * dot(P̂, sunDir) > 0 daylight test. `sunDir` is the body-fixed unit vector to
  * the Sun from lib/dwarf-planets.ts dwarfSunDirection.
  *
  * The sub-solar longitude sweeps at each body's REAL rotation rate, so the
- * terminator is a real, computed sweep — not imagery — for every body, imaged or
+ * terminator is a real, computed sweep, not imagery, for every body, imaged or
  * not. For Haumea (the showpiece) the globe additionally SPINS: the mesh is
  * rotated about its short axis and `sunDir` is counter-rotated on the CPU so the
  * terminator stays fixed in world space while the ellipsoid tumbles.
@@ -17,11 +17,11 @@
  * Two knobs make it generic:
  *   • `useProcedural` (0/1) swaps the real texture for a tinted, softly-mottled
  *     illustrative sphere so the scene never breaks (and is the ONLY mode for the
- *     never-visited bodies Eris / Haumea / Makemake — no real map exists).
+ *     never-visited bodies Eris / Haumea / Makemake, no real map exists).
  *   • `twilight` sets the terminator half-width: airless worlds get a HARD
  *     terminator (~0); Pluto, with its thin N₂ haze, gets a slightly softer one.
  *
- * Honesty: no invented colour — the fallback is a neutral tinted, softly-mottled
+ * Honesty: no invented colour, the fallback is a neutral tinted, softly-mottled
  * sphere, and the un-imaged bodies are labelled ILLUSTRATIVE in the UI.
  */
 
@@ -67,7 +67,7 @@ export const DWARF_SURFACE_FRAGMENT = /* glsl */ `
   }
 
   vec3 proceduralSurface() {
-    // Subtle mottling only — an illustrative icy/rocky sphere, never a pretend map.
+    // Subtle mottling only: an illustrative icy/rocky sphere, never a pretend map.
     float mottle = noise(vObjPos * 5.0) * 0.6 + noise(vObjPos * 15.0) * 0.4;
     return tint * (0.8 + 0.28 * mottle);
   }
@@ -87,7 +87,7 @@ export const DWARF_SURFACE_FRAGMENT = /* glsl */ `
     float diffuse = 0.52 + 0.48 * pow(clamp(sunDot, 0.0, 1.0), 0.65);
     vec3 lit = surface * diffuse;
 
-    // Night side: no city lights out here — a hair of ambient so the dark limb
+    // Night side: no city lights out here, a hair of ambient so the dark limb
     // reads as a sphere, not a void.
     vec3 night = surface * 0.035;
 
@@ -98,9 +98,9 @@ export const DWARF_SURFACE_FRAGMENT = /* glsl */ `
 
 /**
  * Faint limb rim, dual-purpose via uniforms:
- *   • airless worlds — a VERY faint neutral silver rim (NOT an atmosphere), just
+ *   • airless worlds, a VERY faint neutral silver rim (NOT an atmosphere), just
  *     so the sphere separates cleanly from the starfield.
- *   • Pluto — a slightly warmer, broader haze rim (its thin N₂ atmosphere + haze
+ *   • Pluto: a slightly warmer, broader haze rim (its thin N₂ atmosphere + haze
  *     layers, the one honest atmosphere among these bodies).
  */
 export const DWARF_LIMB_VERTEX = /* glsl */ `

@@ -4,12 +4,12 @@ import { TEXTURE_CAVEAT, hasRealMap, type DwarfBodyName } from "@/lib/dwarf-fact
 
 /**
  * Dwarf-planet attribution footer (mirrors SolarAttributionFooter /
- * MoonsAttributionFooter). ALL dwarf maps this phase are public domain — no
- * CC-BY obligation — so they are credited as a courtesy:
- *   • Pluto & Charon — NASA / JHU-APL / SwRI (New Horizons)
- *   • Ceres          — NASA / JPL-Caltech / UCLA / MPS / DLR / IDA (Dawn)
+ * MoonsAttributionFooter). ALL dwarf maps this phase are public domain, no
+ * CC-BY obligation, so they are credited as a courtesy:
+ *   • Pluto & Charon: NASA / JHU-APL / SwRI (New Horizons)
+ *   • Ceres: NASA / JPL-Caltech / UCLA / MPS / DLR / IDA (Dawn)
  * Orbital + physical constants are JPL SBDB / mission papers. Eris, Haumea and
- * Makemake have NO map — their appearance is explicitly illustrative. Full
+ * Makemake have NO map: their appearance is explicitly illustrative. Full
  * attribution and the key measured-fact papers live in the About panel.
  */
 export default function DwarfAttributionFooter({
@@ -52,7 +52,7 @@ export default function DwarfAttributionFooter({
           <>
             <br />
             <span className="text-faint/80">
-              Appearance illustrative — never visited; no surface map
+              Appearance illustrative: never visited; no surface map
             </span>
           </>
         )}

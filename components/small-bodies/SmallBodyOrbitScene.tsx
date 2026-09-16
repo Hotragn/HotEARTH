@@ -41,7 +41,7 @@ const TAIL_AXIS = new THREE.Vector3(0, -1, 0);
  * innerAU 0.1 (inside every perihelion) → outerAU 50 map to scene radii 1.4→11;
  * log is monotonic and extrapolates, so a long-period aphelion (tens–thousands of
  * AU) still maps to a finite, larger radius. ANGLES are the real heliocentric
- * longitudes; only the RADIUS is compressed — the HUD says so.
+ * longitudes; only the RADIUS is compressed: the HUD says so.
  */
 const ORRERY_OPTS: CompressionOptions = {
   mode: "log",
@@ -51,15 +51,15 @@ const ORRERY_OPTS: CompressionOptions = {
   outerAU: 50,
 };
 
-/** Inner planets + Jupiter — the reference frame for the inner Solar System. */
+/** Inner planets + Jupiter: the reference frame for the inner Solar System. */
 const REF_PLANETS: PlanetName[] = ["Mercury", "Venus", "Earth", "Mars", "Jupiter"];
 
 interface OrbitVis {
-  /** stable key (designation ?? name) — matches the React key + the ref map. */
+  /** stable key (designation ?? name): matches the React key + the ref map. */
   key: string;
   obj: SmallBodyObject;
   line: THREE.Line;
-  /** perihelion scene point — the graceful fallback if a live position is unresolved */
+  /** perihelion scene point, the graceful fallback if a live position is unresolved */
   peri: { x: number; z: number };
   /** perihelion heliocentric distance [AU] (fallback distance for the label) */
   qAU: number;
@@ -67,13 +67,13 @@ interface OrbitVis {
   /** the path is drawn as an open arc (near-parabolic or hyperbolic) */
   open: boolean;
   /**
-   * The body is GENUINELY unbound (e > 1 / hyperbolic / interstellar) — passes
+   * The body is GENUINELY unbound (e > 1 / hyperbolic / interstellar): passes
    * through once and never returns. Distinct from `open`: a bound long-period
    * comet (e.g. NEOWISE e≈0.999) is drawn as an arc but is NOT unbound.
    */
   unbound: boolean;
   isComet: boolean;
-  /** owned tail cone (comets only) — animated per-frame, disposed on unmount */
+  /** owned tail cone (comets only), animated per-frame, disposed on unmount */
   tailMesh: THREE.Mesh | null;
 }
 
@@ -94,25 +94,25 @@ function colorFor(o: SmallBodyObject): string {
 }
 
 /**
- * The inner-Solar-System orbit view — the 3D centerpiece. The Sun sits at centre;
+ * The inner-Solar-System orbit view: the 3D centerpiece. The Sun sits at centre;
  * the planet reference orbits (Mercury→Jupiter, Earth highlighted) and every
  * small body's REAL orbit share one compressed radial scale. Bound asteroids and
  * comets draw as CLOSED ellipses; hyperbolic / interstellar visitors draw as OPEN
- * arcs (visually distinct, labelled "unbound — passing through, not orbiting").
+ * arcs (visually distinct, labelled "unbound: passing through, not orbiting").
  *
  * The catalogue now carries a time anchor (mean anomaly + epoch for bound orbits,
  * time-of-perihelion for open ones), so each body rides a LIVE, propagated
- * heliocentric position advanced by the orrery clock — the same real two-body
+ * heliocentric position advanced by the orrery clock: the same real two-body
  * mechanics the Solar-System and dwarf-planet orreries use. Comet tails emanate
  * from the live nucleus, point anti-sunward (away from the Sun at the origin) and
  * grow with cometActivity(r) at the body's live heliocentric distance. Hyperbolic
- * / interstellar bodies sweep through once and keep receding — honest to their
+ * / interstellar bodies sweep through once and keep receding: honest to their
  * single pass. A body whose elements still can't resolve a position (should be
  * none) degrades gracefully to its perihelion marker, never crashing.
  *
  * All line geometries/materials and the tail cones are built once and disposed on
  * unmount; positions/orientations are updated by mutating existing objects with
- * reused scratch vectors — nothing allocates per frame.
+ * reused scratch vectors: nothing allocates per frame.
  */
 export default function SmallBodyOrbitScene({
   objects,
@@ -121,7 +121,7 @@ export default function SmallBodyOrbitScene({
   playing,
   speedDaysPerSec,
 }: SmallBodyOrbitSceneProps) {
-  // Planet reference orbits — built once (independent of the object filter).
+  // Planet reference orbits: built once (independent of the object filter).
   const planetOrbits = useMemo(() => buildPlanetOrbits(), []);
   useEffect(() => {
     return () => {
@@ -132,7 +132,7 @@ export default function SmallBodyOrbitScene({
     };
   }, [planetOrbits]);
 
-  // Small-body orbits + tails — rebuilt when the filtered object set changes.
+  // Small-body orbits + tails: rebuilt when the filtered object set changes.
   const orbits = useMemo(() => buildOrbits(objects), [objects]);
   useEffect(() => {
     return () => {
@@ -154,7 +154,7 @@ export default function SmallBodyOrbitScene({
   const [auSnapshot, setAuSnapshot] = useState<Record<string, number>>({});
   const labelAccum = useRef(0);
 
-  // Reused scratch objects — allocated once, mutated each frame.
+  // Reused scratch objects: allocated once, mutated each frame.
   const scratchDir = useMemo(() => new THREE.Vector3(), []);
   const scratchQuat = useMemo(() => new THREE.Quaternion(), []);
 
@@ -431,7 +431,7 @@ function BodyMarker({
 
   return (
     <group ref={groupRef}>
-      {/* live comet tail — animated in the parent useFrame (anti-sunward) */}
+      {/* live comet tail, animated in the parent useFrame (anti-sunward) */}
       {tailMesh && <primitive object={tailMesh} />}
 
       {/* visible marker dot */}
@@ -439,7 +439,7 @@ function BodyMarker({
         <sphereGeometry args={[r, 20, 20]} />
         <meshBasicMaterial color={color} toneMapped={false} />
       </mesh>
-      {/* PHA ring — a calm amber halo, factual not alarming */}
+      {/* PHA ring, a calm amber halo, factual not alarming */}
       {obj.pha && (
         <mesh rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[r * 1.7, r * 2.3, 28]} />
@@ -498,7 +498,7 @@ function BodyMarker({
           )}
           {unbound && (
             <div style={{ color: OPEN_ORBIT_COLOR, fontSize: 8.5 }}>
-              unbound — passing through
+              unbound: passing through
             </div>
           )}
         </div>

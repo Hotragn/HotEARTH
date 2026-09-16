@@ -42,7 +42,7 @@ interface OrreryProps {
  * The orrery: Sun at centre + all eight planets at their REAL heliocentric
  * ecliptic longitudes (from orreryLayout), with only the radial distance
  * log-compressed so every orbit is visible at once. Planet angular motion is
- * therefore physically correct and relative speeds are honest — Mercury laps
+ * therefore physically correct and relative speeds are honest: Mercury laps
  * visibly while Neptune crawls. Positions are updated imperatively per frame
  * (no React re-render); the AU labels refresh a few times a second.
  */

@@ -31,7 +31,7 @@ interface SmallBodyDetailCanvasProps {
  * Full-viewport detail canvas for one small body. The Sun (a fixed directional
  * light) lights the body from one side while it tumbles, so the terminator reads.
  * MAP bodies (Eros/Vesta/Bennu) wear their real mosaic on a displaced sphere;
- * every other body is an illustrative lump. A prominent badge states which — and
+ * every other body is an illustrative lump. A prominent badge states which: and
  * for the single-view PHOTO bodies, points to the real flat photo in the HUD.
  */
 export default function SmallBodyDetailCanvas({
@@ -49,7 +49,7 @@ export default function SmallBodyDetailCanvas({
 
   const badge =
     appearance.kind === "map" && !usingFallback
-      ? { top: "Real imagery", sub: "shape approximated — rendered on a sphere" }
+      ? { top: "Real imagery", sub: "shape approximated, rendered on a sphere" }
       : appearance.kind === "photo"
         ? { top: "Illustrative shape", sub: "real mission photo shown in the panel" }
         : { top: "Illustrative", sub: "no detailed imagery of this body exists" };
@@ -64,7 +64,7 @@ export default function SmallBodyDetailCanvas({
     >
       <Stars radius={90} depth={45} count={4200} factor={2.6} saturation={0} fade speed={0.25} />
 
-      {/* the Sun — a fixed key light, plus a hair of ambient so the dark limb reads */}
+      {/* the Sun: a fixed key light, plus a hair of ambient so the dark limb reads */}
       <ambientLight intensity={0.14} />
       <directionalLight position={[4, 1.5, 2.5]} intensity={2.1} color="#fff3d6" />
 

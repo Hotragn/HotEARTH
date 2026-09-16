@@ -85,7 +85,7 @@ export default function MoonTimeControl({
         <div className="mt-2 flex items-baseline justify-between gap-3 border-t border-line pt-2">
           <span
             className="font-mono text-[11px] tracking-wide text-dim"
-            title="Phase & illuminated fraction for the scrubbed date — computed, Meeus lunar theory"
+            title="Phase & illuminated fraction for the scrubbed date: computed, Meeus lunar theory"
           >
             {p.name} · {illumPct}%
           </span>

@@ -113,7 +113,7 @@ export default function ChronoTimeControl({
             ))}
           </div>
           <span className="font-mono text-[10px] tracking-wide text-faint">
-            {formatYearShort(CHRONO_MIN_YEAR)} — {formatYearShort(CHRONO_MAX_YEAR)}
+            {formatYearShort(CHRONO_MIN_YEAR)} – {formatYearShort(CHRONO_MAX_YEAR)}
           </span>
         </div>
       </div>

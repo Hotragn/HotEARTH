@@ -14,14 +14,15 @@ import { prepTexture } from "@/components/globe/useBaseTextures";
  * "NASA SVS / LROC / ASU"). Until it lands, the loader 404s and the globe
  * renders a procedural grey cratered Moon so the build/scene never breaks.
  *
- * Candidate paths (probed in order; first that loads wins):
- *   /data/moon/moon-color.jpg     ← preferred, alongside the diurnal artifact
- *   /textures/moon-lroc.jpg       ← alt location, matches Earth/Mars textures
+ * ONE PATH, not two. Both candidates held byte-identical copies of the same
+ * 1.4 MB JPEG, so each deployment carried it twice to guard against a 404 that
+ * cannot happen: both were static files in the same immutable deployment.
+ *
+ * The procedural fallback below is the resilience that does something, and it
+ * stays: a missing or corrupt file gives a grey cratered Moon, not a broken
+ * scene.
  */
-export const MOON_TEXTURE_CANDIDATES = [
-  "/data/moon/moon-color.jpg",
-  "/textures/moon-lroc.jpg",
-] as const;
+export const MOON_TEXTURE_CANDIDATES = ["/textures/moon-lroc.jpg"] as const;
 
 export interface MoonTextureState {
   /** the loaded surface texture, or null if none of the candidates exist yet */

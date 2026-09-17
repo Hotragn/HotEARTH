@@ -6,6 +6,7 @@ import {
   HERO_VIDEO_CREDIT,
   HERO_VIDEO_LABEL,
   HERO_VIDEO_SRC,
+  REAL_IMAGERY,
 } from "./interstellarUi";
 
 /**
@@ -48,6 +49,8 @@ export default function InterstellarBackdrop() {
   }, [reduced]);
 
   const showStill = reduced || !canPlay;
+  // The still and its own credit, so the caption can describe what is visible.
+  const still = REAL_IMAGERY[0];
 
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-abyss">
@@ -84,12 +87,21 @@ export default function InterstellarBackdrop() {
         }}
       />
 
-      {/* honesty credit pinned to the footage (bottom-left, small, unobtrusive) */}
+      {/*
+        Honesty credit pinned to the footage, and it credits WHAT IS ACTUALLY ON
+        SCREEN. This block used to name the video unconditionally, including when
+        the still was showing, which meant a photograph credited as footage
+        whenever a visitor preferred reduced motion. On a site whose claim is
+        that every asset is credited, crediting the wrong one is the one thing
+        this panel must not do.
+      */}
       <div className="absolute bottom-2 left-3 max-w-[300px] sm:bottom-3 sm:left-4">
         <p className="font-mono text-[9px] leading-snug text-faint/85">
-          {HERO_VIDEO_LABEL}
+          {showStill ? `Real NASA imagery: ${still.title}. ${still.fact}` : HERO_VIDEO_LABEL}
           <br />
-          <span className="text-faint/70">{HERO_VIDEO_CREDIT}</span>
+          <span className="text-faint/70">
+            {showStill ? still.credit : HERO_VIDEO_CREDIT}
+          </span>
         </p>
       </div>
     </div>

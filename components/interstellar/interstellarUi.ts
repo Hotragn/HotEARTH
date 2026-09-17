@@ -79,9 +79,27 @@ export const VISITORS_ACCURACY_NOTE =
 // comp. Paths + verbatim credits live here so the backdrop, onboarding, Visitors
 // strip and footer all cite them identically.
 
-/** The HERO video: NASA/STScI galactic-center visualization (silent, PD). */
-export const HERO_VIDEO_SRC =
+/** Where the hero video lives when it is not bundled into the deployment. */
+export const HERO_VIDEO_FALLBACK_PATH =
   "/videos/interstellar/galactic-center-multiwavelength.mp4";
+
+/**
+ * The HERO video: NASA/STScI galactic-center visualization (silent, PD).
+ *
+ * SERVED FROM OUTSIDE THE DEPLOYMENT. At 8.4 MB this single file was 17 percent
+ * of every build, and a build is stored per deployment, so it was the most
+ * expensive asset on the site by a wide margin and it has never changed once.
+ * Set NEXT_PUBLIC_HERO_VIDEO_URL to a blob or CDN URL and it is served from
+ * there instead.
+ *
+ * Unset, this falls back to the in-repo path, which is how it worked before and
+ * how it still works if somebody drops the file back into public/videos. If
+ * neither resolves, the backdrop shows a real Spitzer still of the same part of
+ * the sky and credits that instead, which is the honest degradation rather than
+ * a broken element.
+ */
+export const HERO_VIDEO_SRC =
+  process.env.NEXT_PUBLIC_HERO_VIDEO_URL ?? HERO_VIDEO_FALLBACK_PATH;
 
 /** Verbatim credit for the hero video (docs §3c). */
 export const HERO_VIDEO_CREDIT =

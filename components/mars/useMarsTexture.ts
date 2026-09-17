@@ -7,22 +7,22 @@ import { prepTexture } from "@/components/globe/useBaseTextures";
 /**
  * Expected Mars surface texture path.
  *
- * TODO(coordinator/mars-data-agent): the Mars data agent owns public/data/mars.
- * Drop the real equirectangular color/MOLA texture here (or update this path to
- * whatever filename they report) and the globe will use it automatically. Until
- * then the loader 404s and the globe renders a procedurally-tinted rusty Mars
- * so the build/scene never breaks.
+ * The texture is an equirectangular colorized MOLA shaded relief from the NASA
+ * Scientific Visualization Studio, and it lives in one place.
  *
- * Preferred: an equirectangular (2:1) colorized MOLA shaded-relief or Viking
- * color mosaic, JPEG, 4096×2048 or 8192×4096.
- * Candidate sources the data agent may use: USGS Astrogeology / NASA PDS
- * (MOLA colorized shaded relief), NASA Scientific Visualization Studio.
+ * THERE USED TO BE THREE CANDIDATE PATHS, from when the asset had not been
+ * delivered yet and the loader probed for wherever it might land. It has landed.
+ * Two of those paths held byte-identical copies of the same 2.2 MB JPEG and the
+ * third did not exist, so every deployment shipped the image twice to guard
+ * against a 404 it could not actually suffer: all three candidates were static
+ * files inside the same immutable deployment, so if one were missing the others
+ * would be too.
+ *
+ * The procedural fallback below is the resilience that does something, and it
+ * stays: if this file is missing or corrupt the globe renders a tinted rusty
+ * Mars rather than breaking the scene.
  */
-export const MARS_TEXTURE_CANDIDATES = [
-  "/data/mars/mars-color.jpg",
-  "/data/mars/mars-mola-colorized.jpg",
-  "/textures/mars-mola-colorized.jpg",
-] as const;
+export const MARS_TEXTURE_CANDIDATES = ["/textures/mars-mola-colorized.jpg"] as const;
 
 export interface MarsTextureState {
   /** the loaded surface texture, or null if none of the candidates exist yet */

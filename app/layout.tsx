@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import Companion from "@/components/companion/Companion";
 import TourHint from "@/components/ui/TourHint";
 
@@ -50,6 +51,13 @@ export default function RootLayout({
         {children}
         <Companion />
         <TourHint />
+        {/*
+          Vercel Web Analytics. Anonymous page counts only: no cookies, no
+          cross-site identifiers, and nothing that could identify a visitor. It
+          is named in the About panel for the same reason every data source is,
+          and it is the only third-party script the app loads.
+        */}
+        <Analytics />
       </body>
     </html>
   );

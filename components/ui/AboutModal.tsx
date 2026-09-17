@@ -42,6 +42,12 @@ export default function AboutModal({ onClose }: { onClose: () => void }) {
             <p className="mt-1 text-sm text-dim">
               Real data or documented physics. Nothing invented.
             </p>
+            <p className="mt-2 text-[12px] leading-relaxed text-faint">
+              One third-party script runs here: Vercel Web Analytics, which
+              counts page views without cookies or any cross-site identifier.
+              Nothing else about you is collected, and there is no other
+              tracker.
+            </p>
           </div>
           <button
             type="button"

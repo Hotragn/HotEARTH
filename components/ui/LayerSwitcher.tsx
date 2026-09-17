@@ -37,6 +37,9 @@ interface LayerSwitcherProps {
   windError: string | null;
   /** GFS cycle, pre-formatted ("2026-07-06 06z"), when data is loaded */
   windCycle: string | null;
+  /** True when the live mirror was unreachable and the committed copy is
+   * being drawn, which may be considerably older than its cycle suggests. */
+  windIsFallback?: boolean;
 }
 
 /**
@@ -55,6 +58,7 @@ export default function LayerSwitcher({
   windLoading,
   windError,
   windCycle,
+  windIsFallback = false,
 }: LayerSwitcherProps) {
   return (
     <section
@@ -174,6 +178,7 @@ export default function LayerSwitcher({
             ) : windCycle ? (
               <p className="mt-1 font-mono text-[10px] tracking-wide text-faint">
                 Wind cycle {windCycle} · NOAA GFS
+                {windIsFallback ? " · committed copy, the live mirror did not answer" : ""}
               </p>
             ) : null)}
         </div>

@@ -51,29 +51,46 @@ jobs:
           mkdir -p public/data/wind
           cp scripts/wind/output/current.json public/data/wind/current.json
 
-      - name: Commit and push if changed
+      # Publish to the `data` branch, NOT to main.
+      #
+      # main is what Vercel deploys, and each push to it stores a whole new
+      # deployment. This file changes four times a day, which was 113 of the 171
+      # data commits in a typical month and so the largest single consumer of
+      # deployment storage on the project, for 550 kB of new numbers a time.
+      #
+      # A FRESH REPOSITORY EVERY RUN, force-pushed, so the branch holds exactly
+      # one parentless commit and its history never grows. Nothing deploys from
+      # it. The app reads it over raw.githubusercontent.com, which sends
+      # Access-Control-Allow-Origin: *, and falls back to the copy committed in
+      # main when that is unreachable.
+      #
+      # THERE IS DELIBERATELY NO NO-CHANGE CHECK HERE. On main that check earned
+      # its keep, because an unchanged commit was still a stored deployment. A
+      # force-push to a single-commit branch costs nothing whether the bytes
+      # moved or not, so the guard would be complexity buying nothing. The fetch
+      # script still declines to rewrite the file when GFS has not moved, which
+      # is where that logic belongs.
+      #
+      # No rebase-and-retry loop either. That existed because main advanced
+      # under us between checkout and push; a force-push to a branch no one else
+      # writes cannot conflict.
+      - name: Publish to the data branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
+          staging=$(mktemp -d)
+          mkdir -p "$staging/wind"
+          cp public/data/wind/current.json "$staging/wind/current.json"
+          cp .github/data-branch-README.md "$staging/README.md"
+          cd "$staging"
+          git init -q -b data
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/wind/current.json
-          if git diff --cached --quiet; then
-            echo "No changes to commit (same cycle as last run)."
-            exit 0
-          fi
-          git commit -m "chore(data): update GFS 10m wind field"
-          # main can advance between checkout and push — a PR merge or a prior
-          # scheduled run — which rejects a plain push as non-fast-forward and
-          # fails the job (the sole cause of the intermittent failures). Rebase
-          # our single data commit onto the latest main and retry instead of
-          # failing. This is a fresh generated artifact, so rebasing is safe.
-          for attempt in 1 2 3 4 5; do
-            if git push origin HEAD:main; then
-              echo "Pushed on attempt $attempt."
-              exit 0
-            fi
-            echo "Push rejected (main advanced); rebasing and retrying ($attempt/5)..."
-            git pull --rebase --autostash origin main || true
-            sleep 5
-          done
-          echo "::error::Failed to push wind data after 5 attempts."
-          exit 1
+          git add .
+          git commit -q -m "data: wind field mirror
+
+          Force-pushed on every refresh. See README.md on this branch."
+          git push -f -q             "https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" data
+          echo "Published $(git rev-parse HEAD) to the data branch."
+

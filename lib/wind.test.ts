@@ -5,6 +5,9 @@ import {
   parseWindField,
   sampleWind,
   type WindField,
+  fetchWindField,
+  WIND_REMOTE_URL,
+  WIND_FALLBACK_PATH,
 } from "./wind";
 
 /**
@@ -168,5 +171,94 @@ describe("formatCycle", () => {
   it("formats an ISO cycle time as a compact HUD label", () => {
     expect(formatCycle("2026-07-06T06:00:00Z")).toBe("2026-07-06 06z");
     expect(formatCycle("garbage")).toBe("garbage");
+  });
+});
+
+describe("where the wind field comes from", () => {
+  const payload = {
+    meta: { cycle: "2026-09-16T18:00:00Z" },
+    nx: 2,
+    ny: 2,
+    lo1: 0,
+    la1: 90,
+    dx: 1,
+    dy: 1,
+    u: [1, 2, 3, 4],
+    v: [1, 2, 3, 4],
+  };
+
+  const stub = (handler: (url: string) => Response | Promise<Response>) => {
+    const original = globalThis.fetch;
+    globalThis.fetch = ((input: RequestInfo | URL) =>
+      Promise.resolve(handler(String(input)))) as typeof fetch;
+    return () => {
+      globalThis.fetch = original;
+    };
+  };
+
+  const ok = () => new Response(JSON.stringify(payload), { status: 200 });
+
+  it("prefers the remote mirror over the committed copy", async () => {
+    const seen: string[] = [];
+    const restore = stub((url) => {
+      seen.push(url);
+      return ok();
+    });
+    try {
+      const got = await fetchWindField();
+      expect(got?.source).toBe("remote");
+      // The committed copy must not even be requested when the remote answers.
+      expect(seen).toEqual([WIND_REMOTE_URL]);
+    } finally {
+      restore();
+    }
+  });
+
+  it("falls back to the committed copy when the remote is down", async () => {
+    // The whole reason the committed copy still ships. raw.githubusercontent.com
+    // is not a CDN and carries no traffic guarantee.
+    const seen: string[] = [];
+    const restore = stub((url) => {
+      seen.push(url);
+      if (url === WIND_REMOTE_URL) throw new Error("network down");
+      return ok();
+    });
+    try {
+      const got = await fetchWindField();
+      expect(got?.source).toBe("committed");
+      expect(seen).toEqual([WIND_REMOTE_URL, WIND_FALLBACK_PATH]);
+    } finally {
+      restore();
+    }
+  });
+
+  it("falls back on a non-200 as well as on a throw", async () => {
+    const restore = stub((url) =>
+      url === WIND_REMOTE_URL ? new Response("nope", { status: 404 }) : ok()
+    );
+    try {
+      expect((await fetchWindField())?.source).toBe("committed");
+    } finally {
+      restore();
+    }
+  });
+
+  it("returns null when both are unreachable, rather than throwing", async () => {
+    const restore = stub(() => {
+      throw new Error("offline");
+    });
+    try {
+      expect(await fetchWindField()).toBeNull();
+    } finally {
+      restore();
+    }
+  });
+
+  it("points at the data branch by default, not at main", async () => {
+    // main is what deploys. A mirror served from main would be the thing this
+    // change exists to stop.
+    expect(WIND_REMOTE_URL).toContain("/data/wind/current.json");
+    expect(WIND_REMOTE_URL).not.toContain("/main/");
+    expect(WIND_FALLBACK_PATH).toBe("/data/wind/current.json");
   });
 });

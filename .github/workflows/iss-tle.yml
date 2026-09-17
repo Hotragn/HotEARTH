@@ -1,19 +1,27 @@
 name: iss-tle
 
-# The ISS Tracker tab propagates a real TLE with SGP4 in the browser. TLEs go
-# stale (SGP4 error grows ~1-3 km/day), so we refresh the committed mirror
-# twice a day. CelesTrak updates its GP (TLE) data once every ~2 hours and its
-# usage policy asks callers to fetch at most once per update and to cache, so a
-# single twice-daily cron that every app user then reads from the CDN is well
-# within etiquette (one machine hits CelesTrak, not thousands of browsers).
+# The ISS Tracker tab propagates a real TLE with SGP4 in the browser, and TLEs
+# go stale (SGP4 error grows ~1-3 km/day). This used to run twice a day for that
+# reason.
 #
-# 05:37 and 17:37 UTC: ~12 h apart for freshness, and the :37 offset avoids the
-# top-of-hour GitHub Actions congestion where scheduled jobs get delayed. If a
-# run is skipped, the previous committed TLE (a few hours older) is still valid,
-# so the tab degrades gracefully rather than breaking.
+# WEEKLY NOW, because the twice-daily cadence was refreshing something the app
+# almost never reads. IssApp fetches CelesTrak LIVE on load (they send CORS
+# headers) and only falls back to this mirror when that fetch fails; it even
+# reports which one it used. So the committed copy is a floor, not the source,
+# and it was costing 55 commits a month to main. Every one of those was a stored
+# Vercel deployment, which made a fallback file the second largest consumer of
+# deployment storage on the project.
+#
+# A week-old fallback is a worse fallback than a twelve-hour-old one, and that
+# is the honest trade: it is only ever read when CelesTrak is unreachable, the
+# tab already labels the source and the TLE's age on screen, and the alternative
+# was paying for 55 deployments a month against that possibility.
+#
+# 06:37 Monday: the :37 offset avoids the top-of-hour Actions congestion where
+# scheduled jobs get delayed.
 on:
   schedule:
-    - cron: "37 5,17 * * *"
+    - cron: "37 6 * * 1"
   workflow_dispatch:
 
 permissions:

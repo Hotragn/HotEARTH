@@ -10,7 +10,12 @@ import {
   type GibsLayerSlug,
   type LayerKind,
 } from "@/lib/gibs";
-import { formatCycle, parseWindField, type WindField } from "@/lib/wind";
+import {
+  fetchWindField,
+  formatCycle,
+  type WindField,
+  type WindSource,
+} from "@/lib/wind";
 import BootScreen from "@/components/ui/BootScreen";
 import NavShell from "@/components/ui/NavShell";
 import LayerSwitcher from "@/components/ui/LayerSwitcher";
@@ -122,6 +127,8 @@ export default function GlobeApp() {
   const [windField, setWindField] = useState<WindField | null>(null);
   const [windLoading, setWindLoading] = useState(false);
   const [windError, setWindError] = useState<string | null>(null);
+  // Which copy the field came from, so the HUD can say when it is the fallback.
+  const [windSource, setWindSource] = useState<WindSource | null>(null);
 
   useEffect(() => {
     if (!windEnabled || windField) return;
@@ -129,12 +136,13 @@ export default function GlobeApp() {
     setWindLoading(true);
     setWindError(null);
     (async () => {
-      const res = await fetch("/data/wind/current.json", {
-        signal: controller.signal,
-      });
-      if (!res.ok) throw new Error(`wind data responded ${res.status}`);
-      const field = parseWindField(await res.json());
-      setWindField(field);
+      // Remote first, committed copy second. The remote mirror lives on the
+      // `data` branch rather than inside the deployment, because a file that
+      // changes four times a day was storing four deployments a day.
+      const got = await fetchWindField(controller.signal);
+      if (!got) throw new Error("wind data unavailable");
+      setWindField(got.field);
+      setWindSource(got.source);
       setWindLoading(false);
     })().catch((err: unknown) => {
       if (controller.signal.aborted) return;
@@ -212,6 +220,7 @@ export default function GlobeApp() {
           windLoading={windLoading}
           windError={windError}
           windCycle={windField ? formatCycle(windField.meta.cycle) : null}
+          windIsFallback={windSource === "committed"}
         />
         <TimeControl
           offsetHours={timeOffsetHours}

@@ -151,3 +151,67 @@ export function formatCycle(cycleIso: string): string {
   if (!m) return cycleIso;
   return `${m[1]} ${m[2]}z`;
 }
+
+/* ------------------------------------------------------------- where it lives */
+
+/**
+ * The committed copy, inside the deployment. Always present, possibly stale.
+ *
+ * This is the floor, not the source. It stops changing the moment the wind
+ * workflow publishes to the `data` branch instead of main, so treat it as "some
+ * wind field" rather than "the current one". The globe already prints the
+ * cycle it is drawing, so a stale fallback shows its age on screen.
+ */
+export const WIND_FALLBACK_PATH = "/data/wind/current.json";
+
+/**
+ * The live mirror, outside the deployment.
+ *
+ * Defaults to the `data` branch over raw.githubusercontent.com, which sends
+ * Access-Control-Allow-Origin: * and Cache-Control: max-age=300. Override with
+ * NEXT_PUBLIC_WIND_URL to serve it from a blob or a CDN instead; the code does
+ * not care which, so moving it later is an environment variable rather than a
+ * change here.
+ *
+ * raw.githubusercontent.com is not a CDN and has no traffic guarantee. That is
+ * an acceptable trade for a six-hourly 550 kB file on a site of this size, and
+ * it is the reason the fallback above exists rather than being decoration.
+ */
+export const WIND_REMOTE_URL =
+  process.env.NEXT_PUBLIC_WIND_URL ??
+  "https://raw.githubusercontent.com/Hotragn/HotEARTH/data/wind/current.json";
+
+/** Which copy a field came from, so the UI can say. */
+export type WindSource = "remote" | "committed";
+
+export interface WindFetch {
+  field: WindField;
+  source: WindSource;
+}
+
+/**
+ * Fetch the wind field, remote first, committed copy second.
+ *
+ * Returns null only when BOTH fail, which is the case the caller already
+ * handles by leaving the layer off with an error. A remote failure is not
+ * surfaced as an error, because the fallback is a correct answer to a slightly
+ * older question and the cycle is on screen either way.
+ */
+export async function fetchWindField(signal?: AbortSignal): Promise<WindFetch | null> {
+  const attempts: Array<{ url: string; source: WindSource }> = [
+    { url: WIND_REMOTE_URL, source: "remote" },
+    { url: WIND_FALLBACK_PATH, source: "committed" },
+  ];
+  for (const { url, source } of attempts) {
+    try {
+      const res = await fetch(url, { signal });
+      if (!res.ok) continue;
+      const field = parseWindField(await res.json());
+      if (field) return { field, source };
+    } catch {
+      if (signal?.aborted) return null;
+      // Try the next one. A remote that is down is exactly why there is a next.
+    }
+  }
+  return null;
+}

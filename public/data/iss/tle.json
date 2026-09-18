@@ -4,7 +4,7 @@
     "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
     "catalog_number": 25544,
     "name": "ISS (ZARYA)",
-    "fetched_at": "2026-09-18T10:00:51Z",
+    "fetched_at": "2026-09-18T19:54:46Z",
     "epoch": "2026-09-18T03:25:39Z",
     "tle_line0": "ISS (ZARYA)",
     "underlying_data": "US Space Force / 18th Space Defense Squadron (18 SDS), obtained via Space-Track and redistributed by CelesTrak",
@@ -19,7 +19,7 @@
   "tle": {
     "name": "ISS (ZARYA)",
     "line1": "1 25544U 98067A   26261.14280998  .00005718  00000+0  11125-3 0  9991",
-    "line2": "2 25544  51.6307 200.0361 0004823 152.4527 207.6718 15.49160218586163"
+    "line2": "2 25544  51.6307 200.0361 0004822 152.4527 207.6718 15.49160218586162"
   },
   "others": [
     {
@@ -29,19 +29,19 @@
       "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=20580&FORMAT=TLE",
       "tle": {
         "name": "HST",
-        "line1": "1 20580U 90037B   26261.01803920  .00005838  00000+0  17793-3 0  9997",
+        "line1": "1 20580U 90037B   26261.01803921  .00005838  00000+0  17793-3 0  9998",
         "line2": "2 20580  28.4729 165.6473 0001953  95.0051 265.0768 15.31682701802816"
       }
     },
     {
       "catalog_number": 48274,
       "name": "CSS (TIANHE)",
-      "epoch": "2026-09-17T23:27:50Z",
+      "epoch": "2026-09-18T07:08:45Z",
       "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=48274&FORMAT=TLE",
       "tle": {
         "name": "CSS (TIANHE)",
-        "line1": "1 48274U 21035A   26260.97765686  .00018540  00000+0  22590-3 0  9994",
-        "line2": "2 48274  41.4677 118.6156 0002645 286.8283  73.2265 15.60059383307654"
+        "line1": "1 48274U 21035A   26261.29773936  .00016929  00000+0  20659-3 0  9990",
+        "line2": "2 48274  41.4677 116.6699 0002625 287.9042  72.1510 15.60068670307703"
       }
     }
   ]

@@ -4,8 +4,8 @@
     "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
     "catalog_number": 25544,
     "name": "ISS (ZARYA)",
-    "fetched_at": "2026-10-20T20:48:19Z",
-    "epoch": "2026-10-20T12:45:45Z",
+    "fetched_at": "2026-10-21T10:30:33Z",
+    "epoch": "2026-10-21T01:08:59Z",
     "tle_line0": "ISS (ZARYA)",
     "underlying_data": "US Space Force / 18th Space Defense Squadron (18 SDS), obtained via Space-Track and redistributed by CelesTrak",
     "license": "Underlying orbital data is US Government work, public domain (17 U.S.C. 105). CelesTrak imposes no license fee or attribution requirement; the binding condition is its Usage Policy (rate limits + caching).",
@@ -18,8 +18,8 @@
   },
   "tle": {
     "name": "ISS (ZARYA)",
-    "line1": "1 25544U 98067A   26293.53177616  .00007749  00000+0  14885-3 0  9993",
-    "line2": "2 25544  51.6327  39.8161 0006774 287.4911  72.5337 15.48956417591181"
+    "line1": "1 25544U 98067A   26294.04791052  .00009575  00000+0  18188-3 0  9995",
+    "line2": "2 25544  51.6327  37.2623 0006760 289.5321  70.4938 15.48967427591265"
   },
   "others": [
     {
@@ -29,19 +29,19 @@
       "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=20580&FORMAT=TLE",
       "tle": {
         "name": "HST",
-        "line1": "1 20580U 90037B   26293.46250870  .00006661  00000+0  20183-3 0  9993",
-        "line2": "2 20580  28.4737 303.5398 0002159 109.4637 250.6193 15.32017206807790"
+        "line1": "1 20580U 90037B   26293.46250871  .00006661  00000+0  20183-3 0  9994",
+        "line2": "2 20580  28.4737 303.5398 0002159 109.4637 250.6193 15.32017207807791"
       }
     },
     {
       "catalog_number": 48274,
       "name": "CSS (TIANHE)",
-      "epoch": "2026-10-20T08:42:24Z",
+      "epoch": "2026-10-21T04:40:04Z",
       "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=48274&FORMAT=TLE",
       "tle": {
         "name": "CSS (TIANHE)",
-        "line1": "1 48274U 21035A   26293.36277347  .00021547  00000+0  25271-3 0  9995",
-        "line2": "2 48274  41.4689 281.6464 0001830 186.1730 173.9086 15.60981803312717"
+        "line1": "1 48274U 21035A   26294.19448742  .00031676  00000+0  36856-3 0  9991",
+        "line2": "2 48274  41.4685 276.5831 0002065 189.4629 170.6171 15.61025355312843"
       }
     }
   ]

@@ -4,8 +4,8 @@
     "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE",
     "catalog_number": 25544,
     "name": "ISS (ZARYA)",
-    "fetched_at": "2026-10-23T10:26:33Z",
-    "epoch": "2026-10-21T01:08:59Z",
+    "fetched_at": "2026-10-23T20:36:34Z",
+    "epoch": "2026-10-22T23:36:04Z",
     "tle_line0": "ISS (ZARYA)",
     "underlying_data": "US Space Force / 18th Space Defense Squadron (18 SDS), obtained via Space-Track and redistributed by CelesTrak",
     "license": "Underlying orbital data is US Government work, public domain (17 U.S.C. 105). CelesTrak imposes no license fee or attribution requirement; the binding condition is its Usage Policy (rate limits + caching).",
@@ -18,30 +18,30 @@
   },
   "tle": {
     "name": "ISS (ZARYA)",
-    "line1": "1 25544U 98067A   26294.04791053  .00009575  00000+0  18188-3 0  9996",
-    "line2": "2 25544  51.6327  37.2623 0006759 289.5321  70.4938 15.48967427591263"
+    "line1": "1 25544U 98067A   26295.98338418  .00009682  00000+0  18356-3 0  9998",
+    "line2": "2 25544  51.6334  27.6879 0006863 297.6388  62.3903 15.49006294591568"
   },
   "others": [
     {
       "catalog_number": 20580,
       "name": "HST",
-      "epoch": "2026-10-21T07:25:28Z",
+      "epoch": "2026-10-23T06:19:32Z",
       "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=20580&FORMAT=TLE",
       "tle": {
         "name": "HST",
-        "line1": "1 20580U 90037B   26294.30934801  .00007548  00000+0  22957-3 0  9996",
-        "line2": "2 20580  28.4737 297.7404 0002158 117.4266 242.6550 15.32029197807923"
+        "line1": "1 20580U 90037B   26296.26356805  .00007129  00000+0  21625-3 0  9991",
+        "line2": "2 20580  28.4737 284.3569 0002127 136.0164 224.0602 15.32054885808225"
       }
     },
     {
       "catalog_number": 48274,
       "name": "CSS (TIANHE)",
-      "epoch": "2026-10-21T06:12:11Z",
+      "epoch": "2026-10-23T04:15:55Z",
       "source_url": "https://celestrak.org/NORAD/elements/gp.php?CATNR=48274&FORMAT=TLE",
       "tle": {
         "name": "CSS (TIANHE)",
-        "line1": "1 48274U 21035A   26294.25846467  .00030091  00000+0  35038-3 0  9995",
-        "line2": "2 48274  41.4687 276.1937 0002031 190.5094 169.5703 15.61026916312853"
+        "line1": "1 48274U 21035A   26296.17771755  .00020691  00000+0  24161-3 0  9995",
+        "line2": "2 48274  41.4687 264.5088 0002448 201.7188 158.3547 15.61115044313159"
       }
     }
   ]

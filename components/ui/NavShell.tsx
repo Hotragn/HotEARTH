@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { CaretDown, Info, MagnifyingGlass, SquaresFour } from "@phosphor-icons/react";
+import { CaretDown, GithubLogo, Info, MagnifyingGlass, SquaresFour } from "@phosphor-icons/react";
 import {
   WORLD_GROUPS,
   adjacentWorlds,
@@ -13,6 +13,7 @@ import {
   type WorldGroupId,
   type WorldTab,
 } from "@/lib/worlds";
+import { REPO_URL } from "@/lib/repo";
 import NavGroupMenu from "./NavGroupMenu";
 import CommandPalette from "./CommandPalette";
 import WorldsOverview from "./WorldsOverview";
@@ -194,6 +195,30 @@ export default function NavShell({
           <SquaresFour size={16} weight="light" aria-hidden />
           <span className="hidden lg:inline">Worlds</span>
         </button>
+
+        {/* source — desktop pill. The repository is the honesty claim: anyone
+            who doubts a number on screen can read the code that produced it. */}
+        <a
+          href={REPO_URL}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="Star this project on GitHub"
+          className="hud-panel hidden h-10 cursor-pointer items-center gap-2 rounded-full px-3.5 text-xs text-dim transition-colors duration-200 hover:text-ice md:flex"
+        >
+          <GithubLogo size={16} weight="light" aria-hidden />
+          <span className="hidden lg:inline">Star</span>
+        </a>
+
+        {/* source — mobile icon */}
+        <a
+          href={REPO_URL}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="Star this project on GitHub"
+          className="hud-panel flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-dim transition-colors duration-200 hover:text-ice md:hidden"
+        >
+          <GithubLogo size={17} weight="light" aria-hidden />
+        </a>
 
         <button
           type="button"
